@@ -11,7 +11,7 @@ public class LoginView implements IView {
         actions.add("student");
         actions.add("staff");
 
-        PageUtils.printTitle("Welcome To CAMS");
+        PageUtils.printTitle("Camp Application Management System");
         System.out.println("Log in to CAMS");
         PageUtils.printActionBox(actions);
     }

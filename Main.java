@@ -13,12 +13,14 @@ public class Main {
 		vcc.setCurrentController(0);
 
 		//might remove later
-		System.out.println("enter your password:");
+		boolean res = false;
 		Scanner scnrr = new Scanner(System.in);
-		String pw = scnrr.next();
-		authController.authenticate(pw,"anything");
+		while(!res){
+			System.out.println(authController.isUnderCooldown()?"Login disabled.":"enter your password:");
+			String pw = scnrr.next();
+			res = authController.authenticate(pw,"anything");
+		}
 		scnrr.close();
-
 		//to change
 		while(terminate) {
 			

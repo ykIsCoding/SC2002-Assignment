@@ -13,6 +13,6 @@ public class LoginView implements IView {
 
         PageUtils.printTitle("Camp Application Management System");
         System.out.println("Log in to CAMS");
-        PageUtils.printActionBox(actions);
+        
     }
 }

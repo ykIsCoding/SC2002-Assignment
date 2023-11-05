@@ -8,6 +8,7 @@ public class ViewControllerController {
     AppViewController avc;
     EnquiryViewController evc;
     ProfileViewController pvc;
+    CampViewController cvc;
 
     public ViewControllerController(){
         authvc = new AuthenticationViewController();
@@ -15,6 +16,7 @@ public class ViewControllerController {
         avc = new AppViewController();
         evc =new EnquiryViewController();
         pvc = new ProfileViewController();
+        cvc = new CampViewController();
     }
 
     public void setCurrentController(int num){
@@ -24,6 +26,7 @@ public class ViewControllerController {
             case 2: avc.initialise(this);break;
 			case 3: svc.initialise(this);break;
 			case 4: pvc.initialise(this);break;
+            case 5: cvc.initialise(null);break;
 		}
     }
 

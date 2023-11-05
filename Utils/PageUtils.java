@@ -1,6 +1,8 @@
 package Utils;
 import java.util.ArrayList;
 
+import Models.Action;
+
 public class PageUtils {
     static final String topLeftCorner = "╔";
     static final String topRightCorner = "╗";
@@ -113,10 +115,11 @@ public class PageUtils {
         
     }
 
-    public static void printActionBox(ArrayList<String> actions){
+    public static void printActionBox(Action[] actions){
+        if(actions.length==0 || actions==null) return;
         System.out.println("Enter the number corresponding to the following options:\n");
-        for(int i =0;i<actions.size();i++){
-            printRow(i+1,actions.get(i));
+        for(int i =0;i<actions.length;i++){
+            printRow(actions[i].getActionNo(),actions[i].getActionName());
         }
     }
 

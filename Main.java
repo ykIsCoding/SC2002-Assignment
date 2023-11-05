@@ -1,6 +1,7 @@
 
 import java.util.*;
-
+import javax.swing.*;
+import java.net.*;
 import Controllers.AuthenticationController;
 import Controllers.ViewControllerController;
 
@@ -12,6 +13,8 @@ public class Main {
 		AuthenticationController authController = new AuthenticationController(vcc);
 		vcc.setCurrentController(0);
 
+		
+
 		//might remove later
 		boolean res = false;
 		Scanner scnrr = new Scanner(System.in);
@@ -21,6 +24,9 @@ public class Main {
 			res = authController.authenticate(pw,"anything");
 		}
 		scnrr.close();
+		
+		
+		
 		//to change
 		while(terminate) {
 			

@@ -14,18 +14,43 @@ public class SuggestionViewController implements IViewController{
     SuggestionCreateView scv = new SuggestionCreateView();
     SuggestionApproveView sav = new SuggestionApproveView();
     SuggestionListView svl = new SuggestionListView(this);;
-    SuggestionView sv = new SuggestionView();
+    SuggestionView sv = new SuggestionView(this);
 	ViewControllerController vcc;
 	
 	SuggestionViewController(){}
-	
-	SuggestionViewController(ViewControllerController vcc){
-		this.vcc = vcc;
-	}
     
     @Override
     public void initialise(ViewControllerController vcc) {
         // TODO Auto-generated method stub
+        this.vcc = vcc;
         this.svl.render();
     }
+
+    public void inputToWithinViewController(int x){
+        switch(x){
+            case 1: 
+                this.sav.render();
+                break;
+            case 2: 
+                this.scv.render();
+                break;
+            case 3: 
+                this.sdv.render();
+                break;
+            case 4: 
+                this.sev.render();
+                break;
+            case 5: 
+                this.sv.render();
+                break;
+            default:
+                System.out.println("Invalid Selection. Redirecting to Suggestion List View"); 
+                this.svl.render();
+        }
+    }
+
+    public void inputToViewControllerController(int x){
+        this.vcc.setCurrentController(x);
+    }
+
 }

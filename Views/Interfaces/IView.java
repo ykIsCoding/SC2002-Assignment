@@ -4,5 +4,5 @@ import Models.Action;
 
 public interface IView {
     public void render();
-    //public void handleInput(int selection);
+    public void handleInput(int selection);
 }

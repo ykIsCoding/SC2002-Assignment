@@ -6,6 +6,7 @@ import Views.Interfaces.IView;
 import java.util.ArrayList;
 
 import Controllers.AppViewController;
+import Controllers.CampViewController;
 import Controllers.ViewControllerController;
 import Models.Action;
 
@@ -21,6 +22,12 @@ public class HomeView implements IView {
 
     public HomeView(AppViewController avc){
         this.avc = avc;
+    }
+
+    @Override
+    public void handleInput(int selection) {
+        // TODO Auto-generated method stub
+        
     }
 
     

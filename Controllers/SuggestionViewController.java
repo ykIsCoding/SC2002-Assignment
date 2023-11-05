@@ -9,10 +9,10 @@ import Views.Suggestions.SuggestionListView;
 import Views.Suggestions.SuggestionView;
 
 public class SuggestionViewController implements IViewController{
-    SuggestionEditView sev = new SuggestionEditView();
-    SuggestionDeleteView sdv = new SuggestionDeleteView();
-    SuggestionCreateView scv = new SuggestionCreateView();
-    SuggestionApproveView sav = new SuggestionApproveView();
+    SuggestionEditView sev = new SuggestionEditView(this);
+    SuggestionDeleteView sdv = new SuggestionDeleteView(this);
+    SuggestionCreateView scv = new SuggestionCreateView(this);
+    SuggestionApproveView sav = new SuggestionApproveView(this);
     SuggestionListView svl = new SuggestionListView(this);;
     SuggestionView sv = new SuggestionView(this);
 	ViewControllerController vcc;

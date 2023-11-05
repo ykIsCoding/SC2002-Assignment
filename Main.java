@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.net.*;
 import Controllers.AuthenticationController;
 import Controllers.ViewControllerController;
+import Utils.PageUtils;
 
 public class Main {
 	
@@ -12,7 +13,6 @@ public class Main {
 		ViewControllerController vcc = new ViewControllerController();
 		AuthenticationController authController = new AuthenticationController(vcc);
 		vcc.setCurrentController(0);
-
 		
 
 		//might remove later

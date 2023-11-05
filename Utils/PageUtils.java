@@ -1,6 +1,6 @@
 package Utils;
 import java.util.ArrayList;
-
+import java.util.Date;
 import Models.Action;
 
 public class PageUtils {
@@ -11,6 +11,8 @@ public class PageUtils {
     static final String horizontalDoubleLine = "═";
     static final String verticalDoubleLine = "║";
     static final String horizontalSingleLine = "━";
+    static final String TLeftLine = "╠";
+    static final String TRightLine = "╣";
     static final String TTopLine = "╦";
     static final String TBottomLine = "╩";
     static final String space =" ";
@@ -121,6 +123,31 @@ public class PageUtils {
         for(int i =0;i<actions.length;i++){
             printRow(actions[i].getActionNo(),actions[i].getActionName());
         }
+    }
+
+    public static void clearView(){
+        
+    }
+
+    public static void printSuggestionBox(String title, String content, String sender, String senderPosition, Date ts){
+        int colWidth = 108;
+        String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
+        String infoLine = verticalDoubleLine+ThemeUtils.BLUE+ThemeUtils.WHITE_BACKGROUND+center(( sender+" ("+senderPosition+" )"), colWidth)+ThemeUtils.COLOR_RESET+verticalDoubleLine+"\n";
+        String tsLine = verticalDoubleLine+ThemeUtils.BLUE+ThemeUtils.WHITE_BACKGROUND+center(ts.toString(),colWidth)+ThemeUtils.COLOR_RESET+verticalDoubleLine+"\n";
+        String bottomLine = bottomLeftCorner+horizontalDoubleLine.repeat(colWidth)+bottomRightCorner+"\n";
+        String suggestionTitle = verticalDoubleLine+center(title, colWidth)+verticalDoubleLine+"\n";
+        String centerLine = TLeftLine+horizontalDoubleLine.repeat(colWidth)+TRightLine+"\n";
+        int multiplier = (int) Math.ceil((content.length())/colWidth)+1;
+        content = padder(content,colWidth,multiplier);
+        String finalString = "";
+        int h = 0;
+        for(int n=0;n<multiplier;n++){
+            finalString+=verticalDoubleLine+space+content.substring(h,h+colWidth-2)+space+verticalDoubleLine+"\n";
+            h+=colWidth;
+        }
+
+        finalString = topLine + suggestionTitle + centerLine +finalString+infoLine+tsLine+ bottomLine;
+        System.out.println(finalString);
     }
 
 }

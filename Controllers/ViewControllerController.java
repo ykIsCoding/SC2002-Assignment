@@ -26,7 +26,9 @@ public class ViewControllerController {
             case 2: avc.initialise(this);break;
 			case 3: svc.initialise(this);break;
 			case 4: pvc.initialise(this);break;
-            case 5: cvc.initialise(null);break;
+            case 5: cvc.initialise(this);break;
+            default:
+                System.out.println("error");
 		}
     }
 

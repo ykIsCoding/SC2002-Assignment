@@ -5,6 +5,7 @@ import java.net.*;
 import Controllers.AuthenticationController;
 import Controllers.ViewControllerController;
 import Utils.PageUtils;
+import java.io.Console;
 
 public class Main {
 	
@@ -18,11 +19,15 @@ public class Main {
 		//might remove later
 		boolean res = false;
 		Scanner scnrr = new Scanner(System.in);
-		while(!res){
-			System.out.println(authController.isUnderCooldown()?"Login disabled.":"enter your password:");
-			String pw = scnrr.next();
-			res = authController.authenticate(pw,"anything");
-		}
+		//Console cnsle = System.console();
+		
+			while(!res){
+				System.out.println(authController.isUnderCooldown()?"Login disabled.":"Password:");
+				String pw = scnrr.next();
+				//String pw = new String(cnsle.readPassword("Enter your password: ")); //might use this instead
+				res = authController.authenticate(pw,"anything");
+			}
+		
 		scnrr.close();
 		
 		

@@ -34,6 +34,7 @@ public class AuthenticationController {
             setCoolDown();
             System.out.println("Due to too many incorrect attempts, logging in is disabled. Please try again in 1 minute");
         }else{
+            
             System.out.println("Password incorrect, please try again. You are left with "+ Integer.toString(this.attempsLeft)+" tries.");
         }
         return false;

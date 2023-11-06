@@ -27,6 +27,26 @@ public class HomeView implements IView {
     @Override
     public void handleInput(int selection) {
         // TODO Auto-generated method stub
+        switch (selection) {
+            case 1:
+                avc.inputToViewControllerController(5);
+                break;
+            case 2:
+                avc.inputToViewControllerController(5);
+                break;
+            case 3:
+                avc.inputToWithinViewController(2);
+                break;
+            case 4:
+                avc.inputToViewControllerController(6);
+                break;
+            case 5:
+                System.out.println("selected");
+                avc.inputToViewControllerController(3);
+                break;
+            default:
+                break;
+        }
         
     }
 
@@ -36,25 +56,6 @@ public class HomeView implements IView {
         PageUtils.printTitle("Welcome");
         PageUtils.printActionBox(actions);
         int choice = InputUtils.tryGetIntSelection(1, 5);
-        switch (choice) {
-            case 1:
-                avc.inputToViewControllerController(5);
-                break;
-            case 2:
-                avc.inputToViewControllerController(5);
-                break;
-            case 3:
-                avc.inputToViewControllerController(5);
-                break;
-            case 4:
-                avc.inputToViewControllerController(5);
-                break;
-            case 5:
-                System.out.println("selected");
-                avc.inputToViewControllerController(3);
-                break;
-            default:
-                break;
-        }
+        handleInput(choice);
     }
 }

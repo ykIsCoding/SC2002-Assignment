@@ -17,6 +17,7 @@ public class CampViewController implements IViewController {
     CampView cv = new CampView(this);
     ViewControllerController vcc;
 
+    //might move to a parent class
     public void inputToViewControllerController(int x){
         this.vcc.setCurrentController(x);
     }

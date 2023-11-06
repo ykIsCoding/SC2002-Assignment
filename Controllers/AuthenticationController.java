@@ -10,11 +10,11 @@ public class AuthenticationController {
     String password = "password";
     Token currentSessionToken = null;
     String UserID;
-    ViewControllerController vcc;
+   // ViewControllerController vcc;
     boolean underCoolDown = false;
 
-    public AuthenticationController(ViewControllerController vcc){
-		this.vcc = vcc;
+    public AuthenticationController(){
+		
 	}
 
     public boolean isUnderCooldown(){
@@ -26,7 +26,6 @@ public class AuthenticationController {
         if(inputPassword.equals(this.password)){
             this.currentSessionToken = new Token("55", this);
             this.attempsLeft = 3;
-            vcc.setCurrentController(2);
             return true;
         }
         this.attempsLeft-=1;
@@ -53,6 +52,5 @@ public class AuthenticationController {
 
     public void removeToken(){
         this.currentSessionToken = null;
-        vcc.setCurrentController(0);
     }
 }

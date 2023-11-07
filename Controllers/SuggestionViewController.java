@@ -1,6 +1,7 @@
 package Controllers;
 
 import Controllers.Interfaces.IViewController;
+import Models.Suggestion;
 import Views.Suggestions.SuggestionApproveView;
 import Views.Suggestions.SuggestionCreateView;
 import Views.Suggestions.SuggestionDeleteView;
@@ -26,7 +27,7 @@ public class SuggestionViewController implements IViewController{
         this.svl.render();
     }
 
-    public void inputToWithinViewController(int x){
+    public void inputToWithinViewController(int x, Suggestion suggestion){
         switch(x){
             case 1: 
                 this.sav.render();
@@ -41,6 +42,7 @@ public class SuggestionViewController implements IViewController{
                 this.sev.render();
                 break;
             case 5: 
+                this.sv.setCurrentSuggestion(suggestion);
                 this.sv.render();
                 break;
             default:

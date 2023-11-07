@@ -120,10 +120,11 @@ public class PageUtils {
 
     public static void printActionBox(Action[] actions){
         if(actions.length==0 || actions==null) return;
-        System.out.println("Enter the number corresponding to the following options:\n");
+        System.out.println(ThemeUtils.BLUE+"Enter the number corresponding to the following options:\n");
         for(int i =0;i<actions.length;i++){
             printRow(actions[i].getActionNo(),actions[i].getActionName());
         }
+        System.out.print(ThemeUtils.COLOR_RESET);
     }
 
     public static void clearView(){

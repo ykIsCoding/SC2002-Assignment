@@ -17,6 +17,10 @@ public class SuggestionList {
 
     }
 
+    public Suggestion getSuggestion(int suggestionNo){
+        return this.suggestionList.get(suggestionNo);
+    }
+
     public void removeSuggestion(String suggestionID){
         for(int b=0;b<this.suggestionList.size();b++){
             if(this.suggestionList.get(b).getSuggestionID()==suggestionID){

@@ -1,16 +1,15 @@
 package Views.Apps;
-
-import Controllers.AppViewController;
+import Controllers.ViewControllerController;
 import Models.Action;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
 
 public class ProfileView implements IView {
-    AppViewController avc;
+    ViewControllerController vcc;
 
-    public ProfileView(AppViewController avc){
-        this.avc = avc;
+    public ProfileView(ViewControllerController vcc){
+        this.vcc = vcc;
     }
 
     Action actions[] ={
@@ -21,7 +20,7 @@ public class ProfileView implements IView {
     public void handleInput(int selection) {
         // TODO Auto-generated method stub
          switch(selection){
-            case 1: this.avc.inputToWithinViewController(1);
+            case 1: this.vcc.navigate(3);;
             default:
                 System.out.println("Invalid Selection");
         }

@@ -25,7 +25,7 @@ public class Main {
 		boolean terminate = false;
 		AuthenticationController authController = new AuthenticationController();
 		ViewControllerController vcc = new ViewControllerController(authController);
-		vcc.setCurrentController(0);
+		vcc.navigate(0);
 
 		//might remove later
 		

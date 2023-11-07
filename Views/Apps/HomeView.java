@@ -5,26 +5,24 @@ import Views.Interfaces.IView;
 
 import java.util.ArrayList;
 
-import Controllers.AppViewController;
 import Controllers.AuthenticationController;
 import Controllers.CampViewController;
 import Controllers.ViewControllerController;
 import Models.Action;
 
 public class HomeView implements IView {
-    AppViewController avc;
+    ViewControllerController vcc;
     
     Action actions[] = {
         new Action("View All Camps", 1), 
         new Action("View My Camps", 2),
         new Action("View My Profile",3),
-        new Action("View My Enquiries",4),
-        new Action("View My Suggestions",5),
-         new Action("Log Out",6),
+        new Action("View My Suggestions",4),
+         new Action("Log Out",5),
     };
 
-    public HomeView(AppViewController avc){
-        this.avc = avc;
+    public HomeView(ViewControllerController vcc){
+        this.vcc = vcc;
         
     }
 
@@ -33,24 +31,19 @@ public class HomeView implements IView {
         // TODO Auto-generated method stub
         switch (selection) {
             case 1:
-                avc.inputToViewControllerController(5);
+                this.vcc.navigate(2);
                 break;
             case 2:
-                avc.inputToViewControllerController(5);
                 break;
             case 3:
-                avc.inputToWithinViewController(2);
+                this.vcc.navigate(4);
                 break;
             case 4:
-                avc.inputToViewControllerController(6);
+                this.vcc.navigate(1);
                 break;
             case 5:
-                System.out.println("selected");
-                avc.inputToViewControllerController(3);
-                break;
-            case 6:
                 System.out.println("logging out");
-                avc.inputToViewControllerController(0);
+                this.vcc.navigate(0);
                 break;
             default:
                 break;
@@ -63,7 +56,7 @@ public class HomeView implements IView {
     public void render(){
         PageUtils.printTitle("Welcome");
         PageUtils.printActionBox(actions);
-        int choice = InputUtils.tryGetIntSelection(1, 6);
+        int choice = InputUtils.tryGetIntSelection(1, 5);
         handleInput(choice);
     }
 }

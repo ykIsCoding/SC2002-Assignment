@@ -2,24 +2,28 @@ package Views.Camps;
 
 import Controllers.CampViewController;
 import Controllers.SuggestionViewController;
+import Controllers.ViewControllerController;
 import Models.Action;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
 
 public class CampListView implements IView {
+    ViewControllerController vcc;
+    CampViewController cvc;
+
     Action actions[] ={
         new Action("Back To Home", 1),
     };
-    CampViewController cvc;
 
-    public CampListView(CampViewController b){
-		this.cvc =b;
+    public CampListView(ViewControllerController vcc){
+        this.vcc=vcc;
+	
 	}
 
     public void handleInput(int selection) {
         switch(selection){
-            case 1: this.cvc.inputToViewControllerController(2);
+            case 1:this.vcc.navigate(3);break;
             default:
                 System.out.println("Invalid Selection");
         }

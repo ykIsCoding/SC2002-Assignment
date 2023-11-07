@@ -17,7 +17,7 @@ public class SuggestionApproveView implements IView {
 
     public void handleInput(int selection) {
         switch(selection){
-            case 1: this.svc.inputToViewControllerController(2);
+            //case 1: this.svc.inputToViewControllerController(2);
             default:
                 System.out.println("Invalid Selection");
         }

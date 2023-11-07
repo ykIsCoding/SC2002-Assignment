@@ -1,36 +1,44 @@
 package Views.Suggestions;
 
+
 import Controllers.SuggestionViewController;
+import Controllers.ViewControllerController;
 import Models.Action;
 import Models.Suggestion;
 import Models.SuggestionList;
+import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
 
 public class SuggestionView extends SuggestionList implements IView {
     SuggestionViewController svc;
-    Suggestion currentSuggestion;
-    Action createSuggestionAction = new Action("Create Suggestion", 1);
+    Suggestion currSuggestion;
+    ViewControllerController vcc;
+
+    Action GoBack = new Action("Back to all suggestions", 1);
     Action editSuggestionAction = new Action("Edit Suggestion", 2);
     Action deleteSuggestionAction=   new Action("Delete Suggestion", 3);
     Action approveSuggestionAction=   new Action("Approve Suggestion", 4);
     Action actions[] ={
-        createSuggestionAction,
+        GoBack,
         editSuggestionAction,
         deleteSuggestionAction,
         approveSuggestionAction
     };
 
-    public SuggestionView(SuggestionViewController b){
+    public SuggestionView(Suggestion b, ViewControllerController vcc){
         super();
-		this.svc =b;
+		this.currSuggestion =b;
+        this.vcc = vcc;
+        this.svc = new SuggestionViewController(b);
+        render();
 	}
 
     public void handleInput(int selection) {
         // TODO Auto-generated method stub
         switch(selection){
         case 1: 
-          //  this.svc.inputToWithinViewController(2);
+            this.vcc.navigate(1);
             break;
         case 2: 
          //   this.svc.inputToWithinViewController(3);
@@ -46,16 +54,16 @@ public class SuggestionView extends SuggestionList implements IView {
         }
     }
 
-    public void setCurrentSuggestion(Suggestion x){
-        this.currentSuggestion = x;
-    }
+   
 
     @Override
     public void render() {
         // TODO Auto-generated method stub
         // TODO Auto-generated method stub
         PageUtils.printTitle("Suggestion");
-        PageUtils.printSuggestionBox(this.currentSuggestion,"test","test");
-    
+        PageUtils.printSuggestionBox(this.svc.getCurrentSuggestion(),"test","test");
+        PageUtils.printActionBox(actions);
+        int choice = InputUtils.tryGetIntSelection(1, 1);
+        handleInput(choice);
     }
 }

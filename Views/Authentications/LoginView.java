@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 import Controllers.AuthenticationController;
 import Controllers.AuthenticationViewController;
+import Controllers.ViewControllerController;
 import Models.Action;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
 
 public class LoginView extends AuthenticationController implements IView {
-    AuthenticationViewController avc;
+    ViewControllerController vcc;
     Action actions[] ={
         new Action("Log In", 1),
         new Action("Close Program", 2)
@@ -21,12 +22,12 @@ public class LoginView extends AuthenticationController implements IView {
         // TODO Auto-generated method stub
         switch(selection){
             case 1: promptCredentials(); break;
-            case 2: this.avc.inputToViewControllerController(7);
+            case 2: this.vcc.navigate(7);
         }
     }
 
-    public LoginView(AuthenticationViewController avc){
-        this.avc=avc;
+    public LoginView(ViewControllerController vcc){
+        this.vcc=vcc;
     }
 
     public void promptCredentials(){
@@ -39,7 +40,7 @@ public class LoginView extends AuthenticationController implements IView {
 				String pw = scnrr.next();
 				//String pw = new String(cnsle.readPassword("Enter your password: ")); //might use this instead
 				if(authenticate(pw,"anything")){
-					this.avc.inputToViewControllerController(2);
+					this.vcc.navigate(3);
 					break;
 				};
 			}

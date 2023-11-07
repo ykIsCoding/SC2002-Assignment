@@ -10,20 +10,15 @@ import Views.Enquiries.EnquiryView;
 public class EnquiryViewController implements IViewController{
     EnquiryCreateView ecv = new EnquiryCreateView(this);
     EnquiryEditView eev = new EnquiryEditView(this);
-    EnquiryListView elv = new EnquiryListView(this);
+    
     EnquiryReplyView erv = new EnquiryReplyView(this);
     EnquiryView ev = new EnquiryView(this);
     ViewControllerController vcc;
 
-    @Override
-    public void initialise(ViewControllerController vcvc) {
-        // TODO Auto-generated method stub
-        this.vcc = vcvc;
-        this.elv.render();
-    }
+    
 
     public void inputToViewControllerController(int x){
-        this.vcc.setCurrentController(x);
+        this.vcc.navigate(x);
     }
 
     public void inputToWithinViewController(int x){

@@ -3,6 +3,7 @@ package Views.Suggestions;
 import java.util.ArrayList;
 
 import Controllers.SuggestionViewController;
+import Controllers.ViewControllerController;
 import Models.Action;
 import Models.Suggestion;
 import Models.SuggestionList;
@@ -15,19 +16,22 @@ public class SuggestionListView extends SuggestionList implements IView {
         new Action("Back To Home", 1),
         new Action("View Suggestion", 2),
     };
-    SuggestionViewController svc; //= new SuggestionViewController();
-
-    public SuggestionListView(SuggestionViewController n){
-        this.svc =n;
+    ViewControllerController vcc; //= new SuggestionViewController();
+    //SuggestionViewController svc;
+    public SuggestionListView(ViewControllerController vcc){
+        this.vcc =vcc;
 	}
 
     public void handleInput(int selection) {
         switch(selection){
-            case 1: this.svc.inputToViewControllerController(2); break;
+            case 1: this.vcc.navigate(3); break;
             case 2: 
                 System.out.println("Choose the suggestion to view by their number:");
                 int sn = InputUtils.tryGetIntSelection(0, getSuggestionList().size()-1);
-                this.svc.inputToWithinViewController(5, getSuggestion(sn));break;
+                SuggestionView sv = new SuggestionView(getSuggestion(sn), this.vcc);
+                //svc = new SuggestionViewController(getSuggestion(sn));
+                //this.svc.inputToWithinViewController(5);
+                //this.svc.inputToWithinViewController(5, getSuggestion(sn));break;
             default:
                 System.out.println("Invalid Selection");
         }

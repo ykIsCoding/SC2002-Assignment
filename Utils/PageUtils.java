@@ -2,6 +2,7 @@ package Utils;
 import java.util.ArrayList;
 import java.util.Date;
 import Models.Action;
+import Models.Suggestion;
 
 public class PageUtils {
     static final String topLeftCorner = "╔";
@@ -110,7 +111,7 @@ public class PageUtils {
             h+=col1;
         }
 
-        System.out.print(topLine+finalString+bottomLine);
+        System.out.print(ThemeUtils.BLUE+topLine+finalString+bottomLine+ThemeUtils.COLOR_RESET);
     }
 
     public static void printHeader(){
@@ -129,13 +130,14 @@ public class PageUtils {
         
     }
 
-    public static void printSuggestionBox(String title, String content, String sender, String senderPosition, Date ts){
+    public static void printSuggestionBox(Suggestion s, String sender, String senderPosition){
         int colWidth = 108;
+        String content = s.getContent();
         String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
         String infoLine = verticalDoubleLine+ThemeUtils.BLUE+ThemeUtils.WHITE_BACKGROUND+center(( sender+" ("+senderPosition+" )"), colWidth)+ThemeUtils.COLOR_RESET+verticalDoubleLine+"\n";
-        String tsLine = verticalDoubleLine+ThemeUtils.BLUE+ThemeUtils.WHITE_BACKGROUND+center(ts.toString(),colWidth)+ThemeUtils.COLOR_RESET+verticalDoubleLine+"\n";
+        String tsLine = verticalDoubleLine+ThemeUtils.BLUE+ThemeUtils.WHITE_BACKGROUND+center(s.getTimestamp().toString(),colWidth)+ThemeUtils.COLOR_RESET+verticalDoubleLine+"\n";
         String bottomLine = bottomLeftCorner+horizontalDoubleLine.repeat(colWidth)+bottomRightCorner+"\n";
-        String suggestionTitle = verticalDoubleLine+center(title, colWidth)+verticalDoubleLine+"\n";
+        String suggestionTitle = verticalDoubleLine+center(s.getTitle(), colWidth)+verticalDoubleLine+"\n";
         String centerLine = TLeftLine+horizontalDoubleLine.repeat(colWidth)+TRightLine+"\n";
         int multiplier = (int) Math.ceil((content.length())/colWidth)+1;
         content = padder(content,colWidth,multiplier);

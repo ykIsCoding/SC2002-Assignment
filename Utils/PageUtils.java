@@ -111,7 +111,7 @@ public class PageUtils {
             h+=col1;
         }
 
-        System.out.print(ThemeUtils.BLUE+topLine+finalString+bottomLine+ThemeUtils.COLOR_RESET);
+        System.out.print(topLine+finalString+bottomLine);
     }
 
     public static void printHeader(){
@@ -120,11 +120,10 @@ public class PageUtils {
 
     public static void printActionBox(Action[] actions){
         if(actions.length==0 || actions==null) return;
-        System.out.println(ThemeUtils.BLUE+"Enter the number corresponding to the following options:\n");
+        System.out.println("Enter the number corresponding to the following options:\n");
         for(int i =0;i<actions.length;i++){
             printRow(actions[i].getActionNo(),actions[i].getActionName());
         }
-        System.out.print(ThemeUtils.COLOR_RESET);
     }
 
     public static void clearView(){
@@ -135,8 +134,8 @@ public class PageUtils {
         int colWidth = 108;
         String content = s.getContent();
         String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
-        String infoLine = verticalDoubleLine+ThemeUtils.BLUE+ThemeUtils.WHITE_BACKGROUND+center(( sender+" ("+senderPosition+" )"), colWidth)+ThemeUtils.COLOR_RESET+verticalDoubleLine+"\n";
-        String tsLine = verticalDoubleLine+ThemeUtils.BLUE+ThemeUtils.WHITE_BACKGROUND+center(s.getTimestamp().toString(),colWidth)+ThemeUtils.COLOR_RESET+verticalDoubleLine+"\n";
+        String infoLine = verticalDoubleLine+center(( sender+" ("+senderPosition+" )"), colWidth)+verticalDoubleLine+"\n";
+        String tsLine = verticalDoubleLine+center(s.getTimestamp().toString(),colWidth)+verticalDoubleLine+"\n";
         String bottomLine = bottomLeftCorner+horizontalDoubleLine.repeat(colWidth)+bottomRightCorner+"\n";
         String suggestionTitle = verticalDoubleLine+center(s.getTitle(), colWidth)+verticalDoubleLine+"\n";
         String centerLine = TLeftLine+horizontalDoubleLine.repeat(colWidth)+TRightLine+"\n";

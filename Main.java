@@ -3,15 +3,18 @@ import java.util.*;
 import javax.swing.*;
 import java.net.*;
 import Controllers.AuthenticationController;
+import Controllers.ThemeController;
 import Controllers.ViewControllerController;
 import Utils.DatabaseUtils;
 import Utils.PageUtils;
+import Utils.ThemeUtils;
+
 import java.io.Console;
 
 public class Main {
 	
 	public static void main(String args[]) {
-
+		
 		//ArrayList<String[]> c = DatabaseUtils.getCredentials("./Data/staff_list.txt");
 		//for(int b=0;b<c.size();b++){
 
@@ -25,7 +28,9 @@ public class Main {
 		boolean terminate = false;
 		AuthenticationController authController = new AuthenticationController();
 		ViewControllerController vcc = new ViewControllerController(authController);
+		
 		vcc.navigate(0);
+		
 
 		//might remove later
 		

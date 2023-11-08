@@ -8,6 +8,7 @@ import Views.Camps.CampListView;
 import Views.Suggestions.SuggestionListView;
 
 public class ViewControllerController {
+    ThemeController tc = new ThemeController();
     AuthenticationController ac;
     LoginView lv = new LoginView(this);
     SuggestionListView svl = new SuggestionListView(this);
@@ -20,8 +21,11 @@ public class ViewControllerController {
     }
 
     public void navigate(int num){
+        tc.start();
+        tc.printSwitch();
         switch(num) {
 			case 0: 
+            lv.receiveThemeController(tc);
                 lv.render();
                 break;
 			case 1: 
@@ -42,6 +46,7 @@ public class ViewControllerController {
             default:
                 System.out.println("error");
 		}
+        tc.end();
         return;
     }
 }

@@ -1,8 +1,15 @@
 package Utils;
 
 public class ThemeUtils {
-    public static final String WHITE = "\u001B[37m";
-    public static final String WHITE_BACKGROUND = "\u001B[47m";
-    public static final String COLOR_RESET = "\u001B[0m";
-    public static final String BLUE = "\u001B[34m";
+   public static void darkSwitch(){
+    System.out.println("╔════════╗");
+    System.out.println("║0  dark ║");
+    System.out.println("╚════════╝");
+   }
+
+   public static void lightSwitch(){
+    System.out.println("╔════════╗");
+    System.out.println("║light  0║");
+    System.out.println("╚════════╝");
+   }
 }

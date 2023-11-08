@@ -9,23 +9,23 @@ import Views.Suggestions.SuggestionListView;
 
 public class ViewControllerController {
     ThemeController tc = new ThemeController();
-    AuthenticationController ac;
+    
     LoginView lv = new LoginView(this);
     SuggestionListView svl = new SuggestionListView(this);
     CampListView clv = new CampListView(this);
     HomeView hv = new HomeView(this);
     ProfileView pv = new ProfileView(this);
 
-    public ViewControllerController(AuthenticationController ac){
-        this.ac = ac;     
+    public ViewControllerController(){
+           
     }
 
     public void navigate(int num){
         tc.start();
-        tc.printSwitch();
+        //tc.printSwitch();
         switch(num) {
 			case 0: 
-            lv.receiveThemeController(tc);
+                lv.receiveThemeController(tc);
                 lv.render();
                 break;
 			case 1: 

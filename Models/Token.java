@@ -10,7 +10,7 @@ public class Token {
     private UUID tokenID;
     private String userID;
     private Timer timer;
-    private int period =3600000; 
+    private int period =360000; 
     private AuthenticationController authcntrlr;
 
     public Token(String userID, AuthenticationController authcontroller){
@@ -26,8 +26,9 @@ public class Token {
     }
 
     public void endSession(){
-        System.out.println("logging out");
+        //System.out.println("logging out");
         this.timer.cancel();
         authcntrlr.removeToken();
+        
     }
 }

@@ -6,6 +6,7 @@ import Controllers.AuthenticationController;
 import Controllers.ThemeController;
 import Controllers.ViewControllerController;
 import Utils.DatabaseUtils;
+import Utils.InputUtils;
 import Utils.PageUtils;
 import Utils.ThemeUtils;
 
@@ -26,8 +27,9 @@ public class Main {
 		//DatabaseUtils.setCredentials("./Data/staff_list.txt",c);
 
 		boolean terminate = false;
-		AuthenticationController authController = new AuthenticationController();
-		ViewControllerController vcc = new ViewControllerController(authController);
+		//InputUtils.initialise();
+		ViewControllerController vcc = new ViewControllerController();
+		AuthenticationController authController = new AuthenticationController(vcc);
 		
 		vcc.navigate(0);
 		

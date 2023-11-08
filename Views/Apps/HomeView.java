@@ -54,6 +54,7 @@ public class HomeView implements IView {
     
 
     public void render(){
+
         PageUtils.printTitle("Welcome");
         PageUtils.printActionBox(actions);
         int choice = InputUtils.tryGetIntSelection(1, 5);

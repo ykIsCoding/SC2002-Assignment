@@ -15,11 +15,7 @@ import Views.Interfaces.IView;
 public class LoginView extends AuthenticationController implements IView {
     ThemeController tc;
     ViewControllerController vcc;
-    Action actions[] ={
-        new Action("Log In", 1),
-        new Action("Close Program", 2),
-        new Action("Toggle Light/Dark Mode", 3)
-    };
+    Action actions[];
 
     @Override
     public void handleInput(int selection) {
@@ -40,7 +36,9 @@ public class LoginView extends AuthenticationController implements IView {
     }
 
     public LoginView(ViewControllerController vcc){
+        super(vcc);
         this.vcc=vcc;
+        
     }
 
     public void promptCredentials(){
@@ -62,6 +60,14 @@ public class LoginView extends AuthenticationController implements IView {
     }
 
     public void render(){
+
+        Action atn[] = {
+        new Action("Log In", 1),
+        new Action("Close Program", 2),
+        new Action((this.tc!=null && this.tc.isDarkMode())?"Toggle Light Mode":"Toggle Dark Mode", 3)
+        };
+
+        this.actions = atn;
         PageUtils.printTitle("Camp Application Management System");
         PageUtils.printActionBox(actions);
         int choice = InputUtils.tryGetIntSelection(1, 3);

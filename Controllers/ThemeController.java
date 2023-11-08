@@ -1,6 +1,9 @@
 package Controllers;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import Utils.ThemeUtils;
 
@@ -16,9 +19,11 @@ public class ThemeController {
     public static final String BLUE = "\u001B[34m";
     public static final String YELLOW = "\u001B[33m";
 
-    public void ThemeController(){
-        
-
+    public ThemeController(){
+        DateFormat dateFormat = new SimpleDateFormat("HH");
+        Calendar cal = Calendar.getInstance();
+        String curTime = dateFormat.format(cal.getTime());
+        this.currentTheme=(Integer.valueOf(curTime)<18 && Integer.valueOf(curTime)>7)? ThemeMode.LIGHT:ThemeMode.DARK;
     }
 
     public void start(){
@@ -43,6 +48,10 @@ public class ThemeController {
         }else{
             ThemeUtils.lightSwitch();
         }
+    }
+
+    public boolean isDarkMode(){
+        return this.currentTheme==ThemeMode.DARK;
     }
 
     public ThemeMode getCurrentTheme(){

@@ -18,7 +18,8 @@ public class Main {
 		
 		//ArrayList<String[]> c = DatabaseUtils.getCredentials("./Data/staff_list.txt");
 		//for(int b=0;b<c.size();b++){
-
+			//c.get(b)[4]="password";
+			//System.out.println(c.get(b)[4]);
 			//if(c.get(b)[0].equals("BRANDON")){
 			//	String[] x = {"BRANDON TAN",c.get(b)[1],c.get(b)[2]};
 				//c.set(b, x );

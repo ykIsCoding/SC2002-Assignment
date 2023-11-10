@@ -9,21 +9,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DatabaseUtils {
+    private static String headerRegExp = ".*\\|USERID\\|.*";
+    private static String userListHeader = "userid|name|email|username|password|faculty|points|hours";
+    private static String campsHeader = "campid|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid";
+    private static String suggestionsHeader = "campid|userid|content|status|timestamp";
+    private static String enquiriesHeader = "enquiryid|campid|userid|content|position|timestamp";
+    private static String enquiriesRepliesHeader = "enquiryid|userid|position|content|upvotes|timestamp";
+    private static String campCommitteesHeader = "campid|userids";
 
     public static ArrayList<String[]> getCredentials(String fn){
         //String rex = "\\s*([A-Za-z]+)\\s*([A-Za-z0-9_@.]+)[;]*\\s*([A-Za-z]+)";
         String rex = "\\s*([A-Za-z]+)[|]+([A-Za-z0-9_@.]+)[;]*[|]+([A-Za-z]+)";
-        return readFromFile(fn, rex,3);
+        return readFromFile(fn);
     }
 
     public static void setCredentials(String fn,ArrayList<String[]> al){
-        writeToFile(fn,al);
+        writeToFile(fn,al,userListHeader);
     }
 
-    private static boolean writeToFile(String fn, ArrayList<String[]> al){
+    private static boolean writeToFile(String fn, ArrayList<String[]> al, String header){
          try {
             FileWriter writer = new FileWriter(fn, false);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            bufferedWriter.write(header);
             bufferedWriter.newLine();
 
             for(int h=0;h<al.size();h++){
@@ -39,7 +47,7 @@ public class DatabaseUtils {
         return false;
     }
     
-    private static ArrayList<String[]> readFromFile(String fn, String rex, int groups){
+    private static ArrayList<String[]> readFromFile(String fn){
         ArrayList<String[]> details = new ArrayList<String[]>();
          try {
             FileReader reader = new FileReader(fn);
@@ -48,22 +56,17 @@ public class DatabaseUtils {
             String line;
             int count = 0;
 
-            Pattern pat = Pattern.compile(rex, Pattern.CASE_INSENSITIVE);
+            //Pattern pat = Pattern.compile(rex, Pattern.CASE_INSENSITIVE);
+            //Pattern headerPat = Pattern.compile(headerRegExp, Pattern.CASE_INSENSITIVE);
             
             while ((line = bufferedReader.readLine()) != null) {
                 if(count==0) {
                     count++;
                     continue;
                 }
-                Matcher mat = pat.matcher(line);
-                if(mat.find()){
-                    String[] temp= new String[groups];
-                    for(int v =0;v<groups;v++){
-                        temp[v]= mat.group(v+1);
-                    }
-                    //String temp[] = {mat.group(1).toString(),mat.group(2).toString(),mat.group(3).toString()};
-                    details.add(temp);
-                }
+                //Matcher mat = pat.matcher(line);
+                String [] temp = line.split("\\|");
+                details.add(temp);
             }
             reader.close();
             return details;

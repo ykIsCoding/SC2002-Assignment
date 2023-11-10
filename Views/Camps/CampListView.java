@@ -33,6 +33,7 @@ public class CampListView implements IView {
     public void render() {
         // TODO Auto-generated method stub
         PageUtils.printTitle("All Camps");
+        PageUtils.printTitle("There are currently no camps");
         PageUtils.printActionBox(actions);
         int choice = InputUtils.tryGetIntSelection(1, 1);
         handleInput(choice);

@@ -1,6 +1,6 @@
-
-Madhukumar|HUKUMAR@NTU.EDU.SG|SCSE|
-Alexei|OURIN@ntu.edu.sg|ADM|
-Chattopadhyay|UPAM@NTU.EDU.SG|EEE|
-Datta|ANWIT@NTU.EDU.SG|SCSE|
-Arvind|ARVI@NTU.EDU.SG|NBS|
+userid|name|email|username|password|faculty|points|hours
+d44a7286-7f87-11ee-b962-0242ac120002|Madhukumar|HUKUMAR@NTU.EDU.SG|HUKUMAR|password|SCSE|0|0|
+d44a759c-7f87-11ee-b962-0242ac120002|Alexei|OURIN@ntu.edu.sg|OURIN|password|ADM|0|0|
+d44a777c-7f87-11ee-b962-0242ac120002|Chattopadhyay|UPAM@NTU.EDU.SG|UPAM|password|EEE|0|0|
+d44a7966-7f87-11ee-b962-0242ac120002|Datta|ANWIT@NTU.EDU.SG|ANWIT|password|SCSE|0|0|
+d44a7f42-7f87-11ee-b962-0242ac120002|Arvind|ARVI@NTU.EDU.SG|ARVI|password|NBS|0|0|

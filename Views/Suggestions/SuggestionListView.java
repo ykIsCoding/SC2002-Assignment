@@ -13,9 +13,14 @@ import Views.Interfaces.IView;
 
 public class SuggestionListView extends SuggestionList implements IView {
     Action actions[] ={
+            new Action("Back To Home", 1),
+        };
+
+    Action withSuggestionsActions[]={
         new Action("Back To Home", 1),
-        new Action("View Suggestion", 2),
+        new Action("View Suggestion", 2)
     };
+    
     ViewControllerController vcc; //= new SuggestionViewController();
     //SuggestionViewController svc;
     public SuggestionListView(ViewControllerController vcc){
@@ -46,7 +51,10 @@ public class SuggestionListView extends SuggestionList implements IView {
         for(int n=0;n<allsuggestions.size();n++){
             PageUtils.printRow(n,allsuggestions.get(n).getTitle());
         }
-        PageUtils.printActionBox(actions);
+        if(allsuggestions.size()==0){
+            PageUtils.printTitle("There are currently no suggestions");
+        }
+        PageUtils.printActionBox((allsuggestions.size()==0)?actions:withSuggestionsActions);
         int choice = InputUtils.tryGetIntSelection(1, 2);
         handleInput(choice);
     }

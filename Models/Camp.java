@@ -17,7 +17,7 @@ public class Camp implements CampInformation{
 
     //List of attendees and Camp Commitee Members
     private List<Student> attendees;
-    private List<Student> campCommitteeMembers;
+    private List<CampCommiteeMember> campCommitteeMembers;
 
     private Staff staffInCharge;
 
@@ -36,37 +36,11 @@ public class Camp implements CampInformation{
         this.campCommitteeMembers = new ArrayList<>();
         this.visibility = false; // Default visibility is false
     }
-
-    public void printCampInformation() {
-        System.out.println("Camp Name: " + getCampName());
-        System.out.println("Date: " + getDate());
-        System.out.println("Registration Closing Date: " + getRegistrationClosingDate());
-        System.out.println("User Group: " + getUserGroup());
-        System.out.println("Total Slots: " + getTotalSlots());
-        System.out.println("Camp Committee Slots: " + getCampCommitteeSlots());
-        System.out.println("Description: " + getDescription());
-        System.out.println("Visibility: " + getVisibility());
-
-        // System.out.println("Staff In Charge: " + getStaffInCharge().getName());
-
-        // Print attendees and camp committee members
-        // Print attendees
-        System.out.println("Attendees: ");
-        for (Student attendee : attendees) {
-            System.out.println(attendee.getName() + " ");
-        }
-        System.out.println(); // Move to the next line
-
-        // Print camp committee members
-        System.out.println("Camp Committee Members: ");
-        for (Student committeeMember : campCommitteeMembers) {
-            System.out.println(committeeMember.getName() + " ");
-        }
-        System.out.println(); // Move to the next line
-    }
+    
 
 
     //Implement CampInformation interface methods
+    
     public Staff getStaffInCharge() {
         return staffInCharge;
     }
@@ -114,8 +88,6 @@ public class Camp implements CampInformation{
         this.totalSlots = newTotalSlots;
         this.campCommitteeSlots = newCampCommitteeSlots;
         this.description = newDescription;
-
-        System.out.println("Camp details updated successfully.");
     }
 
     public boolean getVisibility() {
@@ -127,13 +99,109 @@ public class Camp implements CampInformation{
     }
 
     // Add methods for managing attendees and camp committee members
-    public void registerAttendee(Student attendee) {
-        this.attendees.add(attendee);
+    public boolean registerAttendee(Student attendee) {
+        try {
+            // Check if the student is already registered for another camp on the same date
+           for (Camp camp : attendee.getRegisteredCamps()) {
+            if (camp.getDate() == this.date) {
+                System.err.println("Error: Student is already registered for a camp on the same date.");
+                return false;
+                }
+            }
+
+            // Check if the camp is already full
+            if (this.attendees.size() >= this.totalSlots) {
+                System.err.println("Error: Camp is already full. Cannot register attendee.");
+                return false;
+            }
+
+            // Check if the registration deadline has passed
+            if (this.date > this.registrationClosingDate) {
+                System.err.println("Error: Registration deadline has passed. Cannot register attendee.");
+                return false;
+}
+            
+            // Attempt to add the attendee to the list
+            this.attendees.add(attendee);
+            System.out.println("Attendee registered successfully.");
+            return true;
+            
+        } catch (Exception e) {
+            // Handle the exception (e.g., log, print an error message)
+            System.err.println("Error registering attendee: " + e.getMessage());
+            return false;
+            }
+        }
+
+    public boolean registerCampCommitteeMember(CampCommiteeMember committeeMember) {
+        try {
+            // Check if the committee member is already registered for another camp on the same date
+            for (Camp camp : committeeMember.getRegisteredCamps()) {
+                if (camp.getDate() == this.date) {
+                    System.err.println("Error: Committee member is already registered for a camp on the same date.");
+                    return false;
+                }
+            }
+
+            // Check if the camp committee slots are already full
+            if (this.campCommitteeMembers.size() >= this.campCommitteeSlots) {
+                System.err.println("Error: Camp Committee slots are already full. Cannot register committee member.");
+                return false;
+             }
+
+            // Attempt to add the committee member to the list
+            this.campCommitteeMembers.add(committeeMember);
+            System.out.println("Committee member registered successfully.");
+            return true;
+
+        } catch (Exception e) {
+            // Handle the exception (e.g., log, print an error message)
+            System.err.println("Error registering committee member: " + e.getMessage());
+            return false;
+        }
     }
 
-    public void registerCampCommitteeMember(Student committeeMember) {
-        this.campCommitteeMembers.add(committeeMember);
+
+    public List<Student> getAttendees() {
+        return attendees;
     }
 
 
+    public void withdrawAttendee(Student student) {
+        if (attendees.contains(student)) {
+            attendees.remove(student);
+            updateRemainingSlots();
+            //System.out.println(student.getName() + " has been withdrawn from the camp: " + campName);
+        } else {
+            System.err.println("Error: Student is not registered for this camp.");
+        }
+    }
+
+    public void updateRemainingSlots() {
+        // Assuming you have a method to get the maximum capacity of the camp
+        int maxCapacity = getTotalSlots() - getCampCommitteeSlots();
+
+         // Update remaining slots based on the current number of attendees
+        int remainingSlots = maxCapacity - attendees.size();
+    
+        //System.out.println("Remaining slots: " + remainingSlots);
+    }
+
+    public String getCampInformation() {
+        StringBuilder campInfo = new StringBuilder();
+        campInfo.append("Camp Name: ").append(campName).append("\n");
+        campInfo.append("Date: ").append(date).append("\n");
+        campInfo.append("Registration Closing Date: ").append(registrationClosingDate).append("\n");
+        campInfo.append("User Group: ").append(userGroup).append("\n");
+        campInfo.append("Total Slots: ").append(totalSlots).append("\n");
+        campInfo.append("Camp Committee Slots: ").append(campCommitteeSlots).append("\n");
+        campInfo.append("Description: ").append(description).append("\n");
+
+        // Add more information as needed...
+
+        return campInfo.toString();
+    }
+
+    
+    
 }

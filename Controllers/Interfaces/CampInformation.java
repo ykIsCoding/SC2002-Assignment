@@ -8,6 +8,7 @@ public interface CampInformation {
     int getTotalSlots();
     int getCampCommitteeSlots();
     String getDescription();
+    boolean getVisibility();
 
     void editCampDetails(String campName, int date, int registrationClosingDate, String userGroup, int totalSlots, int campCommitteeSlots, String description);
 }

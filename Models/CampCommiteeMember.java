@@ -1,7 +1,7 @@
 package Models;
 
 public class CampCommiteeMember extends Student{
-    private Camp campCommiteeCamps;
+    //private Camp campCommiteeCamps;
     private int accumulatedPoints;
 
     public CampCommiteeMember(String UserID, String Faculty) {
@@ -12,5 +12,5 @@ public class CampCommiteeMember extends Student{
         return accumulatedPoints;
     }
 
-    
+
 }

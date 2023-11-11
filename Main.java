@@ -5,6 +5,10 @@ import java.net.*;
 import Controllers.AuthenticationController;
 import Controllers.ThemeController;
 import Controllers.ViewControllerController;
+import Models.Camp;
+import Models.CampCommiteeMember;
+import Models.Staff;
+import Models.Student;
 import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
@@ -15,7 +19,6 @@ import java.io.Console;
 public class Main {
 	
 	public static void main(String args[]) {
-		
 		//ArrayList<String[]> c = DatabaseUtils.getCredentials("./Data/staff_list.txt");
 		//for(int b=0;b<c.size();b++){
 			//c.get(b)[4]="password";

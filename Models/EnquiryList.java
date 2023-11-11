@@ -13,12 +13,12 @@ public class EnquiryList {
         return this.enquiryList;
     }
 
-    public void editEnquiry(){
+    public void editEnquiry(String enquiryID, String content, ){
 
     }
 
-    public Enquiry getEnquiry(int enquiryNo){
-        return this.enquiryList.get(enquiryNo);
+    public Enquiry getEnquiry(String enquiryID){
+        return this.enquiryList.get(enquiryID);
     }
 
     public void removeEnquiry(String enquiryID){

@@ -5,6 +5,10 @@ import java.net.*;
 import Controllers.AuthenticationController;
 import Controllers.ThemeController;
 import Controllers.ViewControllerController;
+import Models.Camp;
+import Models.CampCommiteeMember;
+import Models.Staff;
+import Models.Student;
 import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
@@ -16,7 +20,6 @@ import java.io.Console;
 public class Main {
 	
 	public static void main(String args[]) {
-		ReportUtils.openFile("C:\\Users\\yongk\\Desktop\\SC2002\\CAMS_Assignment\\SC2002Assignment\\Data\\staff_list.txt");
 		//ArrayList<String[]> c = DatabaseUtils.getCredentials("./Data/staff_list.txt");
 		//ArrayList<String[]> p = new ArrayList<>();
 		//for(int b=0;b<c.size();b++){

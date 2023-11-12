@@ -2,12 +2,15 @@ package Controllers;
 
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.InputMap;
 
 import Models.Token;
+import Utils.DatabaseUtils;
 import Utils.InputUtils;
 
 public class AuthenticationController {
@@ -28,7 +31,10 @@ public class AuthenticationController {
 
     public boolean authenticate(String inputPassword, String email){
         if(underCoolDown) return false;
-        if(inputPassword.equals(this.password)){
+        //inputPassword.equals(this.password)
+        ArrayList<String[]> g = DatabaseUtils.getCredentials("./Data/staff_list.txt");
+        
+        if(DatabaseUtils.checkPassword(inputPassword, g.get(1)[8], g.get(1)[4])){
             this.currentSessionToken = new Token("55", this);
             this.attempsLeft = 3;
             return true;

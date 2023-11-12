@@ -1,6 +1,11 @@
 package Utils;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
+
 import Models.Action;
 import Models.Suggestion;
 
@@ -152,4 +157,21 @@ public class PageUtils {
         System.out.println(finalString);
     }
 
+    public static String localDateToString(LocalDate d){
+    return d.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)).toString();
+    }
+
+    public static LocalDate stringToLocalDate(String s){
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            formatter = formatter.withLocale(Locale.getDefault());  
+            return LocalDate.parse(s,formatter);
+        }catch(Exception e){
+            System.out.println("Date is invalid.");
+            return null;
+        }
+    }
+
 }
+
+

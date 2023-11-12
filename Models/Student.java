@@ -1,9 +1,10 @@
 package Models;
 
-import Controllers.Abstract.AUser;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import Models.Abstract.AUser;
 
 public class Student extends AUser {
     private boolean campCommiteeMembership;
@@ -38,7 +39,7 @@ public class Student extends AUser {
 
         // Check if there are date clashes with already registered camps
         for (Camp registeredCamp : registeredCamps) {
-            if (registeredCamp.getDate() == camp.getDate()) {
+            if (registeredCamp.getDate().equals(camp.getDate())) {
                 System.err.println("Error: Date clash with another registered camp.");
                 return false;
             }
@@ -50,7 +51,7 @@ public class Student extends AUser {
             return false;
         }
         // Check if the registration deadline has passed
-        if (camp.getDate() > camp.getRegistrationClosingDate()) {
+        if (LocalDate.now().isAfter(camp.getRegistrationClosingDate())) {
             System.err.println("Error: Registration deadline has passed. Cannot register attendee.");
             return false;
         }

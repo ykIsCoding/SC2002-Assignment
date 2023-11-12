@@ -62,25 +62,27 @@ public class DatabaseUtils {
 
     public static String[] getUserByEmail(String email){
         String[] temp = {};
-        ArrayList<String[]> x = readFromFile("../Data/staff_list.txt");
+        ArrayList<String[]> x = readFromFile("Data/staff_list.txt");
         for(int b=0;b<x.size();b++){
-            if(x.get(b)[2].equals(email)){
+            if(x.get(b)[2].toLowerCase().equals(email.toLowerCase())){
                 return x.get(b);
             }
         }
 
-        ArrayList<String[]> y = readFromFile("../Data/student_list.txt");
+        ArrayList<String[]> y = readFromFile("Data/student_list.txt");
         for(int b=0;b<y.size();b++){
-            if(y.get(b)[2].equals(email)){
+            if(y.get(b)[2].toLowerCase().equals(email.toLowerCase())){
                 return y.get(b);
             }
         }
-        return temp;
+        return null;
     }
 
     public static void setCredentials(String fn,ArrayList<String[]> al){
         writeToFile(fn,al,userListHeader);
     }
+
+    
 
     private static boolean writeToFile(String fn, ArrayList<String[]> al, String header){
          try {

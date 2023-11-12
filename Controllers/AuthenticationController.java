@@ -10,6 +10,7 @@ import java.util.TimerTask;
 import javax.swing.InputMap;
 
 import Models.Token;
+import Models.Abstract.AUser;
 import Utils.DatabaseUtils;
 import Utils.InputUtils;
 
@@ -17,7 +18,7 @@ public class AuthenticationController {
     int attempsLeft = 3;
     String password = "password";
     Token currentSessionToken = null;
-    String UserID;
+    AUser currentUser;
     ViewControllerController vcc;
     boolean underCoolDown = false;
 
@@ -31,11 +32,27 @@ public class AuthenticationController {
 
     public boolean authenticate(String inputPassword, String email){
         if(underCoolDown) return false;
-        //inputPassword.equals(this.password)
+        //gets all staff and student as an array list
         ArrayList<String[]> g = DatabaseUtils.getCredentials("./Data/staff_list.txt");
+        ArrayList<String[]> s = DatabaseUtils.getCredentials("./Data/student_list.txt");
+        String[] userDetails = {};
+
+        //finds the staff or student whose email matches the email entered
+        for(int x = 0 ; x<g.size();x++){
+            if(g.get(x)[2].toLowerCase().equals(email)){
+                userDetails = g.get(x);
+            }
+        }
+        for(int y =0 ; y <s.size();y++){
+            if(s.get(y)[2].toLowerCase().equals(email)){
+                userDetails = s.get(y);
+            }
+        }
         
-        if(DatabaseUtils.checkPassword(inputPassword, g.get(1)[8], g.get(1)[4])){
-            this.currentSessionToken = new Token("55", this);
+        try{
+        //checks the password
+        if(DatabaseUtils.checkPassword(inputPassword, userDetails[8], userDetails[4])){
+            this.currentSessionToken = new Token(userDetails[0], this);
             this.attempsLeft = 3;
             return true;
         }
@@ -47,7 +64,12 @@ public class AuthenticationController {
             
             System.out.println("Password incorrect, please try again. You are left with "+ Integer.toString(this.attempsLeft)+" tries.");
         }
+    
         return false;
+        }catch(Exception e){
+            System.out.println(e);
+        return false;
+    }
     }
 
     private void setCoolDown(){
@@ -56,7 +78,7 @@ public class AuthenticationController {
             public void run(){
                 underCoolDown = false;
                 attempsLeft = 3;
-                System.out.println("You may try logging in again.");
+                System.out.println("You may try logging in again. Enter any input and press enter to continue.");
             }
         }, 60000);
     }

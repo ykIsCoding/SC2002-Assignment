@@ -10,6 +10,7 @@ import Models.Action;
 
 public class InputUtils {
     private static String intOnly = "\\d+";
+    private static String emailOnly = "\\w+@[e.]*ntu.edu.sg";
     private static String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
     private static String alphanumericOnly ="^[A-Za-z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{}~]+$";
 
@@ -48,6 +49,34 @@ public class InputUtils {
     }
     scnr.close();
     return "";
+    }
+
+    public static String tryGetEmail(){
+        Scanner scnr = new Scanner(System.in);
+        boolean loop = true;
+        Pattern pattern = Pattern.compile(emailOnly, Pattern.CASE_INSENSITIVE);
+        try{
+        while(loop){
+            String g = scnr.next().trim();
+            Matcher matcher = pattern.matcher(g);
+            if(!matcher.find()){
+                System.out.println("Please enter a valid NTU email");
+                continue;
+            }else{
+                String inputEmail = matcher.group();
+                if(DatabaseUtils.getUserByEmail(inputEmail)==null){
+                    System.out.println("User does not exist. Please try again.");
+                }else{
+                    return inputEmail.toString();
+                }
+            }
+        }
+    }catch(Exception e){
+        System.out.println(e);
+        return tryGetEmail();
+    }
+    scnr.close();
+    return null;
     }
 
     public static String tryGetPassword(String oldpassword){

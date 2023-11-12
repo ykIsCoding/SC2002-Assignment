@@ -1,14 +1,16 @@
 package Models;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import Controllers.Interfaces.CampInformation;
+import Models.Interface.ICampInformation;
 
-public class Camp implements CampInformation{
+public class Camp implements ICampInformation{
     private String campName;
-    private int date;
-    private int registrationClosingDate;
+    private LocalDate date;
+    private LocalDate registrationClosingDate;
     private String userGroup;
     private int totalSlots;
     private int campCommitteeSlots;
@@ -21,7 +23,7 @@ public class Camp implements CampInformation{
 
     private Staff staffInCharge;
 
-    public Camp(String campName, int date, int registrationClosingDate, String userGroup, int totalSlots, 
+    public Camp(String campName, LocalDate date, LocalDate registrationClosingDate, String userGroup, int totalSlots, 
     int campCommitteeSlots, String description, Staff staffInCharge) {
         this.campName = campName;
         this.date = date;
@@ -49,12 +51,12 @@ public class Camp implements CampInformation{
     }
 
     @Override
-    public int getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     @Override
-    public int getRegistrationClosingDate() {
+    public LocalDate getRegistrationClosingDate() {
         return registrationClosingDate;
     }
 
@@ -78,7 +80,7 @@ public class Camp implements CampInformation{
     }
 
     @Override
-    public void editCampDetails(String newCampName, int newDate, int newRegistrationClosingDate,
+    public void editCampDetails(String newCampName, LocalDate newDate, LocalDate newRegistrationClosingDate,
     String newUserGroup, int newTotalSlots, int newCampCommitteeSlots, String newDescription) {
 
         this.campName = newCampName;
@@ -103,7 +105,7 @@ public class Camp implements CampInformation{
         try {
             // Check if the student is already registered for another camp on the same date
            for (Camp camp : attendee.getRegisteredCamps()) {
-            if (camp.getDate() == this.date) {
+            if (camp.getDate().equals(this.date)) {
                 System.err.println("Error: Student is already registered for a camp on the same date.");
                 return false;
                 }
@@ -116,7 +118,7 @@ public class Camp implements CampInformation{
             }
 
             // Check if the registration deadline has passed
-            if (this.date > this.registrationClosingDate) {
+            if (LocalDate.now().isAfter(this.registrationClosingDate)) {
                 System.err.println("Error: Registration deadline has passed. Cannot register attendee.");
                 return false;
 }

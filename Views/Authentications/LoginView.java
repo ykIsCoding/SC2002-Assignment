@@ -45,15 +45,26 @@ public class LoginView extends AuthenticationController implements IView {
         boolean res = false;
 		Scanner scnrr = new Scanner(System.in);
 		//Console cnsle = System.console();
+        String email = "";
 		
 			while(!res){
-				System.out.println(isUnderCooldown()?"Login disabled.":"Password:");
-				String pw = scnrr.next();
-				//String pw = new String(cnsle.readPassword("Enter your password: ")); //might use this instead
-				if(authenticate(pw,"anything")){
-					this.vcc.navigate(3);
-					break;
-				};
+                if(isUnderCooldown()){
+                    System.out.println("Login disabled.");
+                    scnrr.next();
+                    continue;
+                }else{
+                    if(email.isBlank()){
+                        System.out.println("Enter email:");
+                        email = InputUtils.tryGetEmail();
+                    }
+                    System.out.println("Enter password:");
+				    String pw = scnrr.next();
+				    //String pw = new String(cnsle.readPassword("Enter your password: ")); //might use this instead
+				    if(authenticate(pw,email.toLowerCase())){
+					    this.vcc.navigate(3);
+					    break;
+				    };
+                }
 			}
 		
 		scnrr.close();

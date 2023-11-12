@@ -19,7 +19,7 @@ public class Suggestion {
         this.content = content;
         this.title = title;
         this.suggestionID = UUID.randomUUID().toString();
-        this.timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+        this.timeStamp = new SimpleDateFormat("dd/MM/yyyy HH.mm.ss").format(new java.util.Date());
     }
 
     public String getContent(){return this.content;}

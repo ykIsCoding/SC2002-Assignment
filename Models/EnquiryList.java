@@ -6,14 +6,14 @@ public class EnquiryList {
     ArrayList<Enquiry> enquiryList = new ArrayList();
 
     public EnquiryList(){
-        this.suggestionList.add(new Enquiry(this,"testing","enquiry 1"));
+        //this.suggestionList.add(new Enquiry(this,"testing","enquiry 1"));
     }
 
     public ArrayList<Enquiry> getEnquiryList(){
         return this.enquiryList;
     }
 
-    public void editEnquiry(String enquiryID, String content, ){
+    public void editEnquiry(String enquiryID, String content ){
 
     }
 

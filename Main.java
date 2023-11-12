@@ -2,13 +2,12 @@
 import java.util.*;
 import javax.swing.*;
 import java.net.*;
+import java.time.LocalDate;
+
 import Controllers.AuthenticationController;
 import Controllers.ThemeController;
 import Controllers.ViewControllerController;
 import Models.Camp;
-import Models.CampCommiteeMember;
-import Models.Staff;
-import Models.Student;
 import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
@@ -20,24 +19,22 @@ import java.io.Console;
 public class Main {
 	
 	public static void main(String args[]) {
-		//ArrayList<String[]> c = DatabaseUtils.getCredentials("./Data/staff_list.txt");
+		//ArrayList<String[]> c = DatabaseUtils.getCredentials("./Data/student_list.txt");
 		//ArrayList<String[]> p = new ArrayList<>();
-		//for(int b=0;b<c.size();b++){
-		//	byte[] s = DatabaseUtils.generateS();
-		//	c.get(b)[4]=DatabaseUtils.hashPassword("password",s.toString());
-		//	c.get(b)[8]=s.toString();
+	//for(int b=0;b<c.size();b++){
+			//byte[] s = DatabaseUtils.generateS();
+			//c.get(b)[4]=DatabaseUtils.hashPassword("password",s.toString());
+			//c.get(b)[8]=s.toString();
 			//System.out.println(c.get(b)[4]);
 			//if(c.get(b)[0].equals("BRANDON")){
 			//	String[] x = {"BRANDON TAN",c.get(b)[1],c.get(b)[2]};
 				//c.set(b, x );
 			//}
 		//}
-		//DatabaseUtils.setCredentials("./Data/staff_list.txt",c);
+		//DatabaseUtils.setCredentials("./Data/student_list.txt",c);
 		//String password1 = DatabaseUtils.hashPassword("password",c.get(0)[8].getBytes() );
 		//System.out.println(password1);
 		//System.out.println(DatabaseUtils.checkPassword("password",c.get(1)[4]));
-
-		
 
 		boolean terminate = false;
 		//InputUtils.initialise();

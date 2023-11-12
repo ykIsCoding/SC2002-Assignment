@@ -11,7 +11,7 @@ public class Enquiry {
     String content;
     String title;
     String enquiryID;
-    SuggestionList el;
+    EnquiryList el;
     String timeStamp;
     
     public Enquiry(EnquiryList el, String content, String title){

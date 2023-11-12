@@ -1,4 +1,4 @@
-package Controllers.Abstract;
+package Models.Abstract;
 
 public abstract class AUser {
     private String UserID;

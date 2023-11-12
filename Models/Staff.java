@@ -1,6 +1,6 @@
 package Models;
 
-import Controllers.Abstract.AUser;
+import Models.Abstract.AUser;
 
 public class Staff extends AUser{
     private int points;

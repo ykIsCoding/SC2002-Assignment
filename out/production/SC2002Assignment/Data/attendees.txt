@@ -1,0 +1,2 @@
+campid|userids|campcommittee
+d0615189-e5c2-4102-b5a5-e12ffe10cd43|18a87040-7f88-11ee-b962-0242ac120002|1|

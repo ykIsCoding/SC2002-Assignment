@@ -1,6 +1,7 @@
 package Controllers;
 
 import Controllers.Interfaces.IViewController;
+import Models.Suggestion;
 import Views.Suggestions.SuggestionApproveView;
 import Views.Suggestions.SuggestionCreateView;
 import Views.Suggestions.SuggestionDeleteView;
@@ -9,22 +10,18 @@ import Views.Suggestions.SuggestionListView;
 import Views.Suggestions.SuggestionView;
 
 public class SuggestionViewController implements IViewController{
-    SuggestionEditView sev = new SuggestionEditView();
-    SuggestionDeleteView sdv = new SuggestionDeleteView();
-    SuggestionCreateView scv = new SuggestionCreateView();
-    SuggestionApproveView sav = new SuggestionApproveView();
-    SuggestionListView svl = new SuggestionListView(this);;
-    SuggestionView sv = new SuggestionView(this);
-	ViewControllerController vcc;
+    SuggestionEditView sev = new SuggestionEditView(this);
+    SuggestionDeleteView sdv = new SuggestionDeleteView(this);
+    SuggestionCreateView scv = new SuggestionCreateView(this);
+    SuggestionApproveView sav = new SuggestionApproveView(this);
+    //SuggestionView sv = new SuggestionView(this);
+	Suggestion suggestion;
 	
-	SuggestionViewController(){}
-    
-    @Override
-    public void initialise(ViewControllerController vcc) {
-        // TODO Auto-generated method stub
-        this.vcc = vcc;
-        this.svl.render();
+	public SuggestionViewController(Suggestion x){
+        suggestion = x;
     }
+    
+    
 
     public void inputToWithinViewController(int x){
         switch(x){
@@ -41,16 +38,18 @@ public class SuggestionViewController implements IViewController{
                 this.sev.render();
                 break;
             case 5: 
-                this.sv.render();
+                //this.sv.render();
                 break;
             default:
                 System.out.println("Invalid Selection. Redirecting to Suggestion List View"); 
-                this.svl.render();
+                //this.svl.render();
         }
     }
 
-    public void inputToViewControllerController(int x){
-        this.vcc.setCurrentController(x);
+    public Suggestion getCurrentSuggestion(){
+        return this.suggestion;
     }
+
+   
 
 }

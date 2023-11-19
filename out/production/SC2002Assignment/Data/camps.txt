@@ -1,0 +1,5 @@
+campid|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid|visibility
+d0615189-e5c2-4102-b5a5-e12ffe10cd43|kool|2024-09-08|2024-09-17|NBS|gaia|900|40|hahaha|d44a759c-7f87-11ee-b962-0242ac120002|1|
+4a1fa972-da1a-43d0-bb3d-51f83608f78f|Groot Day|2024-09-09|2024-08-25|SSS|sss|300|20|hahaha|d44a759c-7f87-11ee-b962-0242ac120002|0|
+da084f8e-bd44-4fc7-a58a-e0888425696a|UOC|2024-08-08|2024-08-01|ALL|field|400|20|testing only|d44a759c-7f87-11ee-b962-0242ac120002|0|
+8beab11b-c534-4cdb-af94-24579ed78f95|FOP 2024|2024-08-17|2024-08-01|NBS|Arc|300|50|orientattion camp|d44a759c-7f87-11ee-b962-0242ac120002|1|

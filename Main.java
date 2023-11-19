@@ -1,20 +1,5 @@
-
-import java.util.*;
-import javax.swing.*;
-import java.net.*;
-import java.time.LocalDate;
-
 import Controllers.AuthenticationController;
-import Controllers.ThemeController;
 import Controllers.ViewControllerController;
-import Models.Camp;
-import Utils.DatabaseUtils;
-import Utils.InputUtils;
-import Utils.PageUtils;
-import Utils.ReportUtils;
-import Utils.ThemeUtils;
-
-import java.io.Console;
 
 public class Main {
 	

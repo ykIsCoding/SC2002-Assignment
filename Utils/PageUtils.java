@@ -1,5 +1,6 @@
 package Utils;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -123,26 +124,50 @@ public class PageUtils {
         
     }
 
-    public static void printActionBox(Action[] actions){
-        if(actions.length==0 || actions==null) return;
+    public static void printActionBox(ArrayList<Action> actions){
+        if(actions.size()==0 || actions==null) return;
         System.out.println("Enter the number corresponding to the following options:\n");
-        for(int i =0;i<actions.length;i++){
-            printRow(actions[i].getActionNo(),actions[i].getActionName());
+        for(int i =0;i<actions.size();i++){
+            printRow(actions.get(i).getActionNo(),actions.get(i).getActionName());
         }
     }
+
+    
+
 
     public static void clearView(){
         
     }
 
-    public static void printSuggestionBox(Suggestion s, String sender, String senderPosition){
+    public static void printSuggestionBox(Suggestion s){
         int colWidth = 108;
-        String content = s.getContent();
+        String content = s.getSuggestionCamp().getCampInformation();
         String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
-        String infoLine = verticalDoubleLine+center(( sender+" ("+senderPosition+" )"), colWidth)+verticalDoubleLine+"\n";
-        String tsLine = verticalDoubleLine+center(s.getTimestamp().toString(),colWidth)+verticalDoubleLine+"\n";
+        String infoLine = verticalDoubleLine+center(DatabaseUtils.getUserByID(s.getUserID())[1], colWidth)+verticalDoubleLine+"\n";
+        String tsLine = verticalDoubleLine+center("Status: "+s.getStatus().toString(),colWidth)+verticalDoubleLine+"\n";
         String bottomLine = bottomLeftCorner+horizontalDoubleLine.repeat(colWidth)+bottomRightCorner+"\n";
-        String suggestionTitle = verticalDoubleLine+center(s.getTitle(), colWidth)+verticalDoubleLine+"\n";
+        String suggestionTitle = verticalDoubleLine+center("Suggestion", colWidth)+verticalDoubleLine+"\n";
+        String centerLine = TLeftLine+horizontalDoubleLine.repeat(colWidth)+TRightLine+"\n";
+        int multiplier = (int) Math.ceil((content.length())/colWidth)+1;
+        content = padder(content,colWidth,multiplier);
+        String finalString = "";
+        int h = 0;
+        for(int n=0;n<multiplier;n++){
+            finalString+=content.substring(h,h+colWidth-2);
+            h+=colWidth;
+        }
+
+        finalString = topLine + suggestionTitle + centerLine +finalString+infoLine+tsLine+ bottomLine;
+        System.out.println(finalString);
+    }
+
+    public static void printResponseBox(String content, String sender, String senderPosition, int upvotes, String ts){
+        int colWidth = 108;
+        String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
+        String infoLine = verticalDoubleLine+center(( "Upvotes: "+Integer.valueOf(upvotes)), colWidth)+verticalDoubleLine+"\n";
+        String tsLine = verticalDoubleLine+center(localDateTimeStringToFullLocalDateString(ts),colWidth)+verticalDoubleLine+"\n";
+        String bottomLine = bottomLeftCorner+horizontalDoubleLine.repeat(colWidth)+bottomRightCorner+"\n";
+        String suggestionTitle = verticalDoubleLine+center(sender +" ("+senderPosition+")" + " says:", colWidth)+verticalDoubleLine+"\n";
         String centerLine = TLeftLine+horizontalDoubleLine.repeat(colWidth)+TRightLine+"\n";
         int multiplier = (int) Math.ceil((content.length())/colWidth)+1;
         content = padder(content,colWidth,multiplier);
@@ -158,15 +183,41 @@ public class PageUtils {
     }
 
     public static String localDateToString(LocalDate d){
-    return d.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)).toString();
+        try{
+            return d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public static String localDateToFullLocalDateString(LocalDate date){
+        try{
+            
+            return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)).toString();
+        }catch(Exception e){
+            return "";
+        }
+    }
+
+    public static String localDateTimeStringToFullLocalDateString(String date){
+        try{
+            
+            LocalDateTime dt = LocalDateTime.parse(date);
+            return dt.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)).toString();
+        }catch(Exception e){
+            return "";
+        }
     }
 
     public static LocalDate stringToLocalDate(String s){
+        
         try{
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            formatter = formatter.withLocale(Locale.getDefault());  
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            formatter = formatter.withLocale(Locale.ENGLISH);  
             return LocalDate.parse(s,formatter);
         }catch(Exception e){
+            System.out.println(e);
             System.out.println("Date is invalid.");
             return null;
         }

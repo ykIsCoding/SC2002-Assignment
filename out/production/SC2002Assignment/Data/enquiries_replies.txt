@@ -1,0 +1,1 @@
+campid|userid|status|suggestionID|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid

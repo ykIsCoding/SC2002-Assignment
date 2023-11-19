@@ -8,24 +8,26 @@ import java.util.UUID;
 public class Enquiry {
     private int createdBy;
     private String content;
-    private String title;
+    private String userid;
     private String enquiryID;
     private EnquiryList el;
     private String timeStamp;
+    private String campID;
     private EnquiryResponseList erl;
     
-    public Enquiry(EnquiryList el, String content, String title, EnquiryResponseList erl){
-        this.el = el;
-        this.erl = erl; 
+    public Enquiry(String content, String ts, String enquiryId, String campID, String uid){
+
         this.content = content;
-        this.title = title;
-        this.enquiryID = UUID.randomUUID().toString();
-        this.timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+        this.campID = campID;
+        this.enquiryID = enquiryId;
+        this.userid = uid;
+        this.timeStamp = ts;
+        this.erl = new EnquiryResponseList(enquiryId);
+
     }
 
     //Get method for content,title and timestamp respectively
     public String getContent(){return this.content;}
-    public String getTitle(){return this.title;}
     public String getTimestamp(){return this.timeStamp;}
 
     //Get method for the enquiry's enquiryID
@@ -33,9 +35,32 @@ public class Enquiry {
         return this.enquiryID;
     }
 
+    public String getUserID(){
+        return this.userid;
+    }
+
+    public String getCampID(){
+        return this.campID;
+    }
+
+    public EnquiryResponseList getEnquiryResponseList(){
+        return this.erl;
+    }
+
+    public boolean hasReply(){
+        return (this.erl.getResponseCount()>0);
+    }
+
+    public boolean addReply(EnquiryResponse er){
+        return this.erl.addEnquiryResponse(er);
+    }
+
     //Editing enquiry
-    public void edit(String newTitle, String newContent){
-        this.title = newTitle;
+    public void edit( String newContent){
         this.content = newContent;
     } 
+
+    public boolean isEnquirer(String userID){
+        return this.userid.equals(userID);
+    }
 }

@@ -1,0 +1,19 @@
+PERFORMANCE REPORT
+
+=======================================================
+CAMP DETAILS
+Camp Name: ZENITHHHH
+Camp Date:2024-09-09
+Camp Registration Closing Date:2024-09-01
+User Group:NBS
+Location:gaia
+Total Slots:100
+Camp Committee Slots:10
+Description:happy new year
+Staff in Charge:Alexei
+=======================================================
+ROW NAME EMAIL USERNAME POINTS
+0. LIU SL22@e.ntu.edu.sg SL22 4
+1. CHAN YCN019@e.ntu.edu.sg YCN019 1
+=======================================================
+Generated on:Monday, 20 November 2023

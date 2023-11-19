@@ -25,7 +25,7 @@ public class PermissionList {
         CREATE_ATTENDANCE_REPORT,  //staff and committee
         CREATE_STUDENT_ENQUIRY_REPORT, // staff and committee
     }
-    private EnumSet<PermissionType> staffPermissions = EnumSet.of(
+    private static EnumSet<PermissionType> staffPermissions = EnumSet.of(
             PermissionType.EDIT_ENQUIRY,
             PermissionType.REPLY_ENQUIRY,
             PermissionType.VIEW_ENQUIRY,
@@ -40,7 +40,7 @@ public class PermissionList {
             PermissionType.CREATE_STUDENT_ENQUIRY_REPORT
         );
 
-    private EnumSet<PermissionType> committeePermissions = EnumSet.of(
+    private static EnumSet<PermissionType> committeePermissions = EnumSet.of(
             PermissionType.EDIT_ENQUIRY,
             PermissionType.REPLY_ENQUIRY,
             PermissionType.VIEW_ENQUIRY,
@@ -54,7 +54,7 @@ public class PermissionList {
             PermissionType.CREATE_ATTENDANCE_REPORT,
             PermissionType.CREATE_STUDENT_ENQUIRY_REPORT
         );;
-    private EnumSet<PermissionType> studentPermissions = EnumSet.of(
+    private static EnumSet<PermissionType> studentPermissions = EnumSet.of(
             PermissionType.EDIT_ENQUIRY,
             PermissionType.SUBMIT_ENQUIRY,
             PermissionType.DELETE_ENQUIRY,
@@ -65,9 +65,9 @@ public class PermissionList {
 
     public PermissionList(){}
 
-    EnumSet<PermissionType> getStaffPermission(){return this.staffPermissions;}
-    EnumSet<PermissionType> getStudentPermission(){return this.studentPermissions;}
-    EnumSet<PermissionType> getCommitteePermission(){return this.committeePermissions;}
+    public static EnumSet<PermissionType> getStaffPermission(){return staffPermissions;}
+    public static EnumSet<PermissionType> getStudentPermission(){return studentPermissions;}
+    public static EnumSet<PermissionType> getCommitteePermission(){return committeePermissions;}
 
 
 

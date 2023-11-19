@@ -13,7 +13,7 @@ public class CampViewController implements IViewController {
     CampEditView cec = new CampEditView(this);
     CampRegisterView crc = new CampRegisterView(this);
     CampDeregisterView cdrc = new CampDeregisterView(this);
-    CampView cv = new CampView(this);
+    
     ViewControllerController vcc;
 
     //might move to a parent class

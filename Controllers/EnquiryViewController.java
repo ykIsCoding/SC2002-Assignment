@@ -12,7 +12,7 @@ public class EnquiryViewController implements IViewController{
     EnquiryEditView eev = new EnquiryEditView(this);
     
     EnquiryReplyView erv = new EnquiryReplyView(this);
-    EnquiryView ev = new EnquiryView(this);
+    
     ViewControllerController vcc;
 
     

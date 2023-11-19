@@ -6,31 +6,26 @@ import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class Suggestion {
-    int createdBy;
-    String status;
-    String content;
-    String title;
+    Camp suggestion;
     String suggestionID;
-    SuggestionList sl;
-    String timeStamp;
+    String userID;
+    String status;
 
-    public Suggestion(SuggestionList sl, String content, String title){
-        this.sl = sl;
-        this.content = content;
-        this.title = title;
-        this.suggestionID = UUID.randomUUID().toString();
-        this.timeStamp = new SimpleDateFormat("dd/MM/yyyy HH.mm.ss").format(new java.util.Date());
+    public Suggestion(Camp x, String status,String userid,String suggestionID){
+        this.suggestion = x;
+        this.status = status;
+        this.userID = userid;
+        this.suggestionID = suggestionID;
     }
 
-    public String getContent(){return this.content;}
-    public String getTitle(){return this.title;}
-    public String getTimestamp(){return this.timeStamp;}
+    public String getSuggestionID(){return this.suggestionID;}
+    public String getStatus(){return this.status;}
+    public String getUserID(){return this.userID;}
+    public Camp getSuggestionCamp(){return this.suggestion;}
 
-    public String getSuggestionID(){
-        return this.suggestionID;
-    }
 
     public void approve(){
+        this.status = "approved";
 
     }
 
@@ -40,5 +35,9 @@ public class Suggestion {
 
     public void delete(){
 
+    }
+
+    public boolean isApproved(){
+        return this.status.equals("approved");
     }
 }

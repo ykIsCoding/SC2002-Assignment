@@ -1,5 +1,9 @@
 package Models;
 
+import java.util.EnumSet;
+
+import Utils.DatabaseUtils;
+
 public class CampCommiteeMember extends Student{
     //private Camp campCommiteeCamps;
     private int accumulatedPoints;
@@ -10,6 +14,11 @@ public class CampCommiteeMember extends Student{
 
     public int getAccumulatedPoints() {
         return accumulatedPoints;
+    }
+
+    public void addPoints(int pt){
+        this.accumulatedPoints+=pt;
+        DatabaseUtils.addPoint(pt, getUserID());
     }
 
 

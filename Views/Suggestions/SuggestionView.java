@@ -27,7 +27,7 @@ public class SuggestionView extends SuggestionList implements IView {
     };
 
     public SuggestionView(Suggestion b, ViewControllerController vcc){
-        super();
+        super(b.getSuggestionCamp().getCampID());
 		this.currSuggestion =b;
         this.vcc = vcc;
         this.svc = new SuggestionViewController(b);
@@ -61,8 +61,7 @@ public class SuggestionView extends SuggestionList implements IView {
         // TODO Auto-generated method stub
         // TODO Auto-generated method stub
         PageUtils.printTitle("Suggestion");
-        PageUtils.printSuggestionBox(this.svc.getCurrentSuggestion(),"test","test");
-        PageUtils.printActionBox(actions);
+        
         int choice = InputUtils.tryGetIntSelection(1, 1);
         handleInput(choice);
     }

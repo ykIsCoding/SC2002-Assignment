@@ -2,9 +2,14 @@ package Models;
 
 import Models.Abstract.AUser;
 
+import java.util.EnumSet;
+
+import Models.PermissionList;
+
 public class Staff extends AUser{
     private int points;
-    private Camp createdCamps;
+    private CampList createdCamps;
+    private EnumSet permissions = PermissionList.getStaffPermission();
 
     public Staff(String UserID, String Faculty) {
         super(UserID, "Staff", Faculty);
@@ -25,11 +30,11 @@ public class Staff extends AUser{
     }
 
     // Getter and Setter for createdCamps
-    public Camp getCreatedCamps() {
+    public CampList getCreatedCamps() {
         return createdCamps;
     }
 
-    public void setCreatedCamps(Camp createdCamps) {
+    public void setCreatedCamps(CampList createdCamps) {
         this.createdCamps = createdCamps;
     }
 }

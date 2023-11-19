@@ -2,18 +2,20 @@ package Models;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 import Models.Abstract.AUser;
+import Utils.DatabaseUtils;
 
 public class Student extends AUser {
-    private boolean campCommiteeMembership;
     private List<Camp> registeredCamps;
+    private EnumSet permissions = PermissionList.getStudentPermission();
     
     public Student(String UserID, String Faculty) {
         super(UserID, "Student", Faculty);
         //Assume default Camp Commitee Membership is False.
-        setCampCommiteeMembership(false);
+        
 
         // Initialize the list of registered camps
         this.registeredCamps = new ArrayList<>();
@@ -22,12 +24,7 @@ public class Student extends AUser {
     public List<Camp> getRegisteredCamps() {
         return registeredCamps;
     }
-    public void setCampCommiteeMembership(boolean campCommiteeMembership) {
-        this.campCommiteeMembership = campCommiteeMembership;
-    }
-    public boolean isCampComiteeMembership() {
-        return campCommiteeMembership;
-    }
+    
 
 
     public boolean registerForCamp(Camp camp) {
@@ -46,7 +43,7 @@ public class Student extends AUser {
         }
 
         // Check if the camp is already full
-        if (camp.getAttendees().size() >= camp.getTotalSlots()) {
+        if (camp.getAttendees().getAttendeeCount() >= camp.getTotalSlots()) {
             System.err.println("Error: Camp is already full. Cannot register attendee.");
             return false;
         }
@@ -63,11 +60,6 @@ public class Student extends AUser {
         return true;
     }
 
-
-
-    @Override
-    public void changePassword() {
-
-    }
+    
 
 }

@@ -18,7 +18,7 @@ public abstract class AUser {
     }
     
 
-    public abstract void changePassword();
+    
 
     
     public String getName() {

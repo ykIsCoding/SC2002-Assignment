@@ -20,11 +20,7 @@ import Models.Suggestion;
 import Models.SuggestionList;
 
 public class DatabaseUtils {
-<<<<<<< HEAD
-    private static final String headerRegExp = ".*\\|USERID\\|.*";
-=======
    // private static final String headerRegExp = ".*\\|USERID\\|.*";
->>>>>>> 49cbf485cec498b743b5f15002cf077bdaf7390e
     private static final String userListHeader = "userid|name|email|username|password|faculty|points|hours|salt";
     private static final String campsHeader = "campid|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid|visibility";
     private static final String suggestionsHeader = "campid|userid|status|suggestionID|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid";

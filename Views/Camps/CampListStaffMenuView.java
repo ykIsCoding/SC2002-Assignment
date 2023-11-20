@@ -20,10 +20,6 @@ import Views.Interfaces.IView;
 public class CampListStaffMenuView extends CampList implements IView {
     ViewControllerController vcc;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 49cbf485cec498b743b5f15002cf077bdaf7390e
     private final ArrayList<Action> actions = new ArrayList<>();
 
     

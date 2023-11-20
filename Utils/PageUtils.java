@@ -125,26 +125,6 @@ public class PageUtils {
 
 
 
-<<<<<<< HEAD
-    public static void printSuggestionBox(Suggestion s){
-        int colWidth = 108;
-        String content = s.getSuggestionCamp().getCampInformation();
-        String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
-        String infoLine = verticalDoubleLine+center(DatabaseUtils.getUserByID(s.getUserID())[1], colWidth)+verticalDoubleLine+"\n";
-        String tsLine = verticalDoubleLine+center("Status: "+ s.getStatus(),colWidth)+verticalDoubleLine+"\n";
-        String bottomLine = bottomLeftCorner+horizontalDoubleLine.repeat(colWidth)+bottomRightCorner+"\n";
-        String suggestionTitle = verticalDoubleLine+center("Suggestion", colWidth)+verticalDoubleLine+"\n";
-        String centerLine = TLeftLine+horizontalDoubleLine.repeat(colWidth)+TRightLine+"\n";
-        int multiplier = (int) Math.ceil((content.length())/colWidth)+1;
-        content = padder(content,colWidth,multiplier);
-        String finalString = "";
-        int h = 0;
-        for(int n=0;n<multiplier;n++){
-            finalString+=content.substring(h,h+colWidth-2);
-            h+=colWidth;
-        }
-=======
->>>>>>> 49cbf485cec498b743b5f15002cf077bdaf7390e
 
 
     public static void printResponseBox(String content, String sender, String senderPosition, int upvotes, String ts){

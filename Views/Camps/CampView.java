@@ -32,8 +32,8 @@ public class CampView implements IView{
         
         if(vcc.getCurrentUser() instanceof Staff){
             if(this.c.getStaffInCharge().equals(this.vcc.getCurrentUser().getUserID())){
-                actions.add(new Action("View Enquiries",4));
-                actions.add(new Action("View Suggestions",5));
+                this.actions.add(new Action("View Enquiries",4));
+                this.actions.add(new Action("View Suggestions",5));
                 this.actions.add(new Action("Get Attendence Report",8));
             this.actions.add(new Action("Get Camp Committee Performance Report",9));
             this.actions.add(new Action("Get Enquiry Report",13));
@@ -205,8 +205,8 @@ public class CampView implements IView{
          }
          c.loadAttendees();
          this.c.printCurrentSlotsFill();
-         PageUtils.printActionBox(actions);
-         int choice = InputUtils.tryGetIntSelection(actions);
+         PageUtils.printActionBox(this.actions);
+         int choice = InputUtils.tryGetIntSelection(this.actions);
         handleInput(choice);
     }
 }

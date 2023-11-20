@@ -78,6 +78,13 @@ public class SuggestionList {
         return this.suggestionList.size();
     }
 
+    public boolean rejectSuggestion(String suggestionID){
+        Suggestion rejectedSuggestion = getSuggestionByID(suggestionID);
+        rejectedSuggestion.reject();
+        editSuggestion(rejectedSuggestion);
+        return true;
+    }
+
     public boolean approveSuggestion(String suggestionID){
         Suggestion approvedSuggestion = getSuggestionByID(suggestionID);
         approvedSuggestion.approve();

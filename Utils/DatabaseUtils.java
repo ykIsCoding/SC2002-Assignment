@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class DatabaseUtils {
    // private static final String headerRegExp = ".*\\|USERID\\|.*";
-    private static final String userListHeader = "userid|name|email|username|password|faculty|points|hours|salt";
+    private static final String userListHeader = "userid|name|email|username|password|faculty|points|hours|salt|firsttime";
     private static final String campsHeader = "campid|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid|visibility";
     private static final String suggestionsHeader = "campid|userid|status|suggestionID|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid";
     private static final String enquiriesHeader = "enquiryid|campid|userid|content|position|timestamp";
@@ -73,6 +73,11 @@ public class DatabaseUtils {
                 if(x.get(c)[1].equals(studentID) && x.get(c)[2].equals("1") ) return true;
          }
          return false;
+    }
+
+    public static boolean checkIfUserLogsInForFirstTime(String userid ){
+        //1 is not first time, 0 is first time
+        return getUserByID(userid)[9].equals("0");
     }
 
 

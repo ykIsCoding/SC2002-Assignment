@@ -38,11 +38,12 @@ public class SuggestionListView extends SuggestionList implements IView {
         if(vcc.getCurrentUser() instanceof Staff){
             if(getSuggestionList().size()>0){
                 this.actions.add(new Action("Approve Suggestion", 2));
+                this.actions.add(new Action("Reject Suggestion", 5));
             }
         }else if(vcc.getCurrentUser() instanceof Student){
             if(DatabaseUtils.checkIfStudentIsCampCommitteeMember(vcc.getCurrentUser().getUserID(),campid)){
                 ArrayList<Suggestion> unapprovedSuggestions = getSuggestionList();
-                unapprovedSuggestions.removeIf((Suggestion info)->info.getStatus().equals("approved") || !info.getUserID().equals(vcc.getCurrentUser().getUserID()));
+                unapprovedSuggestions.removeIf((Suggestion info)->info.getStatus().equals("rejected") || info.getStatus().equals("approved") || !info.getUserID().equals(vcc.getCurrentUser().getUserID()));
                 this.actions.add(new Action("Edit Suggestion", 3));
                 this.actions.add(new Action("Delete Suggestion", 4));
             }
@@ -114,9 +115,12 @@ public class SuggestionListView extends SuggestionList implements IView {
                 removeSuggestion(getSuggestionByIndex(suggestionToDelete).getSuggestionID());
                 render();
                 break;
-                //svc = new SuggestionViewController(getSuggestion(sn));
-                //this.svc.inputToWithinViewController(5);
-                //this.svc.inputToWithinViewController(5, getSuggestion(sn));break;
+            case 5:
+                System.out.println("Choose the suggestion to reject:");
+                int sr = InputUtils.tryGetIntSelection(0, getSuggestionCount()-1);
+                rejectSuggestion(getSuggestionByIndex(sr).getSuggestionID());
+                render();
+                break;
             default:
                 System.out.println("Invalid Selection");
         }

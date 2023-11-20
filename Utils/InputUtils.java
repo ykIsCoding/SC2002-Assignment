@@ -142,6 +142,7 @@ public class InputUtils {
                 int b = Integer.valueOf(matcher.group());
                 ArrayList<Integer> nummers = new ArrayList<>();
                 for(int p=0;p<al.size();p++){
+                    
                     nummers.add(al.get(p).getActionNo());
                 }
                 if(!nummers.contains(b)){

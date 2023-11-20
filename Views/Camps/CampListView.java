@@ -74,7 +74,9 @@ public class CampListView extends CampList implements IView {
             this.actions.add(new Action("View Camps I Created", 4));
         }else if(vcc.getCurrentUser() instanceof CampCommiteeMember){
             this.currentCampList = getCampListByFacultyOrAll(this.vcc.getCurrentUser().getFaculty());
+            this.actions.add(new Action("View Camps I Registered", 6));
         }else if(vcc.getCurrentUser() instanceof Student){
+            this.actions.add(new Action("View Camps I Registered", 6));
             this.currentCampList = getCampListByFacultyOrAll(this.vcc.getCurrentUser().getFaculty());
             this.currentCampList.removeIf((Camp c)->!c.getVisibility());
         }
@@ -162,6 +164,21 @@ public class CampListView extends CampList implements IView {
                 }
                 render();
                 break;
+            case 6:
+                if(this.vcc.getCurrentUser() instanceof Student){
+                    int ccount =0;
+                    for(Camp c : this.currentCampList){
+                     if(c.getAttendees().isAttendee((Student)this.vcc.getCurrentUser()) || c.isCampCommitteeMember(c.getCampID(),this.vcc.getCurrentUser().getUserID())){
+                        System.out.println(c.getCampName());
+                        ccount++;
+                     }
+                    }
+                    if(ccount==0){
+                        System.out.println("You currently have not registered for any camp");
+                    }
+                }
+                render();
+                break;
             default:
                 System.out.println("Invalid Selection");
         }
@@ -195,7 +212,7 @@ public class CampListView extends CampList implements IView {
             }
         }
         PageUtils.printActionBox(actions);
-        int choice = InputUtils.tryGetIntSelection(1, this.actions.size());
+        int choice = InputUtils.tryGetIntSelection(this.actions);
         handleInput(choice);
     }
 }

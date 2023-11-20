@@ -24,4 +24,8 @@ public class Suggestion {
 
     }
 
+    public void reject(){
+        this.status = "rejected";
+    }
+
 }

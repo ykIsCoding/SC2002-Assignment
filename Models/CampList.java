@@ -84,14 +84,6 @@ public class CampList {
         return false;
     }
 
-    public Camp getCamp(int campID){
-        for(int x = 0 ; x<this.campList.size();x++){
-            if(this.campList.get(x).getCampID().equals(campID)){
-                return this.campList.get(x);
-            }
-        }
-        return null;
-    }
 
     public Camp getCampByIndex(int idx){
         return this.campList.get(idx);

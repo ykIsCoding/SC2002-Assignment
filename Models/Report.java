@@ -1,5 +1,5 @@
 package Models;
 
-public class Report {
-    
+public abstract class Report {
+    abstract void generateReport();
 }

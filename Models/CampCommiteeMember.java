@@ -12,10 +12,6 @@ public class CampCommiteeMember extends Student{
         super(UserID, Faculty);
     }
 
-    public int getAccumulatedPoints() {
-        return accumulatedPoints;
-    }
-
     public void addPoints(int pt){
         this.accumulatedPoints+=pt;
         DatabaseUtils.addPoint(pt, getUserID());

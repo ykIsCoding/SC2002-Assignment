@@ -29,15 +29,4 @@ public class Suggestion {
 
     }
 
-    public void edit(){
-
-    }
-
-    public void delete(){
-
-    }
-
-    public boolean isApproved(){
-        return this.status.equals("approved");
-    }
 }

@@ -131,19 +131,6 @@ public class Camp implements ICampInformation{
         return description;
     }
 
-    @Override
-    public void editCampDetails(String newCampName, LocalDate newDate, LocalDate newRegistrationClosingDate,
-    String newUserGroup, int newTotalSlots, int newCampCommitteeSlots, String newDescription) {
-
-        this.campName = newCampName;
-        this.date = newDate;
-        this.registrationClosingDate = newRegistrationClosingDate;
-        this.userGroup = newUserGroup;
-        this.totalSlots = newTotalSlots;
-        this.campCommitteeSlots = newCampCommitteeSlots;
-        this.description = newDescription;
-    }
-
     public boolean getVisibility() {
         return visibility;
     }

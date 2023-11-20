@@ -13,11 +13,6 @@ public abstract class AUser {
         this.Faculty = Faculty;
     }
 
-
-    
-
-    
-
     
     public String getName() {
         return Name;

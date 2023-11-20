@@ -39,11 +39,6 @@ public class SuggestionList {
         return this.suggestionList;
     }
 
-    public boolean setSuggestionList(ArrayList<Suggestion> s){
-        this.suggestionList =s;
-        return true;
-    }
-
     public boolean editSuggestion(Suggestion x){
         for(int b=0;b<this.suggestionList.size();b++){
             if(this.suggestionList.get(b).getSuggestionID().equals(x.getSuggestionID())){

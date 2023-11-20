@@ -44,20 +44,6 @@ public class CampCommiteeMembers {
         DatabaseUtils.setAttendeesByCampID(convertCCMToStringArr(),campid);
         return addres;
     }
-    public boolean removeCampComitteeMember(CampCommiteeMember x){
-        boolean delRes = this.ccmList.removeIf((CampCommiteeMember z)->z.getUserID().equals(x.getUserID()));
-        DatabaseUtils.setAttendeesByCampID(convertCCMToStringArr(),campid);
-        return delRes;
-    }
-
-    public boolean isCampCommitteeMember(CampCommiteeMember x){
-        for(CampCommiteeMember v: ccmList){
-            if(v.getUserID().equals(x.getUserID())){
-                return true;
-            }
-        }
-        return false;
-    }
 
     public int getCampCommitteeCount(){
         return this.ccmList.size();

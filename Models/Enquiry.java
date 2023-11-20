@@ -54,13 +54,4 @@ public class Enquiry {
     public boolean addReply(EnquiryResponse er){
         return this.erl.addEnquiryResponse(er);
     }
-
-    //Editing enquiry
-    public void edit( String newContent){
-        this.content = newContent;
-    } 
-
-    public boolean isEnquirer(String userID){
-        return this.userid.equals(userID);
-    }
 }

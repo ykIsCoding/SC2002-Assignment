@@ -15,23 +15,4 @@ public class Staff extends AUser{
         super(UserID, "Staff", Faculty);
     }
 
-
-
-    // Getter and Setter for points
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    // Getter and Setter for createdCamps
-    public CampList getCreatedCamps() {
-        return createdCamps;
-    }
-
-    public void setCreatedCamps(CampList createdCamps) {
-        this.createdCamps = createdCamps;
-    }
 }

@@ -33,15 +33,4 @@ public class EnquiryResponse {
     public String getPosiiton(){return this.position;}
     public String getUserID(){return this.createdBy;}
     public int getUpvotes(){return this.upvote;}
-
-    // Editing of EnquiryResponse
-    public void edit(String newContent){
-        this.content = newContent;
-    }
-
-    public void upvote(){
-        this.upvote++;
-    }
-   
-    
 }

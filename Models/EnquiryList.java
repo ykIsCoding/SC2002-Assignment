@@ -60,15 +60,6 @@ public class EnquiryList {
         return false;
     }
 
-    //Get method for specific enquiry from enquiryList using enquiryID
-    public Enquiry getEnquiry(String enquiryID){
-        for(int u =0; u< this.enquiryList.size();u++){
-            if(this.enquiryList.get(u).getEnquiryID().equals(enquiryID)){
-                return this.enquiryList.get(u);
-            }
-        }
-        return null;
-    }
 
     public Enquiry getEnquiryByIndex(int idx){
         return this.enquiryList.get(idx);

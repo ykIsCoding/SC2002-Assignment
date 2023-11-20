@@ -1,8 +1,8 @@
 package Models;
 
-import java.util.ArrayList;
-
 import Utils.DatabaseUtils;
+
+import java.util.ArrayList;
 
 public class EnquiryList {
 

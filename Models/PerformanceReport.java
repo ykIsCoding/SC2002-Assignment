@@ -1,10 +1,12 @@
 package Models;
-import java.time.LocalDate;
-import java.util.ArrayList;
+
 import Utils.DatabaseUtils;
 import Utils.PageUtils;
 
-public class PerformanceReport {
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class PerformanceReport extends Report{
     private final String campID;
     private static final String header = "PERFORMANCE REPORT\n";
     private static final String tableHeader = "ROW NAME EMAIL USERNAME POINTS\n";
@@ -12,6 +14,7 @@ public class PerformanceReport {
     private static final String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,POINTS\n";
 
     public PerformanceReport(String campID){
+        super();
         this.campID =campID;
     }
 
@@ -36,7 +39,7 @@ public class PerformanceReport {
         }
         return "";
     }
-    public boolean generatePerformanceReport(int type){
+    public boolean generateReport(int type){
         ArrayList<String[]> x = DatabaseUtils.getAttendeesByCampID(campID);
         x.removeIf((String[] info)->info[2].equals("0"));
         String cnt ="";

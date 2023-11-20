@@ -4,8 +4,6 @@ import Models.Abstract.AUser;
 
 import java.util.EnumSet;
 
-import Models.PermissionList;
-
 public class Staff extends AUser{
     private int points;
     private CampList createdCamps;

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class Enquiry {
     private int createdBy;
-    private String content;
+    private final String content;
     private final String userid;
     private final String enquiryID;
     private EnquiryList el;

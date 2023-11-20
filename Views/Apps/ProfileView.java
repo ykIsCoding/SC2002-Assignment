@@ -1,5 +1,4 @@
 package Views.Apps;
-import java.util.ArrayList;
 
 import Controllers.ViewControllerController;
 import Models.Action;
@@ -8,6 +7,8 @@ import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
+
+import java.util.ArrayList;
 
 public class ProfileView implements IView {
     ViewControllerController vcc;

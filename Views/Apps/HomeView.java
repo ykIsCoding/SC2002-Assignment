@@ -1,17 +1,15 @@
 package Views.Apps;
-import Utils.InputUtils;
-import Utils.PageUtils;
-import Views.Interfaces.IView;
 
-import java.util.ArrayList;
-
-import Controllers.AuthenticationController;
-import Controllers.CampViewController;
 import Controllers.ViewControllerController;
 import Models.Action;
 import Models.CampCommiteeMember;
 import Models.Staff;
 import Models.Student;
+import Utils.InputUtils;
+import Utils.PageUtils;
+import Views.Interfaces.IView;
+
+import java.util.ArrayList;
 
 public class HomeView implements IView {
     ViewControllerController vcc;

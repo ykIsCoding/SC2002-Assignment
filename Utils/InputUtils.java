@@ -1,13 +1,13 @@
 package Utils;
 
+import Models.Action;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import Models.Action;
 
 public class InputUtils {
     private static final String intOnly = "\\d+";

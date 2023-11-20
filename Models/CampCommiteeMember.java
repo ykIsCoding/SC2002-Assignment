@@ -1,7 +1,5 @@
 package Models;
 
-import java.util.EnumSet;
-
 import Utils.DatabaseUtils;
 
 public class CampCommiteeMember extends Student{

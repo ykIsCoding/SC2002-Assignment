@@ -2,8 +2,6 @@ package Views.Suggestions;
 
 import java.util.ArrayList;
 import java.util.UUID;
-
-import Controllers.SuggestionViewController;
 import Controllers.ViewControllerController;
 import Models.Action;
 import Models.Camp;

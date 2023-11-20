@@ -1,21 +1,14 @@
 package Views.Enquiries;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.UUID;
-
-import Controllers.EnquiryViewController;
 import Controllers.ViewControllerController;
-import Models.Action;
-import Models.CampCommiteeMember;
-import Models.Enquiry;
-import Models.EnquiryList;
-import Models.Staff;
-import Models.Student;
+import Models.*;
 import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class EnquiryListView extends EnquiryList implements IView {
     String campID;

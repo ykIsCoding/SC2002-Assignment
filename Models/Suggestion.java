@@ -1,10 +1,5 @@
 package Models;
 
-import java.security.Timestamp;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.UUID;
-
 public class Suggestion {
     Camp suggestion;
     String suggestionID;

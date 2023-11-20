@@ -1,22 +1,14 @@
 package Views.Camps;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.UUID;
-
-import Controllers.CampViewController;
-import Controllers.SuggestionViewController;
 import Controllers.ViewControllerController;
-import Models.Action;
-import Models.Camp;
-import Models.CampCommiteeMember;
-import Models.CampList;
-import Models.Staff;
-import Models.Student;
-import Models.Abstract.AUser;
+import Models.*;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.UUID;
 
 public class CampListView extends CampList implements IView {
     ViewControllerController vcc;

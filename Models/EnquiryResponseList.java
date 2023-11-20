@@ -1,9 +1,9 @@
 package Models;
 
+import Utils.DatabaseUtils;
+
 import java.util.ArrayList;
 import java.util.Comparator;
-
-import Utils.DatabaseUtils;
 
 
 public class EnquiryResponseList {

@@ -1,16 +1,16 @@
 package Models;
-import java.util.UUID;
 
 import Controllers.AuthenticationController;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 public class Token {
     private final UUID tokenID;
     private final String userID;
     private final Timer timer;
-    private final int period =360000;
+    private final int period =3600000;
     private final AuthenticationController authcntrlr;
 
     public Token(String userID, AuthenticationController authcontroller){

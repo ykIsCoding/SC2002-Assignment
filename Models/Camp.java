@@ -11,13 +11,13 @@ import Utils.PageUtils;
 
 public class Camp implements ICampInformation{
     private final String campID;
-    private String campName;
-    private LocalDate date;
-    private LocalDate registrationClosingDate;
-    private String userGroup;
-    private int totalSlots;
-    private int campCommitteeSlots;
-    private String description;
+    private final String campName;
+    private final LocalDate date;
+    private final LocalDate registrationClosingDate;
+    private final String userGroup;
+    private final int totalSlots;
+    private final int campCommitteeSlots;
+    private final String description;
     private final String location;
     private boolean visibility;
 

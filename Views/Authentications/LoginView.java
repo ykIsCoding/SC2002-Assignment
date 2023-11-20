@@ -1,16 +1,15 @@
 package Views.Authentications;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import Controllers.AuthenticationController;
-import Controllers.AuthenticationViewController;
 import Controllers.ThemeController;
 import Controllers.ViewControllerController;
 import Models.Action;
 import Utils.InputUtils;
 import Utils.PageUtils;
-import Utils.ThemeUtils;
 import Views.Interfaces.IView;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class LoginView extends AuthenticationController implements IView {
     ThemeController tc;

@@ -1,21 +1,13 @@
 package Controllers;
 
-import java.io.InputStream;
-import java.io.StringBufferInputStream;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javax.swing.InputMap;
-
-import Models.CampCommiteeMember;
 import Models.Staff;
 import Models.Student;
 import Models.Token;
-import Models.Abstract.AUser;
 import Utils.DatabaseUtils;
-import Utils.InputUtils;
+
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AuthenticationController {
     int attempsLeft = 3;

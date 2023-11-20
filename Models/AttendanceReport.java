@@ -1,12 +1,12 @@
 package Models;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import Utils.DatabaseUtils;
 import Utils.PageUtils;
 
-public class AttendanceReport{
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class AttendanceReport extends Report{
     private final String campID;
     private static final String header = "ATTENDENCE REPORT\n";
     private static final String tableHeader = "ROW NAME EMAIL USERNAME ROLE\n";
@@ -14,6 +14,7 @@ public class AttendanceReport{
     private static final String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,ROLE\n";
 
     public AttendanceReport(String campID){
+        super();
         this.campID =campID;
     }
 
@@ -38,7 +39,7 @@ public class AttendanceReport{
         }
         return "";
     }
-    public boolean generateAttendenceReport(int type){
+    public boolean generateReport(int type){
         ArrayList<String[]> x = DatabaseUtils.getAttendeesByCampID(campID);
         //x.removeIf((String[] info)->info[2].equals("0"));
         String cnt ="";

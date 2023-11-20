@@ -1,6 +1,5 @@
 package Views.Interfaces;
 
-import Models.Action;
 
 public interface IView {
     void render();

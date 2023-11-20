@@ -1,23 +1,12 @@
 package Utils;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import Models.*;
+
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import Models.Enquiry;
-import Models.EnquiryList;
-import Models.EnquiryResponse;
-import Models.Suggestion;
-import Models.SuggestionList;
 
 public class DatabaseUtils {
    // private static final String headerRegExp = ".*\\|USERID\\|.*";

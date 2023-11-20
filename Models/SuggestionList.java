@@ -1,10 +1,9 @@
 package Models;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import Utils.DatabaseUtils;
 import Utils.PageUtils;
+
+import java.util.ArrayList;
 
 public class SuggestionList {
     ArrayList<Suggestion> suggestionList = new ArrayList();

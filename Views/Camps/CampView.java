@@ -1,29 +1,17 @@
 package Views.Camps;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.UUID;
-
-import Controllers.CampViewController;
 import Controllers.ViewControllerController;
-import Models.Action;
-import Models.AttendanceReport;
-import Models.Camp;
-import Models.CampCommiteeMember;
-import Models.CampList;
-import Models.Enquiry;
-import Models.EnquiryList;
-import Models.PerformanceReport;
-import Models.Staff;
-import Models.Student;
-import Models.Suggestion;
-import Models.SuggestionList;
+import Models.*;
 import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Enquiries.EnquiryListView;
 import Views.Interfaces.IView;
 import Views.Suggestions.SuggestionListView;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class CampView implements IView{
 
@@ -162,7 +150,7 @@ public class CampView implements IView{
                 System.out.println("Press 1 for txt, 2 for csv. -1 to cancel");
                 int ft2 = InputUtils.tryGetIntSelection(-1,2);
                 if(ft2==1||ft2==2){
-                    ar.generateAttendenceReport(ft2);
+                    ar.generateReport(ft2);
                     System.out.println("Attendance Report generated in Exports folder");
                 }
                 render();
@@ -172,7 +160,7 @@ public class CampView implements IView{
                 System.out.println("Press 1 for txt, 2 for csv. -1 to cancel");
                 int ft = InputUtils.tryGetIntSelection(-1,2);
                 if(ft==1||ft==2){
-                    pr.generatePerformanceReport(ft);
+                    pr.generateReport(ft);
                     System.out.println("Performance Report generated in Exports folder");
                 }
                 render();

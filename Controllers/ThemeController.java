@@ -1,11 +1,10 @@
 package Controllers;
 
-import java.sql.Date;
+import Utils.ThemeUtils;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import Utils.ThemeUtils;
 
 enum ThemeMode {DARK, LIGHT}
 

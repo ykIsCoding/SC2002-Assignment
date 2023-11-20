@@ -1,12 +1,10 @@
 package Models;
 
-import java.time.LocalDate;
+import Models.Abstract.AUser;
+
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-
-import Models.Abstract.AUser;
-import Utils.DatabaseUtils;
 
 public class Student extends AUser {
     private final List<Camp> registeredCamps;

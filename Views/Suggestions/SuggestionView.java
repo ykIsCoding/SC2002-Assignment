@@ -1,7 +1,5 @@
 package Views.Suggestions;
 
-
-import Controllers.SuggestionViewController;
 import Controllers.ViewControllerController;
 import Models.Action;
 import Models.Suggestion;
@@ -11,7 +9,7 @@ import Utils.PageUtils;
 import Views.Interfaces.IView;
 
 public class SuggestionView extends SuggestionList implements IView {
-    SuggestionViewController svc;
+    
     Suggestion currSuggestion;
     ViewControllerController vcc;
 
@@ -30,7 +28,7 @@ public class SuggestionView extends SuggestionList implements IView {
         super(b.getSuggestionCamp().getCampID());
 		this.currSuggestion =b;
         this.vcc = vcc;
-        this.svc = new SuggestionViewController(b);
+        
         render();
 	}
 

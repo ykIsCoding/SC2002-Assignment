@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class EnquiryResponse {
     private final String createdBy;
-    private String content;
+    private final String content;
     private final String position;
     private final String enquiryID;
     private final String enquiryResponseID;
@@ -33,4 +33,9 @@ public class EnquiryResponse {
     public String getPosiiton(){return this.position;}
     public String getUserID(){return this.createdBy;}
     public int getUpvotes(){return this.upvote;}
+    public void upvote(){
+        this.upvote++;
+    }
+
+
 }

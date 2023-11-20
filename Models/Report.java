@@ -1,5 +1,5 @@
 package Models;
 
 public abstract class Report {
-    abstract void generateReport();
+    abstract boolean generateReport(int type);
 }

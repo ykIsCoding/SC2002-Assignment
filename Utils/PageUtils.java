@@ -1,14 +1,13 @@
 package Utils;
+
+import Models.Action;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
-
-import Models.Action;
-import Models.Suggestion;
 
 public class PageUtils {
     static final String topLeftCorner = "╔";

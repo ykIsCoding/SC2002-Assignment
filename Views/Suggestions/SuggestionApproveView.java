@@ -5,7 +5,7 @@ import Models.Action;
 import Views.Interfaces.IView;
 
 public class SuggestionApproveView implements IView {
-    Action actions[] ={
+    Action[] actions ={
         new Action("Back To Home", 1),
     };
 

@@ -10,7 +10,7 @@ import Utils.DatabaseUtils;
 import Utils.PageUtils;
 
 public class Camp implements ICampInformation{
-    private String campID;
+    private final String campID;
     private String campName;
     private LocalDate date;
     private LocalDate registrationClosingDate;
@@ -18,7 +18,7 @@ public class Camp implements ICampInformation{
     private int totalSlots;
     private int campCommitteeSlots;
     private String description;
-    private String location;
+    private final String location;
     private boolean visibility;
 
     //List of attendees and Camp Commitee Members
@@ -30,7 +30,7 @@ public class Camp implements ICampInformation{
     //list of enquiries
     private EnquiryList enquiries;
 
-    private String staffInChargeID;
+    private final String staffInChargeID;
 
     public Camp(String id,String campName, LocalDate date, LocalDate registrationClosingDate, String userGroup,String location, int totalSlots, 
     int campCommitteeSlots, String description, String staffInChargeID) {
@@ -269,7 +269,7 @@ public class Camp implements ICampInformation{
         for(int u=0;u<x.size();u++){
             if(x.get(u)[2].equals(userid)){
                 return true;
-            };
+            }
         }
         return false;
     }

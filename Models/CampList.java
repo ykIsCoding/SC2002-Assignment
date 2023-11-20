@@ -32,11 +32,7 @@ public class CampList {
                     allCamps.get(v)[8],
                     allCamps.get(v)[9]
                     );
-            if(Integer.valueOf(allCamps.get(v)[10])==1){
-                nn.setVisibility(true);
-            }else{
-                nn.setVisibility(false);
-            }
+            nn.setVisibility(Integer.valueOf(allCamps.get(v)[10]) == 1);
             this.campList.add(nn);
         }
         return this.campList;

@@ -7,12 +7,12 @@ import java.util.Calendar;
 
 import Utils.ThemeUtils;
 
-enum ThemeMode {DARK, LIGHT};
+enum ThemeMode {DARK, LIGHT}
 
 public class ThemeController {
     ThemeMode currentTheme = ThemeMode.DARK;
 
-    public static final String WHITE = "\u001B[37m";
+
     public static final String WHITE_BACKGROUND = "\u001B[47m";
     public static final String BLACK_BACKGROUND = "\u001B[40m";
     public static final String COLOR_RESET = "\u001B[0m";
@@ -54,7 +54,4 @@ public class ThemeController {
         return this.currentTheme==ThemeMode.DARK;
     }
 
-    public ThemeMode getCurrentTheme(){
-        return this.currentTheme;
-    }
 }

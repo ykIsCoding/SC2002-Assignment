@@ -7,11 +7,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Token {
-    private UUID tokenID;
-    private String userID;
-    private Timer timer;
-    private int period =360000; 
-    private AuthenticationController authcntrlr;
+    private final UUID tokenID;
+    private final String userID;
+    private final Timer timer;
+    private final int period =360000;
+    private final AuthenticationController authcntrlr;
 
     public Token(String userID, AuthenticationController authcontroller){
         this.tokenID = UUID.randomUUID();

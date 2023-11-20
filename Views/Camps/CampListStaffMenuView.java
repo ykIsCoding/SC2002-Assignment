@@ -21,7 +21,7 @@ public class CampListStaffMenuView extends CampList implements IView {
     ViewControllerController vcc;
     CampViewController cvc;
 
-    private ArrayList<Action> actions = new ArrayList<>();
+    private final ArrayList<Action> actions = new ArrayList<>();
 
     
 

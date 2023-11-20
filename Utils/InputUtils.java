@@ -10,11 +10,10 @@ import java.time.format.DateTimeFormatter;
 import Models.Action;
 
 public class InputUtils {
-    private static String intOnly = "\\d+";
-    private static String emailOnly = "\\w+@[e.]*ntu.edu.sg";
-    private static String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
-    private static String alphanumericOnly ="^[A-Za-z0-9]{8,}";
-    private static String stringOnly = ".+";
+    private static final String intOnly = "\\d+";
+    private static final String emailOnly = "\\w+@[e.]*ntu.edu.sg";
+    private static final String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
+    private static final String alphanumericOnly ="^[A-Za-z0-9]{8,}";
 
     public static String tryGetDate(){
         Scanner scnr = new Scanner(System.in);

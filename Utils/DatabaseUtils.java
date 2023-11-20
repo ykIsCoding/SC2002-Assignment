@@ -20,14 +20,14 @@ import Models.Suggestion;
 import Models.SuggestionList;
 
 public class DatabaseUtils {
-    private static String headerRegExp = ".*\\|USERID\\|.*";
-    private static String userListHeader = "userid|name|email|username|password|faculty|points|hours|salt";
-    private static String campsHeader = "campid|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid|visibility";
-    private static String suggestionsHeader = "campid|userid|status|suggestionID|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid";
-    private static String enquiriesHeader = "enquiryid|campid|userid|content|position|timestamp";
-    private static String enquiriesRepliesHeader = "enquiryid|userid|position|content|upvotes|timestamp|enquiryResponseID";
-    private static String campCommitteesHeader = "campid|userids";
-    private static String attendeesHeader = "campid|userids|campcommittee";
+   // private static final String headerRegExp = ".*\\|USERID\\|.*";
+    private static final String userListHeader = "userid|name|email|username|password|faculty|points|hours|salt";
+    private static final String campsHeader = "campid|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid|visibility";
+    private static final String suggestionsHeader = "campid|userid|status|suggestionID|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid";
+    private static final String enquiriesHeader = "enquiryid|campid|userid|content|position|timestamp";
+    private static final String enquiriesRepliesHeader = "enquiryid|userid|position|content|upvotes|timestamp|enquiryResponseID";
+    private static final String campCommitteesHeader = "campid|userids";
+    private static final String attendeesHeader = "campid|userids|campcommittee";
 
     public static ArrayList<String[]> getCredentials(String fn){
         //String rex = "\\s*([A-Za-z]+)\\s*([A-Za-z0-9_@.]+)[;]*\\s*([A-Za-z]+)";
@@ -68,15 +68,7 @@ public class DatabaseUtils {
         return hashPassword(inputPW,s1).equals(actualPW);
     }
 
-    
 
-    public static boolean checkIfStudentIsCampAttendee(String studentID, String campId){
-         ArrayList<String[]> x = readFromFile("Data/attendees.txt");
-         for(int c=0;c<x.size();c++){
-                if(x.get(c)[0].equals(campId) && x.get(c)[1].equals(studentID)) return true;
-         }
-         return false;
-    }
 
     public static boolean checkIfStudentIsCampCommitteeMember(String studentID, String campID){
          ArrayList<String[]> x = readFromFile("Data/attendees.txt");
@@ -231,15 +223,7 @@ public class DatabaseUtils {
         return false;
     }
 
-    public static int getPoint(String userID){
-        ArrayList<String[]> ccms = readFromFile("Data/student_list.txt");
-        for(int b=0;b<ccms.size();b++){
-            if(ccms.get(b)[0].equals(userID)){
-                return Integer.valueOf(ccms.get(b)[6]);
-            }
-        }
-        return 0;
-    }
+
 
     public static boolean exportFile(String fn, String content){
                try {
@@ -363,9 +347,7 @@ public class DatabaseUtils {
         return true;
     }
 
-    public static void setCredentials(String fn,ArrayList<String[]> al){
-        writeToFile(fn,al,userListHeader);
-    }
+
 
     public static boolean writeCamps(ArrayList<String[]> al){
         return writeToFile("Data/camps.txt", al, campsHeader);
@@ -386,37 +368,20 @@ public class DatabaseUtils {
         return readFromFile("Data/camps.txt");
     }
 
-    public static ArrayList<String[]> readCampCommittees(){
-        return readFromFile("Data/campcommittees.txt");
-    }
 
-    public static void writeCampsComittees(ArrayList<String[]> al){
-        writeToFile("Data/campcommittees.txt", al, campCommitteesHeader);
-    }
 
-    public static ArrayList<String[]> readEnquiries(){
-        return readFromFile("Data/enquiries.txt");
-    }
+
+
 
     public static void writeEnquiries(ArrayList<String[]> al){
         writeToFile("Data/enquiries.txt", al,enquiriesHeader);
     }
 
-    public static ArrayList<String[]> readEnquiriesReplies(){
-        return readFromFile("Data/enquiries_replies.txt");
-    }
 
-    public static void writeEnquiriesReplies(ArrayList<String[]> al){
-        writeToFile("Data/enquiries_replies.txt", al, enquiriesRepliesHeader);
-    }
 
-    public static ArrayList<String[]> readSuggestions(){
-        return readFromFile("Data/suggestions.txt");
-    }
 
-    public static void writeSuggestions(ArrayList<String[]> al){
-        writeToFile("Data/suggestions.txt", al, suggestionsHeader);
-    }
+
+
 
     private static ArrayList<String[]> updateAL(String fn, int colNum, ArrayList<String[]> al){
         ArrayList<String[]> tmp = readFromFile(fn);

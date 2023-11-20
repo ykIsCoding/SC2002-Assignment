@@ -9,11 +9,7 @@ import Views.Camps.CampRegisterView;
 import Views.Camps.CampView;
 
 public class CampViewController implements IViewController {
-    CampCreateView ccc = new CampCreateView(this);
-    CampEditView cec = new CampEditView(this);
-    CampRegisterView crc = new CampRegisterView(this);
-    CampDeregisterView cdrc = new CampDeregisterView(this);
-    
+
     ViewControllerController vcc;
 
     //might move to a parent class
@@ -22,24 +18,7 @@ public class CampViewController implements IViewController {
     }
     
 
-    public void inputToWithinViewController(int x){
-        switch(x){
-            case 1: 
-                this.ccc.render();
-                break;
-            case 2: 
-                this.cec.render();
-                break;
-            case 3: 
-                this.crc.render();
-                break;
-            case 4: 
-                this.cdrc.render();
-                break;
-            default:
-                System.out.println("Invalid Selection.");
-        }
-    }
+
 
    
 }

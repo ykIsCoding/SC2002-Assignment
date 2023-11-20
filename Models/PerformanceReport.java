@@ -5,11 +5,11 @@ import Utils.DatabaseUtils;
 import Utils.PageUtils;
 
 public class PerformanceReport {
-    private String campID;
-    private static String header = "PERFORMANCE REPORT\n";
-    private static String tableHeader = "ROW NAME EMAIL USERNAME POINTS\n";
+    private final String campID;
+    private static final String header = "PERFORMANCE REPORT\n";
+    private static final String tableHeader = "ROW NAME EMAIL USERNAME POINTS\n";
     
-    private static String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,POINTS\n";
+    private static final String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,POINTS\n";
 
     public PerformanceReport(String campID){
         this.campID =campID;

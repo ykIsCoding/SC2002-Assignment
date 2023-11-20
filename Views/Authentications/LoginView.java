@@ -67,7 +67,7 @@ public class LoginView extends AuthenticationController implements IView {
 				    if(authenticate(pw,email.toLowerCase())){
 					    this.vcc.navigate(3);
 					    break;
-				    };
+				    }
                 }
 			}
 		

@@ -19,7 +19,7 @@ import Utils.InputUtils;
 
 public class AuthenticationController {
     int attempsLeft = 3;
-    String password = "password";
+ //   String password = "password";
     Token currentSessionToken = null;
    ViewControllerController vcc;
     boolean underCoolDown = false;
@@ -97,9 +97,7 @@ public class AuthenticationController {
         }, 60000);
     }
 
-    public boolean isInSession(){
-        return this.currentSessionToken!=null;
-    }
+
 
     
 

@@ -75,15 +75,7 @@ public class PageUtils {
         System.out.print(finalString);
     }
 
-    public static void printRowWithAdditionalInstructions(int rowNum, String content,String additionalInstructions){
-        System.out.println(additionalInstructions);
-        printRow(rowNum,content);
-    }
 
-    public static void printRowWithAdditionalInstructions(int rowNum, String content, String content2,String additionalInstructions){
-        System.out.println(additionalInstructions);
-        printRow(rowNum, content,content2);
-    }
 
     private static String padder(String content, int maxColWidth, int multiplier){
         String space = " ";
@@ -120,9 +112,6 @@ public class PageUtils {
         System.out.print(topLine+finalString+bottomLine);
     }
 
-    public static void printHeader(){
-        
-    }
 
     public static void printActionBox(ArrayList<Action> actions){
         if(actions.size()==0 || actions==null) return;
@@ -135,31 +124,8 @@ public class PageUtils {
     
 
 
-    public static void clearView(){
-        
-    }
 
-    public static void printSuggestionBox(Suggestion s){
-        int colWidth = 108;
-        String content = s.getSuggestionCamp().getCampInformation();
-        String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
-        String infoLine = verticalDoubleLine+center(DatabaseUtils.getUserByID(s.getUserID())[1], colWidth)+verticalDoubleLine+"\n";
-        String tsLine = verticalDoubleLine+center("Status: "+s.getStatus().toString(),colWidth)+verticalDoubleLine+"\n";
-        String bottomLine = bottomLeftCorner+horizontalDoubleLine.repeat(colWidth)+bottomRightCorner+"\n";
-        String suggestionTitle = verticalDoubleLine+center("Suggestion", colWidth)+verticalDoubleLine+"\n";
-        String centerLine = TLeftLine+horizontalDoubleLine.repeat(colWidth)+TRightLine+"\n";
-        int multiplier = (int) Math.ceil((content.length())/colWidth)+1;
-        content = padder(content,colWidth,multiplier);
-        String finalString = "";
-        int h = 0;
-        for(int n=0;n<multiplier;n++){
-            finalString+=content.substring(h,h+colWidth-2);
-            h+=colWidth;
-        }
 
-        finalString = topLine + suggestionTitle + centerLine +finalString+infoLine+tsLine+ bottomLine;
-        System.out.println(finalString);
-    }
 
     public static void printResponseBox(String content, String sender, String senderPosition, int upvotes, String ts){
         int colWidth = 108;

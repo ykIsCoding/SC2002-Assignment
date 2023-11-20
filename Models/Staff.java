@@ -9,7 +9,7 @@ import Models.PermissionList;
 public class Staff extends AUser{
     private int points;
     private CampList createdCamps;
-    private EnumSet permissions = PermissionList.getStaffPermission();
+    private final EnumSet permissions = PermissionList.getStaffPermission();
 
     public Staff(String UserID, String Faculty) {
         super(UserID, "Staff", Faculty);

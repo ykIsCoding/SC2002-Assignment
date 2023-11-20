@@ -19,7 +19,7 @@ public class SuggestionView extends SuggestionList implements IView {
     Action editSuggestionAction = new Action("Edit Suggestion", 2);
     Action deleteSuggestionAction=   new Action("Delete Suggestion", 3);
     Action approveSuggestionAction=   new Action("Approve Suggestion", 4);
-    Action actions[] ={
+    Action[] actions ={
         GoBack,
         editSuggestionAction,
         deleteSuggestionAction,

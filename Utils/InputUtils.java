@@ -14,7 +14,10 @@ public class InputUtils {
     private static final String emailOnly = "\\w+@[e.]*ntu.edu.sg";
     private static final String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
     private static final String alphanumericOnly ="^[A-Za-z0-9]{8,}";
+<<<<<<< HEAD
     private static final String stringOnly = ".+";
+=======
+>>>>>>> 49cbf485cec498b743b5f15002cf077bdaf7390e
 
     public static String tryGetDate(){
         Scanner scnr = new Scanner(System.in);

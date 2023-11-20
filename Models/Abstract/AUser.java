@@ -13,9 +13,7 @@ public abstract class AUser {
         this.Faculty = Faculty;
     }
 
-    public void setPassword(String newPassword) {
-        this.Password = newPassword;
-    }
+
     
 
     
@@ -27,14 +25,10 @@ public abstract class AUser {
     public String getUserID() {
         return UserID;
     }
-    public String getUserType() {
-        return UserType;
-    }
+
     public String getFaculty() {
         return Faculty;
     }
-    public String getPassword() {
-        return Password;
-    }
+
 
 }

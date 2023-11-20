@@ -75,15 +75,7 @@ public class PageUtils {
         System.out.print(finalString);
     }
 
-    public static void printRowWithAdditionalInstructions(int rowNum, String content,String additionalInstructions){
-        System.out.println(additionalInstructions);
-        printRow(rowNum,content);
-    }
 
-    public static void printRowWithAdditionalInstructions(int rowNum, String content, String content2,String additionalInstructions){
-        System.out.println(additionalInstructions);
-        printRow(rowNum, content,content2);
-    }
 
     private static String padder(String content, int maxColWidth, int multiplier){
         String space = " ";
@@ -120,9 +112,6 @@ public class PageUtils {
         System.out.print(topLine+finalString+bottomLine);
     }
 
-    public static void printHeader(){
-        
-    }
 
     public static void printActionBox(ArrayList<Action> actions){
         if(actions.size()==0 || actions==null) return;
@@ -135,10 +124,8 @@ public class PageUtils {
     
 
 
-    public static void clearView(){
-        
-    }
 
+<<<<<<< HEAD
     public static void printSuggestionBox(Suggestion s){
         int colWidth = 108;
         String content = s.getSuggestionCamp().getCampInformation();
@@ -156,10 +143,9 @@ public class PageUtils {
             finalString+=content.substring(h,h+colWidth-2);
             h+=colWidth;
         }
+=======
+>>>>>>> 49cbf485cec498b743b5f15002cf077bdaf7390e
 
-        finalString = topLine + suggestionTitle + centerLine +finalString+infoLine+tsLine+ bottomLine;
-        System.out.println(finalString);
-    }
 
     public static void printResponseBox(String content, String sender, String senderPosition, int upvotes, String ts){
         int colWidth = 108;

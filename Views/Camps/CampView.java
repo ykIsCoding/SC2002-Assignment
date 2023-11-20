@@ -36,6 +36,7 @@ public class CampView implements IView{
                 actions.add(new Action("View Suggestions",5));
                 this.actions.add(new Action("Get Attendence Report",8));
             this.actions.add(new Action("Get Camp Committee Performance Report",9));
+            this.actions.add(new Action("Get Enquiry Report",13));
                 
             }
             
@@ -171,6 +172,16 @@ public class CampView implements IView{
                 break;
             case 12:
                 this.c.registerCampCommitteeMember((Student) this.vcc.getCurrentUser());
+                render();
+                break;
+            case 13:
+                EnquiryReport er = new EnquiryReport(this.c.getCampID());
+                System.out.println("Press 1 for txt, 2 for csv. -1 to cancel");
+                int ft3 = InputUtils.tryGetIntSelection(-1,2);
+                if(ft3==1||ft3==2){
+                    er.generateReport(ft3);
+                    System.out.println("Enquiry Report generated in Exports folder");
+                }
                 render();
                 break;
             

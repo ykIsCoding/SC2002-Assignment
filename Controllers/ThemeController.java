@@ -7,7 +7,7 @@ import java.util.Calendar;
 
 import Utils.ThemeUtils;
 
-enum ThemeMode {DARK, LIGHT};
+enum ThemeMode {DARK, LIGHT}
 
 public class ThemeController {
     ThemeMode currentTheme = ThemeMode.DARK;

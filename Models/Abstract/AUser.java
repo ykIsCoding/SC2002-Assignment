@@ -1,10 +1,10 @@
 package Models.Abstract;
 
 public abstract class AUser {
-    private String UserID;
-    private String UserType;
+    private final String UserID;
+    private final String UserType;
     private String Name;
-    private String Faculty;
+    private final String Faculty;
     private String Password;
 
     public AUser(String UserID, String UserType, String Faculty) {

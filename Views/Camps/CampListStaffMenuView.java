@@ -19,9 +19,9 @@ import Views.Interfaces.IView;
 
 public class CampListStaffMenuView extends CampList implements IView {
     ViewControllerController vcc;
-    CampViewController cvc;
 
-    private ArrayList<Action> actions = new ArrayList<>();
+
+    private final ArrayList<Action> actions = new ArrayList<>();
 
     
 
@@ -100,7 +100,7 @@ public class CampListStaffMenuView extends CampList implements IView {
                     slots,
                     ccslots,
                     description,
-                    vcc.getCurrentUser().getUserID().toString()
+                        vcc.getCurrentUser().getUserID()
                     );
                 boolean res = editCamp(tempCamp);
                 if(res){

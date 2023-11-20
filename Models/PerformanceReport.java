@@ -5,11 +5,11 @@ import Utils.DatabaseUtils;
 import Utils.PageUtils;
 
 public class PerformanceReport {
-    private String campID;
-    private static String header = "PERFORMANCE REPORT\n";
-    private static String tableHeader = "ROW NAME EMAIL USERNAME POINTS\n";
+    private final String campID;
+    private static final String header = "PERFORMANCE REPORT\n";
+    private static final String tableHeader = "ROW NAME EMAIL USERNAME POINTS\n";
     
-    private static String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,POINTS\n";
+    private static final String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,POINTS\n";
 
     public PerformanceReport(String campID){
         this.campID =campID;
@@ -41,16 +41,16 @@ public class PerformanceReport {
         x.removeIf((String[] info)->info[2].equals("0"));
         String cnt ="";
         for(int b=0;b<x.size();b++){
-            cnt+=Integer.toString(b)+". "+DatabaseUtils.getUserByID(x.get(b)[1])[1]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[2]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[3]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[6]+"\n";
+            cnt+= b +". "+DatabaseUtils.getUserByID(x.get(b)[1])[1]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[2]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[3]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[6]+"\n";
         }
-        String endLine = "=======================================================\nGenerated on:"+PageUtils.localDateToFullLocalDateString(LocalDate.now()).toString();
+        String endLine = "=======================================================\nGenerated on:"+ PageUtils.localDateToFullLocalDateString(LocalDate.now());
         String allString = header+printCampName()+tableHeader+cnt+endLine;
         if(type==1){
             DatabaseUtils.exportFile("Exports/PerformanceReport_"+campID+".txt", allString);
         }else{
             cnt="";
             for(int b=0;b<x.size();b++){
-            cnt+=Integer.toString(b)+","+DatabaseUtils.getUserByID(x.get(b)[1])[1]+","+DatabaseUtils.getUserByID(x.get(b)[1])[2]+","+DatabaseUtils.getUserByID(x.get(b)[1])[3]+","+DatabaseUtils.getUserByID(x.get(b)[1])[6]+"\n";
+            cnt+= b +","+DatabaseUtils.getUserByID(x.get(b)[1])[1]+","+DatabaseUtils.getUserByID(x.get(b)[1])[2]+","+DatabaseUtils.getUserByID(x.get(b)[1])[3]+","+DatabaseUtils.getUserByID(x.get(b)[1])[6]+"\n";
             }
             allString = header+printCampNameCSV()+csvtableHeader+cnt;
             DatabaseUtils.exportFile("Exports/PerformanceReport_"+campID+".csv", allString);

@@ -31,7 +31,7 @@ public class CampCommiteeMembers {
             
             String[] p = {
                 this.campid,
-                ccmList.get(v).getUserID().toString(),
+                    ccmList.get(v).getUserID(),
                 "1"
             };
             x.add(p);

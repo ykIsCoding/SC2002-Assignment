@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class EnquiryResponse {
-    private String createdBy;
+    private final String createdBy;
     private String content;
-    private String position;
-    private String enquiryID;
-    private String enquiryResponseID;
-    private String timeStamp;
+    private final String position;
+    private final String enquiryID;
+    private final String enquiryResponseID;
+    private final String timeStamp;
     private int upvote;
     
     public EnquiryResponse(String createdBy, String content, String position,String erID,String timestamp, int upvote, String enquiryID){

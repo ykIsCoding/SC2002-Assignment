@@ -32,12 +32,12 @@ public class Attendees {
         ArrayList<String[]> x = new ArrayList<>();
         for(int v=0;v<attendeeList.size();v++){
             String isCC = "0";
-            if(DatabaseUtils.checkIfStudentIsCampCommitteeMember(attendeeList.get(v).getUserID().toString(), campid)){
+            if(DatabaseUtils.checkIfStudentIsCampCommitteeMember(attendeeList.get(v).getUserID(), campid)){
                 isCC="1";
             }
             String[] p = {
                 this.campid,
-                attendeeList.get(v).getUserID().toString(),
+                    attendeeList.get(v).getUserID(),
                 isCC
             };
             x.add(p);

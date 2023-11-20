@@ -144,7 +144,7 @@ public class PageUtils {
         String content = s.getSuggestionCamp().getCampInformation();
         String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
         String infoLine = verticalDoubleLine+center(DatabaseUtils.getUserByID(s.getUserID())[1], colWidth)+verticalDoubleLine+"\n";
-        String tsLine = verticalDoubleLine+center("Status: "+s.getStatus().toString(),colWidth)+verticalDoubleLine+"\n";
+        String tsLine = verticalDoubleLine+center("Status: "+ s.getStatus(),colWidth)+verticalDoubleLine+"\n";
         String bottomLine = bottomLeftCorner+horizontalDoubleLine.repeat(colWidth)+bottomRightCorner+"\n";
         String suggestionTitle = verticalDoubleLine+center("Suggestion", colWidth)+verticalDoubleLine+"\n";
         String centerLine = TLeftLine+horizontalDoubleLine.repeat(colWidth)+TRightLine+"\n";
@@ -184,7 +184,7 @@ public class PageUtils {
 
     public static String localDateToString(LocalDate d){
         try{
-            return d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+            return d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         }catch(Exception e){
             System.out.println(e);
         }
@@ -194,7 +194,7 @@ public class PageUtils {
     public static String localDateToFullLocalDateString(LocalDate date){
         try{
             
-            return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)).toString();
+            return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
         }catch(Exception e){
             return "";
         }
@@ -204,7 +204,7 @@ public class PageUtils {
         try{
             
             LocalDateTime dt = LocalDateTime.parse(date);
-            return dt.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)).toString();
+            return dt.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
         }catch(Exception e){
             return "";
         }

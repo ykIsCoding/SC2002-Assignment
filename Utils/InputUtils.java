@@ -10,11 +10,11 @@ import java.time.format.DateTimeFormatter;
 import Models.Action;
 
 public class InputUtils {
-    private static String intOnly = "\\d+";
-    private static String emailOnly = "\\w+@[e.]*ntu.edu.sg";
-    private static String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
-    private static String alphanumericOnly ="^[A-Za-z0-9]{8,}";
-    private static String stringOnly = ".+";
+    private static final String intOnly = "\\d+";
+    private static final String emailOnly = "\\w+@[e.]*ntu.edu.sg";
+    private static final String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
+    private static final String alphanumericOnly ="^[A-Za-z0-9]{8,}";
+    private static final String stringOnly = ".+";
 
     public static String tryGetDate(){
         Scanner scnr = new Scanner(System.in);
@@ -29,9 +29,9 @@ public class InputUtils {
                 continue;
             }else{
                 LocalDate today = LocalDate.now();
-                String day = matcher.group(1).toString().length()==1?"0"+matcher.group(1).toString():matcher.group(1).toString();
-                String month = matcher.group(2).toString().length()==1?"0"+matcher.group(2).toString():matcher.group(2).toString();
-                String year = matcher.group(3).toString();
+                String day = matcher.group(1).length()==1?"0"+ matcher.group(1) : matcher.group(1);
+                String month = matcher.group(2).length()==1?"0"+ matcher.group(2) : matcher.group(2);
+                String year = matcher.group(3);
                
                 LocalDate inputDate = LocalDate.parse( 
                 (day+"/"+month+"/"+year), 
@@ -70,7 +70,7 @@ public class InputUtils {
                 if(DatabaseUtils.getUserByEmail(inputEmail)==null){
                     System.out.println("User does not exist. Please try again.");
                 }else{
-                    return inputEmail.toString();
+                    return inputEmail;
                 }
             }
         }
@@ -115,7 +115,7 @@ public class InputUtils {
                 System.out.println("Password has to be at least 8 characters. Please re-enter.");
                 continue;
             }else{
-                String pw = matcher.group().toString();
+                String pw = matcher.group();
                 return pw;
                 
             }

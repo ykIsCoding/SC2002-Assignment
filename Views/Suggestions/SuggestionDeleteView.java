@@ -5,9 +5,6 @@ import Models.Action;
 import Views.Interfaces.IView;
 
 public class SuggestionDeleteView implements IView {
-    Action actions[] ={
-        new Action("Back To Home", 1),
-    };
 
      SuggestionViewController svc;
 

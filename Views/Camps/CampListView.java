@@ -20,7 +20,7 @@ import Views.Interfaces.IView;
 
 public class CampListView extends CampList implements IView {
     ViewControllerController vcc;
-    CampViewController cvc;
+
 
     private ArrayList<Action> actions = new ArrayList<>();
     private ArrayList<Camp> currentCampList;
@@ -140,7 +140,7 @@ public class CampListView extends CampList implements IView {
                     slots,
                     ccslots,
                     description,
-                    vcc.getCurrentUser().getUserID().toString()
+                        vcc.getCurrentUser().getUserID()
                     );
                 tempCamp.setVisibility(false);
                 addCamp(tempCamp);
@@ -164,8 +164,8 @@ public class CampListView extends CampList implements IView {
                     case 5: this.currentCampList.sort(Comparator.comparing(Camp::getTotalSlots));break;
                     case 6: this.currentCampList.sort(Comparator.comparing(Camp::getRegistrationClosingDate));break;
                     case 7: this.currentCampList.sort(Comparator.comparing(Camp::getRegistrationClosingDate).reversed());break;
-                    case 8: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().toLowerCase().equals(this.vcc.getCurrentUser().getFaculty().toLowerCase()));break;
-                    case 9: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().toLowerCase().equals("all"));break;
+                    case 8: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().equalsIgnoreCase(this.vcc.getCurrentUser().getFaculty()));break;
+                    case 9: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().equalsIgnoreCase("all"));break;
                     case 10: this.currentCampList.sort(Comparator.comparing((Camp x) -> x.getCampName().toLowerCase()));break;
                 }
                 render();

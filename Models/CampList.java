@@ -32,11 +32,7 @@ public class CampList {
                     allCamps.get(v)[8],
                     allCamps.get(v)[9]
                     );
-            if(Integer.valueOf(allCamps.get(v)[10])==1){
-                nn.setVisibility(true);
-            }else{
-                nn.setVisibility(false);
-            }
+            nn.setVisibility(Integer.valueOf(allCamps.get(v)[10]) == 1);
             this.campList.add(nn);
         }
         return this.campList;
@@ -61,7 +57,7 @@ public class CampList {
     public ArrayList<Camp> getCampListByFacultyOrAll(String userGroup){
         ArrayList<Camp> newList = new ArrayList<>();
         for(int x=0;x<this.campList.size();x++){
-            if(this.campList.get(x).getUserGroup().toLowerCase().equals(userGroup.toLowerCase()) || this.campList.get(x).getUserGroup().toLowerCase().equals("all")){
+            if(this.campList.get(x).getUserGroup().equalsIgnoreCase(userGroup) || this.campList.get(x).getUserGroup().equalsIgnoreCase("all")){
                 newList.add(this.campList.get(x));
             }
         }

@@ -3,7 +3,7 @@ import Controllers.ViewControllerController;
 
 public class Main {
 	
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		//ArrayList<String[]> c = DatabaseUtils.getCredentials("./Data/student_list.txt");
 		//ArrayList<String[]> p = new ArrayList<>();
 	//for(int b=0;b<c.size();b++){

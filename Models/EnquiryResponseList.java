@@ -10,7 +10,7 @@ public class EnquiryResponseList {
     
     //Creating array list for enquiryResponseList
     private ArrayList<EnquiryResponse> enquiryResponseList = new ArrayList<>();
-    private String enquiryID;
+    private final String enquiryID;
     public EnquiryResponseList(String eid){
         this.enquiryID = eid;
         getEnquiriesResponsesFromDatabase();

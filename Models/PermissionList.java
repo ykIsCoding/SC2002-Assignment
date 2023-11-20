@@ -25,7 +25,7 @@ public class PermissionList {
         CREATE_ATTENDANCE_REPORT,  //staff and committee
         CREATE_STUDENT_ENQUIRY_REPORT, // staff and committee
     }
-    private static EnumSet<PermissionType> staffPermissions = EnumSet.of(
+    private static final EnumSet<PermissionType> staffPermissions = EnumSet.of(
             PermissionType.EDIT_ENQUIRY,
             PermissionType.REPLY_ENQUIRY,
             PermissionType.VIEW_ENQUIRY,
@@ -40,7 +40,7 @@ public class PermissionList {
             PermissionType.CREATE_STUDENT_ENQUIRY_REPORT
         );
 
-    private static EnumSet<PermissionType> committeePermissions = EnumSet.of(
+    private static final EnumSet<PermissionType> committeePermissions = EnumSet.of(
             PermissionType.EDIT_ENQUIRY,
             PermissionType.REPLY_ENQUIRY,
             PermissionType.VIEW_ENQUIRY,
@@ -53,14 +53,13 @@ public class PermissionList {
             PermissionType.DELETE_SUGGESTION,
             PermissionType.CREATE_ATTENDANCE_REPORT,
             PermissionType.CREATE_STUDENT_ENQUIRY_REPORT
-        );;
-    private static EnumSet<PermissionType> studentPermissions = EnumSet.of(
+        );
+    private static final EnumSet<PermissionType> studentPermissions = EnumSet.of(
             PermissionType.EDIT_ENQUIRY,
             PermissionType.SUBMIT_ENQUIRY,
             PermissionType.DELETE_ENQUIRY,
             PermissionType.VIEW_ENQUIRY
-        );;
-
+        );
 
 
     public PermissionList(){}

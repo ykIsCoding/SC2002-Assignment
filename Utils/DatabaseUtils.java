@@ -20,14 +20,14 @@ import Models.Suggestion;
 import Models.SuggestionList;
 
 public class DatabaseUtils {
-    private static String headerRegExp = ".*\\|USERID\\|.*";
-    private static String userListHeader = "userid|name|email|username|password|faculty|points|hours|salt";
-    private static String campsHeader = "campid|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid|visibility";
-    private static String suggestionsHeader = "campid|userid|status|suggestionID|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid";
-    private static String enquiriesHeader = "enquiryid|campid|userid|content|position|timestamp";
-    private static String enquiriesRepliesHeader = "enquiryid|userid|position|content|upvotes|timestamp|enquiryResponseID";
-    private static String campCommitteesHeader = "campid|userids";
-    private static String attendeesHeader = "campid|userids|campcommittee";
+    private static final String headerRegExp = ".*\\|USERID\\|.*";
+    private static final String userListHeader = "userid|name|email|username|password|faculty|points|hours|salt";
+    private static final String campsHeader = "campid|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid|visibility";
+    private static final String suggestionsHeader = "campid|userid|status|suggestionID|campname|date|closingdate|usergroup|location|slots|ccslots|description|staffid";
+    private static final String enquiriesHeader = "enquiryid|campid|userid|content|position|timestamp";
+    private static final String enquiriesRepliesHeader = "enquiryid|userid|position|content|upvotes|timestamp|enquiryResponseID";
+    private static final String campCommitteesHeader = "campid|userids";
+    private static final String attendeesHeader = "campid|userids|campcommittee";
 
     public static ArrayList<String[]> getCredentials(String fn){
         //String rex = "\\s*([A-Za-z]+)\\s*([A-Za-z0-9_@.]+)[;]*\\s*([A-Za-z]+)";
@@ -100,14 +100,14 @@ public class DatabaseUtils {
         String[] temp = {};
         ArrayList<String[]> x = readFromFile("Data/staff_list.txt");
         for(int b=0;b<x.size();b++){
-            if(x.get(b)[2].toLowerCase().equals(email.toLowerCase())){
+            if(x.get(b)[2].equalsIgnoreCase(email)){
                 return x.get(b);
             }
         }
 
         ArrayList<String[]> y = readFromFile("Data/student_list.txt");
         for(int b=0;b<y.size();b++){
-            if(y.get(b)[2].toLowerCase().equals(email.toLowerCase())){
+            if(y.get(b)[2].equalsIgnoreCase(email)){
                 return y.get(b);
             }
         }
@@ -283,13 +283,13 @@ public class DatabaseUtils {
             x.removeIf((String[] info)->info[0].equals(enquiryID));
             for(int b=0;b<erl.size();b++){
             String[] tmp = {
-                erl.get(b).getEnquiryID().toString(),
-                erl.get(b).getUserID().toString(),
-                erl.get(b).getPosiiton().toString(),
-                erl.get(b).getContent().toString(),
+                    erl.get(b).getEnquiryID(),
+                    erl.get(b).getUserID(),
+                    erl.get(b).getPosiiton(),
+                    erl.get(b).getContent(),
                 String.valueOf(erl.get(b).getUpvotes()),
-                erl.get(b).getTimestamp().toString(),
-                erl.get(b).getEnquiryResponseID().toString(),
+                    erl.get(b).getTimestamp(),
+                    erl.get(b).getEnquiryResponseID(),
             };
             x.add(tmp);
         }
@@ -465,7 +465,7 @@ public class DatabaseUtils {
         for(int b=0;b<attendeelist.size();b++){
             String[] tmp = {
                 campID,
-                attendeelist.get(b)[1].toString(),
+                    attendeelist.get(b)[1],
                 String.valueOf(attendeelist.get(b)[2])
             };
             x.add(tmp);

@@ -21,12 +21,10 @@ import Utils.PageUtils;
 import Views.Interfaces.IView;
 
 public class EnquiryView extends Enquiry implements IView{
-
-    EnquiryViewController evc;
     ViewControllerController vcc;
     String currentViewerPosition;
     
-    private ArrayList<Action> actions = new ArrayList<>();
+    private final ArrayList<Action> actions = new ArrayList<>();
 
     public EnquiryView(Enquiry e, ViewControllerController vcc){
         super(e.getContent(),e.getTimestamp(),e.getEnquiryID(),e.getCampID(),e.getUserID());

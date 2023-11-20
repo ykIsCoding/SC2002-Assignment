@@ -8,12 +8,12 @@ import java.util.UUID;
 public class Enquiry {
     private int createdBy;
     private String content;
-    private String userid;
-    private String enquiryID;
+    private final String userid;
+    private final String enquiryID;
     private EnquiryList el;
-    private String timeStamp;
-    private String campID;
-    private EnquiryResponseList erl;
+    private final String timeStamp;
+    private final String campID;
+    private final EnquiryResponseList erl;
     
     public Enquiry(String content, String ts, String enquiryId, String campID, String uid){
 

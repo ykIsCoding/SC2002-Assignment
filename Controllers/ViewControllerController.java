@@ -64,13 +64,14 @@ public class ViewControllerController{
                // pv = new ProfileView(this);
                 //pv.render();
                 break;
-            case 5: ;break;
-            case 6: ;break;
+            case 5:
+                break;
+            case 6:
+                break;
             case 7: System.exit(0);
             default:
                 System.out.println("error");
 		}
-        tc.end();
-        return;
+        ThemeController.end();
     }
 }

@@ -10,7 +10,7 @@ import Utils.DatabaseUtils;
 import Utils.PageUtils;
 
 public class Camp implements ICampInformation{
-    private String campID;
+    private final String campID;
     private String campName;
     private LocalDate date;
     private LocalDate registrationClosingDate;
@@ -18,7 +18,7 @@ public class Camp implements ICampInformation{
     private int totalSlots;
     private int campCommitteeSlots;
     private String description;
-    private String location;
+    private final String location;
     private boolean visibility;
 
     //List of attendees and Camp Commitee Members
@@ -30,7 +30,7 @@ public class Camp implements ICampInformation{
     //list of enquiries
     private EnquiryList enquiries;
 
-    private String staffInChargeID;
+    private final String staffInChargeID;
 
     public Camp(String id,String campName, LocalDate date, LocalDate registrationClosingDate, String userGroup,String location, int totalSlots, 
     int campCommitteeSlots, String description, String staffInChargeID) {
@@ -250,18 +250,17 @@ public class Camp implements ICampInformation{
     }
 
     public String getCampInformation() {
-        StringBuilder campInfo = new StringBuilder();
-        campInfo.append("Camp Name: ").append(campName).append("\n");
-        campInfo.append("Date: ").append(PageUtils.localDateToFullLocalDateString(date)).append("\n");
-        campInfo.append("Registration Closing Date: ").append(PageUtils.localDateToFullLocalDateString(registrationClosingDate)).append("\n");
-        campInfo.append("User Group: ").append(userGroup).append("\n");
-        campInfo.append("Total Slots: ").append(totalSlots).append("\n");
-        campInfo.append("Camp Committee Slots: ").append(campCommitteeSlots).append("\n");
-        campInfo.append("Description: ").append(description).append("\n");
+        String campInfo = "Camp Name: " + campName + "\n" +
+                "Date: " + PageUtils.localDateToFullLocalDateString(date) + "\n" +
+                "Registration Closing Date: " + PageUtils.localDateToFullLocalDateString(registrationClosingDate) + "\n" +
+                "User Group: " + userGroup + "\n" +
+                "Total Slots: " + totalSlots + "\n" +
+                "Camp Committee Slots: " + campCommitteeSlots + "\n" +
+                "Description: " + description + "\n";
 
         // Add more information as needed...
 
-        return campInfo.toString();
+        return campInfo;
     }
 
     public boolean hasEnquiriesByUserID(String userid){
@@ -269,7 +268,7 @@ public class Camp implements ICampInformation{
         for(int u=0;u<x.size();u++){
             if(x.get(u)[2].equals(userid)){
                 return true;
-            };
+            }
         }
         return false;
     }

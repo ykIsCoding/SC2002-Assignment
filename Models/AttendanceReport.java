@@ -7,11 +7,11 @@ import Utils.DatabaseUtils;
 import Utils.PageUtils;
 
 public class AttendanceReport{
-    private String campID;
-    private static String header = "ATTENDENCE REPORT\n";
-    private static String tableHeader = "ROW NAME EMAIL USERNAME ROLE\n";
+    private final String campID;
+    private static final String header = "ATTENDENCE REPORT\n";
+    private static final String tableHeader = "ROW NAME EMAIL USERNAME ROLE\n";
     
-    private static String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,ROLE\n";
+    private static final String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,ROLE\n";
 
     public AttendanceReport(String campID){
         this.campID =campID;
@@ -43,16 +43,16 @@ public class AttendanceReport{
         //x.removeIf((String[] info)->info[2].equals("0"));
         String cnt ="";
         for(int b=0;b<x.size();b++){
-            cnt+=Integer.toString(b)+". "+DatabaseUtils.getUserByID(x.get(b)[1])[1]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[2]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[3]+" "+(x.get(b)[2].equals("1")?"Camp Committee Member":"Attendee")+"\n";
+            cnt+= b +". "+DatabaseUtils.getUserByID(x.get(b)[1])[1]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[2]+" "+DatabaseUtils.getUserByID(x.get(b)[1])[3]+" "+(x.get(b)[2].equals("1")?"Camp Committee Member":"Attendee")+"\n";
         }
-        String endLine = "=======================================================\nGenerated on:"+PageUtils.localDateToFullLocalDateString(LocalDate.now()).toString();
+        String endLine = "=======================================================\nGenerated on:"+ PageUtils.localDateToFullLocalDateString(LocalDate.now());
         String allString = header+printCampName()+tableHeader+cnt+endLine;
         if(type==1){
             DatabaseUtils.exportFile("Exports/AttendenceReport_"+campID+".txt", allString);
         }else{
             cnt="";
             for(int b=0;b<x.size();b++){
-            cnt+=Integer.toString(b)+","+DatabaseUtils.getUserByID(x.get(b)[1])[1]+","+DatabaseUtils.getUserByID(x.get(b)[1])[2]+","+DatabaseUtils.getUserByID(x.get(b)[1])[3]+","+(x.get(b)[2].equals("1")?"Camp Committee Member":"Attendee")+"\n";
+            cnt+= b +","+DatabaseUtils.getUserByID(x.get(b)[1])[1]+","+DatabaseUtils.getUserByID(x.get(b)[1])[2]+","+DatabaseUtils.getUserByID(x.get(b)[1])[3]+","+(x.get(b)[2].equals("1")?"Camp Committee Member":"Attendee")+"\n";
             }
             allString = header+printCampNameCSV()+csvtableHeader+cnt;
             DatabaseUtils.exportFile("Exports/AttendenceReport_"+campID+".csv", allString);

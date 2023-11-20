@@ -9,8 +9,8 @@ import Models.Abstract.AUser;
 import Utils.DatabaseUtils;
 
 public class Student extends AUser {
-    private List<Camp> registeredCamps;
-    private EnumSet permissions = PermissionList.getStudentPermission();
+    private final List<Camp> registeredCamps;
+    private final EnumSet permissions = PermissionList.getStudentPermission();
     
     public Student(String UserID, String Faculty) {
         super(UserID, "Student", Faculty);

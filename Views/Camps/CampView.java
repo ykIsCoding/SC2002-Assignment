@@ -26,7 +26,7 @@ import Views.Interfaces.IView;
 import Views.Suggestions.SuggestionListView;
 
 public class CampView implements IView{
-    CampViewController cvc;
+
     ViewControllerController vcc;
     Camp c;
     
@@ -198,7 +198,7 @@ public class CampView implements IView{
          PageUtils.printTitle(c.getCampName());
          System.out.print(c.getCampInformation());
          if(vcc.getCurrentUser() instanceof Staff){
-            if(this.c.getVisibility()==true){
+            if(this.c.getVisibility()){
                 System.out.println("Visibility: Camp is currently visible");
             }else{
                 System.out.println("Visbility: Camp is currently not visible");

@@ -259,6 +259,10 @@ public class Camp implements ICampInformation{
         }
         return false;
     }
+
+    public CampCommiteeMembers getCampCommitteeMembers(){
+        return this.campCommitteeMembers;
+    }
     
     
 }

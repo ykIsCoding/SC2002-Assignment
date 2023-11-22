@@ -5,8 +5,8 @@ import Utils.DatabaseUtils;
 import java.util.ArrayList;
 
 public class CampCommiteeMembers {
-    ArrayList<CampCommiteeMember> ccmList = new ArrayList<>();
-    String campid;
+    private ArrayList<CampCommiteeMember> ccmList = new ArrayList<>();
+    private String campid;
 
     public CampCommiteeMembers(String campid){
         this.campid = campid;
@@ -47,5 +47,9 @@ public class CampCommiteeMembers {
 
     public int getCampCommitteeCount(){
         return this.ccmList.size();
+    }
+
+    public ArrayList<CampCommiteeMember> getCampCommiteeMembers(){
+        return this.ccmList;
     }
 }

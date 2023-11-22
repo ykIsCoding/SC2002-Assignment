@@ -217,6 +217,17 @@ public class DatabaseUtils {
         return false;
     }
 
+    public static int getPoint(String userID){
+        ArrayList<String[]> temp = new ArrayList<>();
+        ArrayList<String[]> ccms = readFromFile("Data/student_list.txt");
+        for(int b=0;b<ccms.size();b++){
+            if(ccms.get(b)[0].equals(userID)){
+                return Integer.valueOf(ccms.get(b)[6]);
+            }
+        }
+        return 0;
+    }
+
 
 
     public static boolean exportFile(String fn, String content){

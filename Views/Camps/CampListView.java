@@ -2,6 +2,7 @@ package Views.Camps;
 
 import Controllers.ViewControllerController;
 import Models.*;
+import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
@@ -51,6 +52,12 @@ public class CampListView extends CampList implements IView {
             case 10:
                 this.filterCondition="alphabetical";  
                 break;
+            case 11:
+                this.filterCondition="user is attendee";
+                break;
+            case 12:
+                this.filterCondition="user is ccm";
+                break;
         }
     }
     
@@ -71,12 +78,10 @@ public class CampListView extends CampList implements IView {
         if(vcc.getCurrentUser() instanceof Staff){
             this.currentCampList = getCampList();
             this.actions.add(new Action("Create Camp", 3));
-            this.actions.add(new Action("View Camps I Created", 4));
+             this.actions.add(new Action("View Camps I Created", 4));
         }else if(vcc.getCurrentUser() instanceof CampCommiteeMember){
             this.currentCampList = getCampListByFacultyOrAll(this.vcc.getCurrentUser().getFaculty());
-            this.actions.add(new Action("View Camps I Registered", 6));
         }else if(vcc.getCurrentUser() instanceof Student){
-            this.actions.add(new Action("View Camps I Registered", 6));
             this.currentCampList = getCampListByFacultyOrAll(this.vcc.getCurrentUser().getFaculty());
             this.currentCampList.removeIf((Camp c)->!c.getVisibility());
         }
@@ -145,8 +150,12 @@ public class CampListView extends CampList implements IView {
                 CampListStaffMenuView clsmv = new CampListStaffMenuView(this.vcc);
                 clsmv.render();
             case 5:
+            if(this.vcc.getCurrentUser() instanceof Student){
+                System.out.println("Enter a number to filter by condition (enter -1 to cancel):\n1: date (ascending)\n2: date (descending)\n3: location\n4: camp committee slots\n5: attendee slots\n6: registration closing date (ascending)\n7: registration closing date (descending)\n8: Only for my faculty\n9: for everyone\n10: alphabetical\n11: Camps that I am attendee in\n12: Camps that I am Camp Committee Member in");
+            }else{
                 System.out.println("Enter a number to filter by condition (enter -1 to cancel):\n1: date (ascending)\n2: date (descending)\n3: location\n4: camp committee slots\n5: attendee slots\n6: registration closing date (ascending)\n7: registration closing date (descending)\n8: Only for my faculty\n9: for everyone\n10: alphabetical");
-                int condition = InputUtils.tryGetIntSelection(1,10);
+            }
+                int condition = InputUtils.tryGetIntSelection(1,(this.vcc.getCurrentUser() instanceof Student)?12:10);
                 setup();
                 setFilterCondition(condition);
                 switch(condition){
@@ -161,6 +170,8 @@ public class CampListView extends CampList implements IView {
                     case 8: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().equalsIgnoreCase(this.vcc.getCurrentUser().getFaculty()));break;
                     case 9: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().equalsIgnoreCase("all"));break;
                     case 10: this.currentCampList.sort(Comparator.comparing((Camp x) -> x.getCampName().toLowerCase()));break;
+                    case 11:this.currentCampList.removeIf((Camp c)->!c.getAttendees().isAttendee((Student) this.vcc.getCurrentUser()));break;
+                    case 12:this.currentCampList.removeIf((Camp c)->!DatabaseUtils.checkIfStudentIsCampCommitteeMember(this.vcc.getCurrentUser().getUserID(), c.getCampID()));break;
                 }
                 render();
                 break;
@@ -205,6 +216,10 @@ public class CampListView extends CampList implements IView {
                 }else if(this.filterCondition.contains("for everyone")){
                     PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
                 }else if(this.filterCondition.contains("my faculty")){
+                    PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
+                }else if(this.filterCondition.contains("user is attendee")){
+                    PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
+                }else if(this.filterCondition.contains("user is ccm")){
                     PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
                 }else{
                 PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());

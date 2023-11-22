@@ -5,6 +5,7 @@ import Models.*;
 import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
+import Views.Apps.LeaderBoardView;
 import Views.Enquiries.EnquiryListView;
 import Views.Interfaces.IView;
 import Views.Suggestions.SuggestionListView;
@@ -49,6 +50,7 @@ public class CampView implements IView{
                 this.actions.add(new Action("View Suggestions",5));
                 this.actions.add(new Action("Make Suggestion",7));
                 this.actions.add(new Action("Get Attendence Report",8));
+                this.actions.add(new Action("View Leaderboards",14));
             }else{
 
                 if(this.c.getAttendees().isAttendee((Student) vcc.getCurrentUser())){
@@ -184,9 +186,10 @@ public class CampView implements IView{
                 }
                 render();
                 break;
-            
-                //this.vcc.navigate(2);
-                
+            case 14:
+                LeaderBoardView ldv = new LeaderBoardView(this.vcc,this.c.getCampID());
+                ldv.render();
+                break; 
         }
         
     }

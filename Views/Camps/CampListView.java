@@ -175,21 +175,6 @@ public class CampListView extends CampList implements IView {
                 }
                 render();
                 break;
-            case 6:
-                if(this.vcc.getCurrentUser() instanceof Student){
-                    int ccount =0;
-                    for(Camp c : this.currentCampList){
-                     if(c.getAttendees().isAttendee((Student)this.vcc.getCurrentUser()) || c.isCampCommitteeMember(c.getCampID(),this.vcc.getCurrentUser().getUserID())){
-                        System.out.println(c.getCampName());
-                        ccount++;
-                     }
-                    }
-                    if(ccount==0){
-                        System.out.println("You currently have not registered for any camp");
-                    }
-                }
-                render();
-                break;
             default:
                 System.out.println("Invalid Selection");
         }

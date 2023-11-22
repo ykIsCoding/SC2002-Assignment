@@ -1,5 +1,3 @@
-import Controllers.AuthenticationController;
-import Controllers.ViewControllerController;
 
 public class Main {
 	

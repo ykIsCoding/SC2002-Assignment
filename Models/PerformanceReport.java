@@ -6,6 +6,9 @@ import Utils.PageUtils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * A type of report, the Performance Report, that inherits from the Report Class.
+ */
 public class PerformanceReport extends Report{
     private final String campID;
     private static final String header = "PERFORMANCE REPORT\n";
@@ -13,11 +16,21 @@ public class PerformanceReport extends Report{
     
     private static final String csvtableHeader = "ROW,NAME,EMAIL,USERNAME,POINTS\n";
 
+    /**
+     * The Constructor of this Performance Report Class
+     * @param campID is the ID of the camp that the report is to be generated for.
+     */
+
     public PerformanceReport(String campID){
         super();
         this.campID =campID;
     }
 
+
+    /**
+     * This method attempts to print out the Camp in the customised format
+     * @return the printed customised format of it
+     */
     private String printCampName(){
         ArrayList<String []> x = DatabaseUtils.readCamps();
         for(int p=0;p<x.size();p++){
@@ -29,6 +42,10 @@ public class PerformanceReport extends Report{
         return "";
     }
 
+    /**
+     * Access the Database for list of camps
+     * @return a string of the camp details
+     */
     private String printCampNameCSV(){
         ArrayList<String []> x = DatabaseUtils.readCamps();
         for(int p=0;p<x.size();p++){
@@ -39,6 +56,12 @@ public class PerformanceReport extends Report{
         }
         return "";
     }
+
+    /**
+     * Method that overrides the generateReport in the Report class
+     * @param type is the number input by the user for Txt and Csv accordingly.
+     * @return true all the time
+     */
     public boolean generateReport(int type){
         ArrayList<String[]> x = DatabaseUtils.getAttendeesByCampID(campID);
         x.removeIf((String[] info)->info[2].equals("0"));

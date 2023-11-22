@@ -4,6 +4,7 @@ import Utils.DatabaseUtils;
 
 import java.util.ArrayList;
 
+
 public class Attendees {
     ArrayList<Student> attendeeList = new ArrayList();
     String campid;

@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import Utils.DatabaseUtils;
 import Utils.PageUtils;
 
+/**
+ * This class is a type of Report, the Enquiry Report that inherits from the Report class
+ */
 public class EnquiryReport extends Report {
     private final String campID;
     private static final String header = "ENQUIRY REPORT\n";
@@ -13,11 +16,19 @@ public class EnquiryReport extends Report {
     
     private static final String csvtableHeader = "ROW,NAME,EMAIL,ENQUIRY\n";
 
+    /**
+     * The constructor of this Enquiry Report Class
+     * @param campID is the ID of the camp
+     */
     public EnquiryReport(String campID){
         super();
         this.campID =campID;
     }
 
+    /**
+     * THis method attempts to print out the report in a customised format.
+     * @return the printed customised format
+     */
     private String printCampName(){
         ArrayList<String []> x = DatabaseUtils.readCamps();
         for(int p=0;p<x.size();p++){
@@ -29,6 +40,10 @@ public class EnquiryReport extends Report {
         return "";
     }
 
+    /**
+     * Access the Database for the list of Camps
+     * @return a string of the camp details
+     */
     private String printCampNameCSV(){
         ArrayList<String []> x = DatabaseUtils.readCamps();
         for(int p=0;p<x.size();p++){
@@ -39,6 +54,12 @@ public class EnquiryReport extends Report {
         }
         return "";
     }
+
+    /**
+     * Method that overrides the GenerateReport in the Report Class
+     * @param type is the number input by the user for Txt and Csv accordingly.
+     * @return true all the time
+     */
     public boolean generateReport(int type){
         ArrayList<String[]> x = DatabaseUtils.getEnquiriesByCampID(campID);
         

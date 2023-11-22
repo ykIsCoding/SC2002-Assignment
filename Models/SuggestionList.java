@@ -5,15 +5,25 @@ import Utils.PageUtils;
 
 import java.util.ArrayList;
 
+/**
+ * SuggestionList class to show the list of suggestions
+ */
 public class SuggestionList {
     ArrayList<Suggestion> suggestionList = new ArrayList();
     String campid;
 
+    /**
+     * constructor takes in the campid to identify the camp that has this suggestion list
+     * @param campid campid of the camp
+     */
     public SuggestionList(String campid){
         this.campid = campid;
         //retrieveSuggestionsFromDatabase();
     }
 
+    /**
+     * get the suggestions from the database and set suggestionList
+     */
     public void retrieveSuggestionsFromDatabase(){
         ArrayList<String[]> rawSuggestions = DatabaseUtils.getSuggestionsByCampID(campid);
         for(String[] x: rawSuggestions){
@@ -34,10 +44,19 @@ public class SuggestionList {
         }
     }
 
+    /**
+     * get this class's suggestion list
+     * @return
+     */
     public ArrayList<Suggestion> getSuggestionList(){
         return this.suggestionList;
     }
 
+    /**
+     * edit the suggestion in the suggestionlist
+     * @param x suggestion to edit
+     * @return true if edited, else false
+     */
     public boolean editSuggestion(Suggestion x){
         for(int b=0;b<this.suggestionList.size();b++){
             if(this.suggestionList.get(b).getSuggestionID().equals(x.getSuggestionID())){
@@ -49,6 +68,11 @@ public class SuggestionList {
         return false;
     }
 
+    /**
+     * get the suggestion from the suggestionlist by the suggestion id
+     * @param suggestionID suggestion id to get the suggestion
+     * @return suggestion, null if not found
+     */
     public Suggestion getSuggestionByID(String suggestionID){
         for(int b=0;b<this.suggestionList.size();b++){
             if(this.suggestionList.get(b).getSuggestionID().equals(suggestionID)){
@@ -58,6 +82,10 @@ public class SuggestionList {
         return null;
     }
 
+    /**
+     * remove suggestion by suggestion id from the suggestionlist
+     * @param suggestionID suggestion id of suggestion to remove
+     */
     public void removeSuggestion(String suggestionID){
         for(int b=0;b<this.suggestionList.size();b++){
             if(this.suggestionList.get(b).getSuggestionID().equals(suggestionID)){
@@ -69,15 +97,28 @@ public class SuggestionList {
         
     }
 
+    /**
+     * add a suggestion to the suggestion list
+     * @param s suggestion to add to suggestion list
+     */
     public void addSuggestion(Suggestion s){
         this.suggestionList.add(s);
         DatabaseUtils.setSuggestionsByCampID(this, campid);
     }
 
+    /**
+     * get the number of suggestions in the suggestion list
+     * @return int number of suggestions in suggestionlist
+     */
     public int getSuggestionCount(){
         return this.suggestionList.size();
     }
 
+    /**
+     * reject a suggestion in the suggestion list, selected by the suggestionID
+     * @param suggestionID suggestionid of the suggestion to reject
+     * @return true if rejected, else false.
+     */
     public boolean rejectSuggestion(String suggestionID){
         Suggestion rejectedSuggestion = getSuggestionByID(suggestionID);
         rejectedSuggestion.reject();
@@ -85,6 +126,11 @@ public class SuggestionList {
         return true;
     }
 
+    /**
+     * approve a suggestion in the suggestion list, selected by suggestionID
+     * @param suggestionID suggestion id of the suggestion to approve
+     * @return true if approved, else false
+     */
     public boolean approveSuggestion(String suggestionID){
         Suggestion approvedSuggestion = getSuggestionByID(suggestionID);
         approvedSuggestion.approve();
@@ -115,6 +161,11 @@ public class SuggestionList {
 
     }
 
+    /**
+     * get a suggestion by its index in suggestion list
+     * @param idx of the suggestion in the suggestion list
+     * @return suggestion selected by the index
+     */
     public Suggestion getSuggestionByIndex(int idx){
         return this.suggestionList.get(idx);
     }

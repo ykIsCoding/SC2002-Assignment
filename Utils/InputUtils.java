@@ -9,12 +9,19 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The InputUtils contains all the utility functions for getting input from user
+ */
 public class InputUtils {
     private static final String intOnly = "\\d+";
     private static final String emailOnly = "\\w+@[e.]*ntu.edu.sg$";
     private static final String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
     private static final String alphanumericOnly ="^[A-Za-z0-9]{8,}";
 
+    /**
+     * gets a date from the user. Includes error handling.
+     * @return String of the date
+     */
     public static String tryGetDate(){
         Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -53,6 +60,10 @@ public class InputUtils {
     return "";
     }
 
+    /**
+     * gets a email from the user. Includes error handling.
+     * @return String containing the email entered by user
+     */
     public static String tryGetEmail(){
         Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -81,6 +92,10 @@ public class InputUtils {
     return null;
     }
 
+    /**
+     * gets a string from the user. Includes error handling.
+     * @return string entered by user
+     */
     public static String tryGetString(){
             Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -99,6 +114,10 @@ public class InputUtils {
     return null;
     }
 
+    /**
+     * gets a password from the user. Includes error handling.
+     * @return password string entered by user.
+     */
     public static String tryGetPassword(){
         Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -126,7 +145,12 @@ public class InputUtils {
     scnr.close();
     return null;
     }
-    
+
+    /**
+     * gets an integer input from the user based on the arraylist of actions. If the integer does not correspond to the number of any of the actions then it will prompt the user to re-enter.
+     * @param al array list of actions
+     * @return integer input by the user.
+     */
     public static int tryGetIntSelection(ArrayList<Action> al){
         Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -159,7 +183,13 @@ public class InputUtils {
     scnr.close();
     return -1;
     }
-    
+
+    /**
+     * gets an integer input from the user based on a range of numbers.
+     * @param minNo the minimum number that can be entered.
+     * @param maxNo the maximum number that can be entered.
+     * @return the integer entered by the user
+     */
     public static int tryGetIntSelection(int minNo, int maxNo){
         if(maxNo<0){
             maxNo =0;

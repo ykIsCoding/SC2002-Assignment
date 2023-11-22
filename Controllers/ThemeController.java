@@ -1,7 +1,5 @@
 package Controllers;
 
-import Utils.ThemeUtils;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,13 +39,7 @@ public class ThemeController {
         start();
     }
 
-    public void printSwitch(){
-        if(this.currentTheme==ThemeMode.DARK){
-            ThemeUtils.darkSwitch();
-        }else{
-            ThemeUtils.lightSwitch();
-        }
-    }
+    
 
     public boolean isDarkMode(){
         return this.currentTheme==ThemeMode.DARK;

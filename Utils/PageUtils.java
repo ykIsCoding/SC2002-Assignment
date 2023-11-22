@@ -9,6 +9,9 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * PageUtils contains a list of utility functions for rendering outputs
+ */
 public class PageUtils {
     static final String topLeftCorner = "╔";
     static final String topRightCorner = "╗";
@@ -23,7 +26,11 @@ public class PageUtils {
     static final String TBottomLine = "╩";
     static final String space =" ";
 
-    
+    /**
+     * print rows showing a number and a content
+     * @param rowNum row number to print
+     * @param content content to print
+     */
     public static void printRow(int rowNum, String content){
         int col1Width = 6;
         int col2Width = 100;
@@ -45,6 +52,12 @@ public class PageUtils {
     }
 
 
+    /**
+     * prints a row showing the number, content, and another content
+     * @param rowNum row number
+     * @param content content to print
+     * @param content2 content to print
+     */
     public static void printRow(int rowNum, String content, String content2){
         int col1 = 6;
         int col2 = 80;
@@ -75,7 +88,13 @@ public class PageUtils {
     }
 
 
-
+    /**
+     * pads a string to ensure that length of string is same as the set width
+     * @param content content to pad
+     * @param maxColWidth maximum width
+     * @param multiplier multiplier showing the number of times to repeat a row when padding
+     * @return the updated string
+     */
     private static String padder(String content, int maxColWidth, int multiplier){
         String space = " ";
         int fullLength = multiplier * maxColWidth;
@@ -83,6 +102,12 @@ public class PageUtils {
         return content;
     }
 
+    /**
+     * centers a content by padding both sides with spaces
+     * @param content content to center
+     * @param maxColWidth column width for the string
+     * @return updated string that has been centered
+     */
     private static String center(String content, int maxColWidth){
         if(maxColWidth-content.length()<=0) return content;
         int leftCount = (int)Math.floor((maxColWidth-content.length())/2);
@@ -91,8 +116,11 @@ public class PageUtils {
         return space.repeat(leftCount)+content+space.repeat(rightCount);
     }
 
-    
 
+    /**
+     * prints the title
+     * @param title the content to be used as title
+     */
     public static void printTitle(String title){
         int col1 = 108;
 
@@ -111,7 +139,10 @@ public class PageUtils {
         System.out.print(topLine+finalString+bottomLine);
     }
 
-
+    /**
+     * prints the action box for the users to select
+     * @param actions the action class containing the action name
+     */
     public static void printActionBox(ArrayList<Action> actions){
         if(actions.size()==0 || actions==null) return;
         System.out.println("Enter the number corresponding to the following options:\n");
@@ -120,12 +151,15 @@ public class PageUtils {
         }
     }
 
-    
 
-
-
-
-
+    /**
+     * prints the responses to enquiry
+     * @param content content of the enquiry response
+     * @param sender sender of the response
+     * @param senderPosition position of the sender
+     * @param upvotes number of upvotes received
+     * @param ts timestamp of the response
+     */
     public static void printResponseBox(String content, String sender, String senderPosition, int upvotes, String ts){
         int colWidth = 108;
         String topLine = topLeftCorner+horizontalDoubleLine.repeat(colWidth)+topRightCorner+"\n";
@@ -147,6 +181,11 @@ public class PageUtils {
         System.out.println(finalString);
     }
 
+    /**
+     * function to change localdate to string
+     * @param d localdate
+     * @return string of the localdate
+     */
     public static String localDateToString(LocalDate d){
         try{
             return d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -156,6 +195,11 @@ public class PageUtils {
         return null;
     }
 
+    /**
+     * takes a local date a output a string in full format
+     * @param date localdate to format
+     * @return string of the localdate
+     */
     public static String localDateToFullLocalDateString(LocalDate date){
         try{
             
@@ -165,6 +209,11 @@ public class PageUtils {
         }
     }
 
+    /**
+     * converts localdate string to full format
+     * @param date string of the localdate to format
+     * @return string of formatted date
+     */
     public static String localDateTimeStringToFullLocalDateString(String date){
         try{
             
@@ -175,6 +224,11 @@ public class PageUtils {
         }
     }
 
+    /**
+     * converts string date to local date
+     * @param s string of date to convert to localdate
+     * @return localdate
+     */
     public static LocalDate stringToLocalDate(String s){
         
         try{

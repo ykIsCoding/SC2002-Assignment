@@ -11,12 +11,21 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * This is the EnquiryView to show 1 enquiry's information to the user.
+ */
 public class EnquiryView extends Enquiry implements IView{
     ViewControllerController vcc;
     String currentViewerPosition;
     
     private final ArrayList<Action> actions = new ArrayList<>();
 
+    /**
+     * Enquiry constructor takes in the ViewControllerController as its parameter for navigation purposes within the app.
+     * The constructor also takes in an Enquiry class to retrieve the data of the enquiry
+     * @param e
+     * @param vcc
+     */
     public EnquiryView(Enquiry e, ViewControllerController vcc){
         super(e.getContent(),e.getTimestamp(),e.getEnquiryID(),e.getCampID(),e.getUserID());
         
@@ -37,6 +46,10 @@ public class EnquiryView extends Enquiry implements IView{
         }
     }
 
+    /**
+     * The handle input function takes in an integer based on what the users enter and controls what the application does based on the choice
+     * @param selection is the integer input by the user
+     */
     public void handleInput(int selection) {
         switch(selection){
             case 1: 
@@ -81,6 +94,9 @@ public class EnquiryView extends Enquiry implements IView{
         }
     }
 
+    /**
+     * The render function outputs what is shown to the user and also sets up the business logic of getting an input from the user.
+     */
     @Override
     public void render() {
         // TODO Auto-generated method stub

@@ -10,6 +10,9 @@ import Views.Interfaces.IView;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * This is the EnquiryListView to show the list of enquiries to the user
+ */
 public class EnquiryListView extends EnquiryList implements IView {
     String campID;
     
@@ -17,6 +20,12 @@ public class EnquiryListView extends EnquiryList implements IView {
 
     ArrayList<Action> actions = new ArrayList();
 
+    /**
+     * EnquiryListView constructor takes in the ViewControllerController and campid as its parameters.
+     * This is for navigation purposes within the app. The campid is to a way to refer to the camp whose enquiries we want to show.
+     * @param vcc
+     * @param campid
+     */
     public EnquiryListView(ViewControllerController vcc, String campid){
         super(campid);
         this.campID = campid;
@@ -24,6 +33,9 @@ public class EnquiryListView extends EnquiryList implements IView {
        
     }
 
+    /**
+     * setup is the function to set up the class. It is used for refreshing the class.
+     */
     private void setup(){
         actions = new ArrayList();
          actions.add(new Action("Back To Home", 1));
@@ -47,6 +59,10 @@ public class EnquiryListView extends EnquiryList implements IView {
         }
     }
 
+    /**
+     * The handle input function takes in an integer based on what the users enter and controls what the application does based on the choice
+     * @param selection is the integer input by the user
+     */
     public void handleInput(int selection) {
         switch(selection){
             case 1: this.vcc.navigate(3);break;
@@ -90,6 +106,9 @@ public class EnquiryListView extends EnquiryList implements IView {
         }
     }
 
+    /**
+     * The render function outputs what is shown to the user and also sets up the business logic of getting an input from the user.
+     */
     @Override
     public void render() {
         setup();

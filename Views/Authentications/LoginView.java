@@ -12,11 +12,18 @@ import Views.Interfaces.IView;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This is the LoginView to show the login page for the users
+ */
 public class LoginView extends AuthenticationController implements IView {
     ThemeController tc;
     ViewControllerController vcc;
     ArrayList<Action> actions = new ArrayList<>();
 
+    /**
+     *The handle input function takes in an integer based on what the users enter and controls what the application does based on the choice
+     * @param selection is the integer input by the user
+     */
     @Override
     public void handleInput(int selection) {
         // TODO Auto-generated method stub
@@ -31,10 +38,19 @@ public class LoginView extends AuthenticationController implements IView {
         }
     }
 
+    /**
+     * This is the function to set up the ThemeController, which will be used to control and light and dark mode of the app
+     * @param tc is the ThemeController that is to be used to set in this class.
+     */
     public void receiveThemeController(ThemeController tc){
         this.tc = tc;
     }
 
+    /**
+     * The LoginView constructor takes in the ViewControllerController as its parameter.
+     * This is for navigation purposes within the app.
+     * @param vcc
+     */
     public LoginView(ViewControllerController vcc){
         super(vcc);
         this.vcc=vcc;
@@ -45,6 +61,9 @@ public class LoginView extends AuthenticationController implements IView {
 
     }
 
+    /**
+     * The function is to get the user to input their credentials and communicate with the user. This function will decide how tha app will behave.
+     */
     public void promptCredentials(){
         boolean res = false;
 		Scanner scnrr = new Scanner(System.in);
@@ -90,6 +109,9 @@ public class LoginView extends AuthenticationController implements IView {
 		scnrr.close();
     }
 
+    /**
+     * The render function outputs what is shown to the user and also sets up the business logic of getting an input from the user.
+     */
     public void render(){
         PageUtils.printTitle("Camp Application Management System");
         PageUtils.printActionBox(actions);

@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.UUID;
 
+/**
+ * This is the CampListView to show a list of the camps to the user.
+ */
 public class CampListView extends CampList implements IView {
     ViewControllerController vcc;
 
@@ -19,7 +22,11 @@ public class CampListView extends CampList implements IView {
     private ArrayList<Camp> currentCampList;
     
     private String filterCondition = "alphabetical";
-    //date (ascending)\n2: date (descending)\n3: location\n4: camp committee slots\n5: attendee slots\n6: registration closing date (ascending)\n7: registration closing date (descending)\n8: Only for my faculty\n9: for everyone
+
+    /**
+     * This function takes in the integer as input by the user when filtering the camp list and sets the filter condition. This filter condition will determine what camps will be shown.
+     * @param cond is the integer corresponding to the filter
+     */
     private void setFilterCondition(int cond){
         switch(cond){
             case 1: 
@@ -60,15 +67,20 @@ public class CampListView extends CampList implements IView {
                 break;
         }
     }
-    
-    
+
+    /**
+     * The CampListView constructor takes in the ViewControllerController as its parameter.
+     * This is for navigation purposes within the app.
+     * @param vcc is the ViewControllerController
+     */
     public CampListView(ViewControllerController vcc){
         this.vcc=vcc;
-
         setup();
-        
 	}
 
+    /**
+     * setup is the function to set up the class. It is used for refreshing the class.
+     */
     private void setup(){
         retrieveCampsFromDB();
         this.actions = new ArrayList<>();
@@ -93,6 +105,10 @@ public class CampListView extends CampList implements IView {
         }
     }
 
+    /**
+     * The handle input function takes in an integer based on what the users enter and controls what the application does based on the choice
+     * @param selection is the integer input by the user.
+     */
     public void handleInput(int selection) {
         switch(selection){
             case 1:this.vcc.navigate(3);break;
@@ -180,6 +196,10 @@ public class CampListView extends CampList implements IView {
         }
     }
 
+
+    /**
+     * The render function outputs what is shown to the user and also sets up the business logic of getting an input from the user.
+     */
     @Override
     public void render() {
         // TODO Auto-generated method stub

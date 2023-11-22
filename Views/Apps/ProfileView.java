@@ -10,10 +10,18 @@ import Views.Interfaces.IView;
 
 import java.util.ArrayList;
 
+/**
+ *This is the ProfileView to show the profile of each user
+ */
 public class ProfileView implements IView {
     ViewControllerController vcc;
     ArrayList<Action> actions = new ArrayList();
 
+    /**
+     * ProfileView constructor takes in the ViewControllerController as its parameter.
+     * This is for navigation purposes within the app.
+     * @param vcc is the ViewControllerController
+     */
     public ProfileView(ViewControllerController vcc){
         this.vcc = vcc;
         this.actions.add(new Action("Back To Home",1));
@@ -21,6 +29,10 @@ public class ProfileView implements IView {
     }
 
 
+    /**
+     *The handle input function takes in an integer based on what the users enter and controls what the application does based on the choice
+     * @param selection is the integer input by the user
+     */
     @Override
     public void handleInput(int selection) {
         // TODO Auto-generated method stub
@@ -46,6 +58,10 @@ public class ProfileView implements IView {
                 System.out.println("Invalid Selection");
         }
     }
+
+    /**
+     * The render function outputs what is shown to the user and also sets up the business logic of getting an input from the user.
+     */
     @Override
     public void render() {
         // TODO Auto-generated method stub

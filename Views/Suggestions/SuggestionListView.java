@@ -15,22 +15,31 @@ import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
 
+/**
+ * This is the SuggestionListView to show the list of suggestions to the user.
+ */
 public class SuggestionListView extends SuggestionList implements IView {
     ArrayList<Action> actions = new ArrayList<>();
     
     String campid;
+    ViewControllerController vcc;
 
-    
-
-    
-    ViewControllerController vcc; //= new SuggestionViewController();
-    //SuggestionViewController svc;
+    /**
+     * SuggestionListView constructor takes in the ViewControllerController as its parameter.
+     * This is for navigation purposes within the app.
+     * SuggestionListView also takes in the campid that will be used to interact with the database to extract the enquiries.
+     * @param campid is the id of the camp
+     * @param vcc is the ViewControllerController
+     */
     public SuggestionListView(String campid, ViewControllerController vcc){
         super(campid);
         this.campid = campid;
         this.vcc =vcc;
 	}
 
+    /**
+     * setup is the function to set up the class. It is used for refreshing the class.
+     */
     private void setup(){
         actions = new ArrayList<>();
         retrieveSuggestionsFromDatabase();
@@ -50,6 +59,10 @@ public class SuggestionListView extends SuggestionList implements IView {
         }
     }
 
+    /**
+     * The handle input function takes in an integer based on what the users enter and controls what the application does based on the choice
+     * @param selection is the integer input by the user
+     */
     public void handleInput(int selection) {
         switch(selection){
             case 1: 
@@ -126,6 +139,9 @@ public class SuggestionListView extends SuggestionList implements IView {
         }
     }
 
+    /**
+     * The render function outputs what is shown to the user and also sets up the business logic of getting an input from the user.
+     */
     @Override
     public void render() {
         setup();

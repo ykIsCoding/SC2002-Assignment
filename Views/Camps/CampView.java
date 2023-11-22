@@ -14,18 +14,31 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * This is the CampView to show 1 camp's information to the user
+ */
 public class CampView implements IView{
 
     ViewControllerController vcc;
     Camp c;
     
     ArrayList<Action> actions = new ArrayList();
+
+    /**
+     * CamppView constructor takes in the ViewControllerController and Camp as its parameter.
+     * This is for navigation purposes within the app. The Camp is for ease of sending the camp's information to this class.
+     * @param c is the Camp
+     * @param vcc is the ViewControllerController
+     */
     public CampView(Camp c, ViewControllerController vcc){
         this.vcc = vcc;
         this.c = c;
         setup();
     }
-    
+
+    /**
+     * setup is the function to set up the class. It is used for refreshing the class.
+     */
     private void setup(){
         actions = new ArrayList<>();
         c.loadAttendees();

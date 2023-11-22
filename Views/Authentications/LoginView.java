@@ -32,7 +32,7 @@ public class LoginView extends AuthenticationController implements IView {
             case 2: this.vcc.navigate(7); break;
             case 3: 
                 this.tc.toggleCurrentTheme();
-                this.tc.printSwitch();
+                
                 this.render();
                 break;
         }

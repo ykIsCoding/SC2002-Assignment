@@ -63,6 +63,7 @@ public class CampView implements IView{
                 this.actions.add(new Action("View Suggestions",5));
                 this.actions.add(new Action("Make Suggestion",7));
                 this.actions.add(new Action("Get Attendence Report",8));
+                this.actions.add(new Action("Get Enquiry Report",13));
                 this.actions.add(new Action("View Leaderboards",14));
             }else{
 

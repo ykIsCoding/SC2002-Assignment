@@ -1,0 +1,18 @@
+ENQUIRY REPORT
+
+=======================================================
+CAMP DETAILS
+Camp Name: EEE ORIENTATION CAMP
+Camp Date:2024-01-09
+Camp Registration Closing Date:2024-01-01
+User Group:EEE
+Location:ARC
+Total Slots:300
+Camp Committee Slots:10
+Description:just a description
+Staff in Charge:Chattopadhyay
+=======================================================
+ROW NAME EMAIL ENQUIRY
+0 BRANDON BR015@e.ntu.edu.sg how many nights will the camp be?
+=======================================================
+Generated on:Saturday, 25 November 2023

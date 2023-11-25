@@ -53,8 +53,10 @@ public class SuggestionListView extends SuggestionList implements IView {
             if(DatabaseUtils.checkIfStudentIsCampCommitteeMember(vcc.getCurrentUser().getUserID(),campid)){
                 ArrayList<Suggestion> unapprovedSuggestions = getSuggestionList();
                 unapprovedSuggestions.removeIf((Suggestion info)->info.getStatus().equals("rejected") || info.getStatus().equals("approved") || !info.getUserID().equals(vcc.getCurrentUser().getUserID()));
+                if(unapprovedSuggestions.size()>0){
                 this.actions.add(new Action("Edit Suggestion", 3));
                 this.actions.add(new Action("Delete Suggestion", 4));
+                }
             }
         }
     }

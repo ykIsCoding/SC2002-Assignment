@@ -104,7 +104,7 @@ public class AuthenticationController {
                 attempsLeft = 3;
                 System.out.println("You may try logging in again. Enter any input and press enter to continue.");
             }
-        }, 15000);
+        }, 5000);
     }
 
 

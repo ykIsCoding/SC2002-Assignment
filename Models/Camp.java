@@ -375,6 +375,7 @@ public class Camp implements ICampInformation{
                 "User Group: " + userGroup + "\n" +
                 "Total Slots: " + totalSlots + "\n" +
                 "Camp Committee Slots: " + campCommitteeSlots + "\n" +
+                "Location: " + location + "\n" +
                 "Description: " + description + "\n";
 
         // Add more information as needed...

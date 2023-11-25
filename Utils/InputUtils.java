@@ -53,7 +53,7 @@ public class InputUtils {
             }
         }
     }catch(Exception e){
-        System.out.println(e);
+        System.out.println("Please enter the date in the format DD/MM/YYYY");
         return tryGetDate();
     }
     scnr.close();

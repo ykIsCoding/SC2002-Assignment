@@ -1,42 +1,44 @@
 package Views.Camps;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.UUID;
-
-import Controllers.CampViewController;
 import Controllers.ViewControllerController;
-import Models.Action;
-import Models.AttendanceReport;
-import Models.Camp;
-import Models.CampCommiteeMember;
-import Models.CampList;
-import Models.Enquiry;
-import Models.EnquiryList;
-import Models.PerformanceReport;
-import Models.Staff;
-import Models.Student;
-import Models.Suggestion;
-import Models.SuggestionList;
+import Models.*;
 import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
+import Views.Apps.LeaderBoardView;
 import Views.Enquiries.EnquiryListView;
 import Views.Interfaces.IView;
 import Views.Suggestions.SuggestionListView;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.UUID;
+
+/**
+ * This is the CampView to show 1 camp's information to the user
+ */
 public class CampView implements IView{
-    CampViewController cvc;
+
     ViewControllerController vcc;
     Camp c;
     
     ArrayList<Action> actions = new ArrayList();
+
+    /**
+     * CamppView constructor takes in the ViewControllerController and Camp as its parameter.
+     * This is for navigation purposes within the app. The Camp is for ease of sending the camp's information to this class.
+     * @param c is the Camp
+     * @param vcc is the ViewControllerController
+     */
     public CampView(Camp c, ViewControllerController vcc){
         this.vcc = vcc;
         this.c = c;
         setup();
     }
-    
+
+    /**
+     * setup is the function to set up the class. It is used for refreshing the class.
+     */
     private void setup(){
         actions = new ArrayList<>();
         c.loadAttendees();
@@ -44,10 +46,11 @@ public class CampView implements IView{
         
         if(vcc.getCurrentUser() instanceof Staff){
             if(this.c.getStaffInCharge().equals(this.vcc.getCurrentUser().getUserID())){
-                actions.add(new Action("View Enquiries",4));
-                actions.add(new Action("View Suggestions",5));
+                this.actions.add(new Action("View Enquiries",4));
+                this.actions.add(new Action("View Suggestions",5));
                 this.actions.add(new Action("Get Attendence Report",8));
             this.actions.add(new Action("Get Camp Committee Performance Report",9));
+            this.actions.add(new Action("Get Enquiry Report",13));
                 
             }
             
@@ -60,6 +63,7 @@ public class CampView implements IView{
                 this.actions.add(new Action("View Suggestions",5));
                 this.actions.add(new Action("Make Suggestion",7));
                 this.actions.add(new Action("Get Attendence Report",8));
+                this.actions.add(new Action("View Leaderboards",14));
             }else{
 
                 if(this.c.getAttendees().isAttendee((Student) vcc.getCurrentUser())){
@@ -162,7 +166,7 @@ public class CampView implements IView{
                 System.out.println("Press 1 for txt, 2 for csv. -1 to cancel");
                 int ft2 = InputUtils.tryGetIntSelection(-1,2);
                 if(ft2==1||ft2==2){
-                    ar.generateAttendenceReport(ft2);
+                    ar.generateReport(ft2);
                     System.out.println("Attendance Report generated in Exports folder");
                 }
                 render();
@@ -172,7 +176,7 @@ public class CampView implements IView{
                 System.out.println("Press 1 for txt, 2 for csv. -1 to cancel");
                 int ft = InputUtils.tryGetIntSelection(-1,2);
                 if(ft==1||ft==2){
-                    pr.generatePerformanceReport(ft);
+                    pr.generateReport(ft);
                     System.out.println("Performance Report generated in Exports folder");
                 }
                 render();
@@ -185,9 +189,20 @@ public class CampView implements IView{
                 this.c.registerCampCommitteeMember((Student) this.vcc.getCurrentUser());
                 render();
                 break;
-            
-                //this.vcc.navigate(2);
-                
+            case 13:
+                EnquiryReport er = new EnquiryReport(this.c.getCampID());
+                System.out.println("Press 1 for txt, 2 for csv. -1 to cancel");
+                int ft3 = InputUtils.tryGetIntSelection(-1,2);
+                if(ft3==1||ft3==2){
+                    er.generateReport(ft3);
+                    System.out.println("Enquiry Report generated in Exports folder");
+                }
+                render();
+                break;
+            case 14:
+                LeaderBoardView ldv = new LeaderBoardView(this.vcc,this.c.getCampID());
+                ldv.render();
+                break; 
         }
         
     }
@@ -198,7 +213,7 @@ public class CampView implements IView{
          PageUtils.printTitle(c.getCampName());
          System.out.print(c.getCampInformation());
          if(vcc.getCurrentUser() instanceof Staff){
-            if(this.c.getVisibility()==true){
+            if(this.c.getVisibility()){
                 System.out.println("Visibility: Camp is currently visible");
             }else{
                 System.out.println("Visbility: Camp is currently not visible");
@@ -206,8 +221,8 @@ public class CampView implements IView{
          }
          c.loadAttendees();
          this.c.printCurrentSlotsFill();
-         PageUtils.printActionBox(actions);
-         int choice = InputUtils.tryGetIntSelection(actions);
+         PageUtils.printActionBox(this.actions);
+         int choice = InputUtils.tryGetIntSelection(this.actions);
         handleInput(choice);
     }
 }

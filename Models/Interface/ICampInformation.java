@@ -13,5 +13,4 @@ public interface ICampInformation {
     String getDescription();
     boolean getVisibility();
 
-    void editCampDetails(String campName, LocalDate date, LocalDate registrationClosingDate, String userGroup, int totalSlots, int campCommitteeSlots, String description);
 }

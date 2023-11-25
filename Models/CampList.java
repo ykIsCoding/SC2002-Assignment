@@ -1,18 +1,25 @@
 package Models;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import Utils.DatabaseUtils;
 import Utils.PageUtils;
+
+import java.util.ArrayList;
+
+/**
+ * This class contains the list of all the Camps.
+ */
 
 public class CampList {
     ArrayList<Camp> campList = new ArrayList<>();
 
     public CampList(){
         
-    } 
+    }
 
+    /**
+     * This method retrieves all the camps from the Database
+     * @return the list of all the camps
+     */
     public ArrayList<Camp> retrieveCampsFromDB(){
         ArrayList<String[]> allCamps = new ArrayList<>();
         allCamps = DatabaseUtils.readCamps();
@@ -32,21 +39,26 @@ public class CampList {
                     allCamps.get(v)[8],
                     allCamps.get(v)[9]
                     );
-            if(Integer.valueOf(allCamps.get(v)[10])==1){
-                nn.setVisibility(true);
-            }else{
-                nn.setVisibility(false);
-            }
+            nn.setVisibility(Integer.valueOf(allCamps.get(v)[10]) == 1);
             this.campList.add(nn);
         }
         return this.campList;
     }
-    
 
+    /**
+     * Getter method for the camp list
+     * @return the camp list
+     */
     public ArrayList<Camp> getCampList(){
         return this.campList;
     }
 
+
+    /**
+     * This method gets the camp list sorting it by staff
+     * @param StaffID is the ID of the staff
+     * @return the new sorted list of the camps by staff
+     */
     public ArrayList<Camp> getCampListByStaff(String StaffID){
         ArrayList<Camp> newList = new ArrayList<>();
         for(int x=0;x<this.campList.size();x++){
@@ -58,10 +70,15 @@ public class CampList {
         return newList;
     }
 
+    /**
+     * This method gets the Camp List sorting it by faculty
+     * @param userGroup is the user group such as Staff or Student.
+     * @return the new sorted list of the Camps by faculty.
+     */
     public ArrayList<Camp> getCampListByFacultyOrAll(String userGroup){
         ArrayList<Camp> newList = new ArrayList<>();
         for(int x=0;x<this.campList.size();x++){
-            if(this.campList.get(x).getUserGroup().toLowerCase().equals(userGroup.toLowerCase()) || this.campList.get(x).getUserGroup().toLowerCase().equals("all")){
+            if(this.campList.get(x).getUserGroup().equalsIgnoreCase(userGroup) || this.campList.get(x).getUserGroup().equalsIgnoreCase("all")){
                 newList.add(this.campList.get(x));
             }
         }
@@ -69,10 +86,12 @@ public class CampList {
         return newList;
     }
 
-    
 
-   
-
+    /**
+     * This method attempts to edit the camp details
+     * @param nc is the name of the camp
+     * @return whether the camp is successfully edited
+     */
     public boolean editCamp(Camp nc){
         
         for(int m =0;m<this.campList.size();m++){
@@ -88,19 +107,21 @@ public class CampList {
         return false;
     }
 
-    public Camp getCamp(int campID){
-        for(int x = 0 ; x<this.campList.size();x++){
-            if(this.campList.get(x).getCampID().equals(campID)){
-                return this.campList.get(x);
-            }
-        }
-        return null;
-    }
-
+    /**
+     * Getter method for the index of the camp
+     * @param idx is the index of the camp
+     * @return the index of the camp in the camp list
+     */
     public Camp getCampByIndex(int idx){
         return this.campList.get(idx);
     }
 
+
+    /**
+     * This method attempts to remove the camp from the Camp list
+     * @param campID is the ID of the camp that is to be removed
+     * @return whether it is successfully removed or not.
+     */
     public boolean removeCamp(String campID){
         ArrayList<Camp> campsToRemove = new ArrayList<>();
         for(int b=0;b<this.campList.size();b++){
@@ -112,6 +133,11 @@ public class CampList {
         return DatabaseUtils.deleteCamp(convertCampToStringArr(campsToRemove));
     }
 
+    /**
+     * This method converts the camp list to a string array
+     * @param cl is the list of all the camps
+     * @return the string array
+     */
     private ArrayList<String[]> convertCampToStringArr(ArrayList<Camp> cl){
         ArrayList<String[]>temp = new ArrayList();
         for(int p=0;p<cl.size();p++){
@@ -132,8 +158,11 @@ public class CampList {
         }
         return temp;
     }
-    
-    
+
+    /**
+     * This method adds a camp into the Camp List
+     * @param s is the camp that is to be added.
+     */
 
     public void addCamp(Camp s){
         this.campList.add(s);

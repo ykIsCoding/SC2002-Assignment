@@ -1,32 +1,32 @@
 package Views.Camps;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.UUID;
-
-import Controllers.CampViewController;
-import Controllers.SuggestionViewController;
 import Controllers.ViewControllerController;
-import Models.Action;
-import Models.Camp;
-import Models.CampCommiteeMember;
-import Models.CampList;
-import Models.Staff;
-import Models.Student;
-import Models.Abstract.AUser;
+import Models.*;
+import Utils.DatabaseUtils;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.UUID;
+
+/**
+ * This is the CampListView to show a list of the camps to the user.
+ */
 public class CampListView extends CampList implements IView {
     ViewControllerController vcc;
-    CampViewController cvc;
+
 
     private ArrayList<Action> actions = new ArrayList<>();
     private ArrayList<Camp> currentCampList;
     
     private String filterCondition = "alphabetical";
-    //date (ascending)\n2: date (descending)\n3: location\n4: camp committee slots\n5: attendee slots\n6: registration closing date (ascending)\n7: registration closing date (descending)\n8: Only for my faculty\n9: for everyone
+
+    /**
+     * This function takes in the integer as input by the user when filtering the camp list and sets the filter condition. This filter condition will determine what camps will be shown.
+     * @param cond is the integer corresponding to the filter
+     */
     private void setFilterCondition(int cond){
         switch(cond){
             case 1: 
@@ -59,17 +59,28 @@ public class CampListView extends CampList implements IView {
             case 10:
                 this.filterCondition="alphabetical";  
                 break;
+            case 11:
+                this.filterCondition="user is attendee";
+                break;
+            case 12:
+                this.filterCondition="user is ccm";
+                break;
         }
     }
-    
-    
+
+    /**
+     * The CampListView constructor takes in the ViewControllerController as its parameter.
+     * This is for navigation purposes within the app.
+     * @param vcc is the ViewControllerController
+     */
     public CampListView(ViewControllerController vcc){
         this.vcc=vcc;
-
         setup();
-        
 	}
 
+    /**
+     * setup is the function to set up the class. It is used for refreshing the class.
+     */
     private void setup(){
         retrieveCampsFromDB();
         this.actions = new ArrayList<>();
@@ -79,7 +90,7 @@ public class CampListView extends CampList implements IView {
         if(vcc.getCurrentUser() instanceof Staff){
             this.currentCampList = getCampList();
             this.actions.add(new Action("Create Camp", 3));
-            this.actions.add(new Action("View Camps I Created", 4));
+             this.actions.add(new Action("View Camps I Created", 4));
         }else if(vcc.getCurrentUser() instanceof CampCommiteeMember){
             this.currentCampList = getCampListByFacultyOrAll(this.vcc.getCurrentUser().getFaculty());
         }else if(vcc.getCurrentUser() instanceof Student){
@@ -94,6 +105,10 @@ public class CampListView extends CampList implements IView {
         }
     }
 
+    /**
+     * The handle input function takes in an integer based on what the users enter and controls what the application does based on the choice
+     * @param selection is the integer input by the user.
+     */
     public void handleInput(int selection) {
         switch(selection){
             case 1:this.vcc.navigate(3);break;
@@ -140,7 +155,7 @@ public class CampListView extends CampList implements IView {
                     slots,
                     ccslots,
                     description,
-                    vcc.getCurrentUser().getUserID().toString()
+                        vcc.getCurrentUser().getUserID()
                     );
                 tempCamp.setVisibility(false);
                 addCamp(tempCamp);
@@ -151,8 +166,12 @@ public class CampListView extends CampList implements IView {
                 CampListStaffMenuView clsmv = new CampListStaffMenuView(this.vcc);
                 clsmv.render();
             case 5:
+            if(this.vcc.getCurrentUser() instanceof Student){
+                System.out.println("Enter a number to filter by condition (enter -1 to cancel):\n1: date (ascending)\n2: date (descending)\n3: location\n4: camp committee slots\n5: attendee slots\n6: registration closing date (ascending)\n7: registration closing date (descending)\n8: Only for my faculty\n9: for everyone\n10: alphabetical\n11: Camps that I am attendee in\n12: Camps that I am Camp Committee Member in");
+            }else{
                 System.out.println("Enter a number to filter by condition (enter -1 to cancel):\n1: date (ascending)\n2: date (descending)\n3: location\n4: camp committee slots\n5: attendee slots\n6: registration closing date (ascending)\n7: registration closing date (descending)\n8: Only for my faculty\n9: for everyone\n10: alphabetical");
-                int condition = InputUtils.tryGetIntSelection(1,10);
+            }
+                int condition = InputUtils.tryGetIntSelection(1,(this.vcc.getCurrentUser() instanceof Student)?12:10);
                 setup();
                 setFilterCondition(condition);
                 switch(condition){
@@ -164,9 +183,11 @@ public class CampListView extends CampList implements IView {
                     case 5: this.currentCampList.sort(Comparator.comparing(Camp::getTotalSlots));break;
                     case 6: this.currentCampList.sort(Comparator.comparing(Camp::getRegistrationClosingDate));break;
                     case 7: this.currentCampList.sort(Comparator.comparing(Camp::getRegistrationClosingDate).reversed());break;
-                    case 8: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().toLowerCase().equals(this.vcc.getCurrentUser().getFaculty().toLowerCase()));break;
-                    case 9: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().toLowerCase().equals("all"));break;
+                    case 8: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().equalsIgnoreCase(this.vcc.getCurrentUser().getFaculty()));break;
+                    case 9: this.currentCampList.removeIf((Camp c)->!c.getUserGroup().equalsIgnoreCase("all"));break;
                     case 10: this.currentCampList.sort(Comparator.comparing((Camp x) -> x.getCampName().toLowerCase()));break;
+                    case 11:this.currentCampList.removeIf((Camp c)->!c.getAttendees().isAttendee((Student) this.vcc.getCurrentUser()));break;
+                    case 12:this.currentCampList.removeIf((Camp c)->!DatabaseUtils.checkIfStudentIsCampCommitteeMember(this.vcc.getCurrentUser().getUserID(), c.getCampID()));break;
                 }
                 render();
                 break;
@@ -175,6 +196,10 @@ public class CampListView extends CampList implements IView {
         }
     }
 
+
+    /**
+     * The render function outputs what is shown to the user and also sets up the business logic of getting an input from the user.
+     */
     @Override
     public void render() {
         // TODO Auto-generated method stub
@@ -197,13 +222,17 @@ public class CampListView extends CampList implements IView {
                     PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
                 }else if(this.filterCondition.contains("my faculty")){
                     PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
+                }else if(this.filterCondition.contains("user is attendee")){
+                    PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
+                }else if(this.filterCondition.contains("user is ccm")){
+                    PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
                 }else{
                 PageUtils.printRow(h,getCampList().get(h).getCampName(),getCampList().get(h).getUserGroup());
                 }
             }
         }
         PageUtils.printActionBox(actions);
-        int choice = InputUtils.tryGetIntSelection(1, this.actions.size());
+        int choice = InputUtils.tryGetIntSelection(this.actions);
         handleInput(choice);
     }
 }

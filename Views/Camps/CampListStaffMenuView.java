@@ -1,32 +1,27 @@
 package Views.Camps;
 
-import java.util.ArrayList;
-import java.util.UUID;
-
-import Controllers.CampViewController;
-import Controllers.SuggestionViewController;
 import Controllers.ViewControllerController;
-import Models.Action;
-import Models.Camp;
-import Models.CampCommiteeMember;
-import Models.CampList;
-import Models.Staff;
-import Models.Student;
-import Models.Abstract.AUser;
+import Models.*;
 import Utils.InputUtils;
 import Utils.PageUtils;
 import Views.Interfaces.IView;
 
+import java.util.ArrayList;
+
+/**
+ * This is the CampListStaffMenu to show the features for Staff.
+ */
 public class CampListStaffMenuView extends CampList implements IView {
     ViewControllerController vcc;
-    CampViewController cvc;
 
-    private ArrayList<Action> actions = new ArrayList<>();
+    private final ArrayList<Action> actions = new ArrayList<>();
 
-    
 
-    
-    
+    /**
+     * CampListStaffMenuView constructor takes in the ViewControllerController as its parameter.
+     * This is for navigation purposes within the app.
+     * @param vcc is the ViewControllerController
+     */
     public CampListStaffMenuView(ViewControllerController vcc){
         this.vcc=vcc;
         retrieveCampsFromDB();
@@ -48,6 +43,10 @@ public class CampListStaffMenuView extends CampList implements IView {
 
 	}
 
+    /**
+     * The handle input function takes in an integer based on what the users enter and controls what the application does based on the choice
+     * @param selection is the integer input by the user
+     */
     public void handleInput(int selection) {
         switch(selection){
             case 1:this.vcc.navigate(3);break;
@@ -100,7 +99,7 @@ public class CampListStaffMenuView extends CampList implements IView {
                     slots,
                     ccslots,
                     description,
-                    vcc.getCurrentUser().getUserID().toString()
+                        vcc.getCurrentUser().getUserID()
                     );
                 boolean res = editCamp(tempCamp);
                 if(res){
@@ -151,6 +150,9 @@ public class CampListStaffMenuView extends CampList implements IView {
         }
     }
 
+    /**
+     * The render function outputs what is shown to the user and also sets up the business logic of getting an input from the user.
+     */
     @Override
     public void render() {
         // TODO Auto-generated method stub

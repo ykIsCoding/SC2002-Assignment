@@ -1,47 +1,55 @@
 package Controllers;
 
-import java.io.InputStream;
-import java.io.StringBufferInputStream;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javax.swing.InputMap;
-
-import Models.CampCommiteeMember;
 import Models.Staff;
 import Models.Student;
 import Models.Token;
-import Models.Abstract.AUser;
 import Utils.DatabaseUtils;
-import Utils.InputUtils;
 
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+/**
+ * AuthenticationController controls the authentication of the users
+ */
 public class AuthenticationController {
     int attempsLeft = 3;
-    String password = "password";
     Token currentSessionToken = null;
    ViewControllerController vcc;
     boolean underCoolDown = false;
-    
 
+    /**
+     * constructor takes in the ViewControllerController as its parameter.
+     * This is for navigation purposes within the app.
+     * @param vcc
+     */
     public AuthenticationController(ViewControllerController vcc){
         this.vcc = vcc;
 	}
 
+    /**
+     * check if user is under cooldown from logging
+     * @return true if under cooldown, else false
+     */
     public boolean isUnderCooldown(){
         return this.underCoolDown;
     }
 
+    /**
+     * authenticate user
+     * @param inputPassword password entered by the user
+     * @param email email input by the user
+     * @return
+     */
     public boolean authenticate(String inputPassword, String email){
         if(underCoolDown) return false;
-        //gets all staff and student as an array list
+
         ArrayList<String[]> g = DatabaseUtils.getCredentials("./Data/staff_list.txt");
         ArrayList<String[]> s = DatabaseUtils.getCredentials("./Data/student_list.txt");
         String[] userDetails = {};
         boolean isStudent = false;
 
-        //finds the staff or student whose email matches the email entered
+
         for(int x = 0 ; x<g.size();x++){
             if(g.get(x)[2].toLowerCase().equals(email)){
                 userDetails = g.get(x);
@@ -55,17 +63,16 @@ public class AuthenticationController {
         }
         
         try{
-        //checks the password
+
         if(DatabaseUtils.checkPassword(inputPassword, userDetails[8], userDetails[4])){
             this.currentSessionToken = new Token(userDetails[0], this);
             if(isStudent){
                 
                     this.vcc.setCurrentUser(new Student(userDetails[0],userDetails[5]));
-                   //this.currentUser = new Student(userDetails[0],userDetails[5]);
+
                 
             }else{
                 this.vcc.setCurrentUser(new Staff(userDetails[0],userDetails[5]));
-               // this.currentUser = new Staff(userDetails[0],userDetails[5]);
             }
             this.attempsLeft = 3;
             return true;
@@ -76,7 +83,7 @@ public class AuthenticationController {
             System.out.println("Due to too many incorrect attempts, logging in is disabled. Please try again in 1 minute");
         }else{
             
-            System.out.println("Password incorrect, please try again. You are left with "+ Integer.toString(this.attempsLeft)+" tries.");
+            System.out.println("Password incorrect, please try again. You are left with "+ this.attempsLeft +" tries.");
         }
     
         return false;
@@ -86,6 +93,9 @@ public class AuthenticationController {
     }
     }
 
+    /**
+     * set cooldown if the user's log attempts run out
+     */
     private void setCoolDown(){
         this.underCoolDown = true;
         new Timer().schedule(new TimerTask() {
@@ -97,18 +107,13 @@ public class AuthenticationController {
         }, 60000);
     }
 
-    public boolean isInSession(){
-        return this.currentSessionToken!=null;
-    }
 
-    
-
+    /**
+     * remove the token of the user when the user's session is over
+     */
     public void removeToken(){
         this.currentSessionToken = null;
         System.out.println("terminating program as session is over");
-        //System.exit(0);
-        //this.vcc.navigate(0); 
         this.vcc.navigate(7);
-        //this.vcc.navigate(7);
     }
 }

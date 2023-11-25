@@ -1,21 +1,27 @@
 package Utils;
 
+import Models.Action;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-import Models.Action;
-
+/**
+ * The InputUtils contains all the utility functions for getting input from user
+ */
 public class InputUtils {
-    private static String intOnly = "\\d+";
-    private static String emailOnly = "\\w+@[e.]*ntu.edu.sg";
-    private static String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
-    private static String alphanumericOnly ="^[A-Za-z0-9]{8,}";
-    private static String stringOnly = ".+";
+    private static final String intOnly = "\\d+";
+    private static final String emailOnly = "\\w+@[e.]*ntu.edu.sg$";
+    private static final String dateOnly = "\\s*(\\d{1,2})\\s*\\/\\s*(\\d{1,2})\\s*\\/\\s*(\\d{4})";
+    private static final String alphanumericOnly ="^[A-Za-z0-9]{8,}";
 
+    /**
+     * gets a date from the user. Includes error handling.
+     * @return String of the date
+     */
     public static String tryGetDate(){
         Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -29,9 +35,9 @@ public class InputUtils {
                 continue;
             }else{
                 LocalDate today = LocalDate.now();
-                String day = matcher.group(1).toString().length()==1?"0"+matcher.group(1).toString():matcher.group(1).toString();
-                String month = matcher.group(2).toString().length()==1?"0"+matcher.group(2).toString():matcher.group(2).toString();
-                String year = matcher.group(3).toString();
+                String day = matcher.group(1).length()==1?"0"+ matcher.group(1) : matcher.group(1);
+                String month = matcher.group(2).length()==1?"0"+ matcher.group(2) : matcher.group(2);
+                String year = matcher.group(3);
                
                 LocalDate inputDate = LocalDate.parse( 
                 (day+"/"+month+"/"+year), 
@@ -54,6 +60,10 @@ public class InputUtils {
     return "";
     }
 
+    /**
+     * gets a email from the user. Includes error handling.
+     * @return String containing the email entered by user
+     */
     public static String tryGetEmail(){
         Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -70,7 +80,7 @@ public class InputUtils {
                 if(DatabaseUtils.getUserByEmail(inputEmail)==null){
                     System.out.println("User does not exist. Please try again.");
                 }else{
-                    return inputEmail.toString();
+                    return inputEmail;
                 }
             }
         }
@@ -82,6 +92,10 @@ public class InputUtils {
     return null;
     }
 
+    /**
+     * gets a string from the user. Includes error handling.
+     * @return string entered by user
+     */
     public static String tryGetString(){
             Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -100,6 +114,10 @@ public class InputUtils {
     return null;
     }
 
+    /**
+     * gets a password from the user. Includes error handling.
+     * @return password string entered by user.
+     */
     public static String tryGetPassword(){
         Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -115,7 +133,7 @@ public class InputUtils {
                 System.out.println("Password has to be at least 8 characters. Please re-enter.");
                 continue;
             }else{
-                String pw = matcher.group().toString();
+                String pw = matcher.group();
                 return pw;
                 
             }
@@ -127,7 +145,12 @@ public class InputUtils {
     scnr.close();
     return null;
     }
-    
+
+    /**
+     * gets an integer input from the user based on the arraylist of actions. If the integer does not correspond to the number of any of the actions then it will prompt the user to re-enter.
+     * @param al array list of actions
+     * @return integer input by the user.
+     */
     public static int tryGetIntSelection(ArrayList<Action> al){
         Scanner scnr = new Scanner(System.in);
         boolean loop = true;
@@ -143,6 +166,7 @@ public class InputUtils {
                 int b = Integer.valueOf(matcher.group());
                 ArrayList<Integer> nummers = new ArrayList<>();
                 for(int p=0;p<al.size();p++){
+                    
                     nummers.add(al.get(p).getActionNo());
                 }
                 if(!nummers.contains(b)){
@@ -159,7 +183,13 @@ public class InputUtils {
     scnr.close();
     return -1;
     }
-    
+
+    /**
+     * gets an integer input from the user based on a range of numbers.
+     * @param minNo the minimum number that can be entered.
+     * @param maxNo the maximum number that can be entered.
+     * @return the integer entered by the user
+     */
     public static int tryGetIntSelection(int minNo, int maxNo){
         if(maxNo<0){
             maxNo =0;

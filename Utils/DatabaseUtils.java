@@ -98,6 +98,33 @@ public class DatabaseUtils {
     }
 
     /**
+     *
+     * chceks if user already has a camp on the same day as the camp he/she wants to register
+     * @param studentID the studentID of student
+     * @param campToCheck the camp the student wants to register for
+     * @return true if there is already a camp on the same day, else false
+     */
+    public static boolean checkIfStudentHasCampOnDate(String studentID, Camp campToCheck){
+         ArrayList<String[]> x = readFromFile("Data/attendees.txt");
+          ArrayList<String[]> camps = readFromFile("Data/camps.txt");
+         for(int c=0;c<x.size();c++){
+             if((x.get(c)[1]).equals(studentID)){
+                for(int j=0;j<camps.size();j++){
+                    if(x.get(c)[0].equals(camps.get(j)[0])){
+                       
+                        boolean clash = camps.get(j)[2].equals(campToCheck.getDate().toString());
+                        if(clash){
+                            return true;
+                        }
+                    }
+                }
+                
+             } 
+         }
+         return false;
+    }
+
+    /**
      * function checks if student already is in a camp committee
      * @param studentID the id of the student
      * @return true if the student already has a committee, else false

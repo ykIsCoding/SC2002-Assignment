@@ -253,11 +253,17 @@ public class Camp implements ICampInformation{
                 return false;
             }
 
+            if (DatabaseUtils.checkIfStudentHasCampOnDate(attendee.getUserID(),this)) {
+                System.err.println("You already have a camp on the same day!");
+                return false;
+             }
+
 
             if (LocalDate.now().isAfter(this.registrationClosingDate)) {
                 System.err.println("Error: Registration deadline has passed. Cannot register attendee.");
                 return false;
 }
+
             
 
             this.attendees.addAttendee(attendee);
@@ -292,10 +298,22 @@ public class Camp implements ICampInformation{
                 return false;
              }
 
+             
+
+             if (LocalDate.now().isAfter(this.registrationClosingDate)) {
+                System.err.println("Error: Registration deadline has passed. Cannot register attendee.");
+                return false;}
+
              if(DatabaseUtils.checkIfStudentHasCampCommittee(committeeMember.getUserID())){
                 System.err.println("Error: You are already in a camp committee!");
                 return false;
              }
+
+             if (DatabaseUtils.checkIfStudentHasCampOnDate(committeeMember.getUserID(),this)) {
+                System.err.println("You already have a camp on the same day!");
+                return false;
+             }
+
             
 
             // Attempt to add the committee member to the list
